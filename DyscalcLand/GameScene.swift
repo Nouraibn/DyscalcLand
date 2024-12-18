@@ -41,11 +41,27 @@ class GameScene: SKScene {
             //see if the touch was on the cotton candy
             for (index, cottonCandy) in cottonCandies.enumerated() {
                 if cottonCandy.contains(touchLocation) {
-                    numberCottonCandy[index].isHidden = false //show label when the user click on the cotton candy
+                    if currentNumberIndex < numberCottonCandy.count {
+                        numberCottonCandy[index].isHidden = false //show label when the user click on the cotton candy
+                        let numText = numberCottonCandy[index].text ?? "?"
+                        
+                        if currentNumberIndex == 0 {
+                            mainEquation.text = "2 + 3 = \(numText)?"
+                        } else {
+                            mainEquation.text = "2 + 3 = \(numText)"
+                        }
+                        currentNumberIndex += 1
+                        }
+//                    if currentNumberIndex == numberCottonCandy.count {
+//                        mainEquation.text = "2 + 3 = \(numText)!"
+                    }
+                        
+                    }
+                   
                 }
             }
         }
-    }
+//    }
         
-    }
+    
             
