@@ -4,7 +4,7 @@ import SpriteKit
 import GameplayKit
 
 
-class GameScene: SKScene {
+class Equation4: SKScene {
     var cottonCandies: [SKSpriteNode] = []
     var numberCottonCandy: [SKLabelNode] = []
     var cottonCandyCart: SKSpriteNode!
