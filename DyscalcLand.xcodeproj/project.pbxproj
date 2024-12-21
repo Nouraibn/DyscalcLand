@@ -57,6 +57,7 @@
 		2CF5E3102D144760004632FF /* Number8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E30F2D144760004632FF /* Number8.swift */; };
 		2CF5E3122D14476A004632FF /* Number9.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E3112D14476A004632FF /* Number9.swift */; };
 		2CF5E3142D144771004632FF /* Number10.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E3132D144771004632FF /* Number10.swift */; };
+		2CF5E3162D16FF5D004632FF /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E3152D16FF5D004632FF /* Model.swift */; };
 		FC8FF0E62D10496700CA301A /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = FC8FF0E52D10496700CA301A /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +113,7 @@
 		2CF5E30F2D144760004632FF /* Number8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number8.swift; sourceTree = "<group>"; };
 		2CF5E3112D14476A004632FF /* Number9.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number9.swift; sourceTree = "<group>"; };
 		2CF5E3132D144771004632FF /* Number10.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number10.swift; sourceTree = "<group>"; };
+		2CF5E3152D16FF5D004632FF /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		FC8FF0E52D10496700CA301A /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,8 +150,8 @@
 				2CF5E2722D0F10E7004632FF /* AppDelegate.swift */,
 				2CF5E27A2D0F10E7004632FF /* GameViewController.swift */,
 				2CF5E2B72D1437A5004632FF /* Scene */,
-				2CF5E2B82D1437BF004632FF /* SceneModule */,
-				2CF5E2B92D143B48004632FF /* Module */,
+				2CF5E2B82D1437BF004632FF /* SceneModel */,
+				2CF5E2B92D143B48004632FF /* Model */,
 				2CF5E27C2D0F10E7004632FF /* Main.storyboard */,
 				2CF5E27F2D0F10E8004632FF /* Assets.xcassets */,
 				2CF5E2812D0F10E8004632FF /* LaunchScreen.storyboard */,
@@ -170,7 +172,7 @@
 			path = Scene;
 			sourceTree = "<group>";
 		};
-		2CF5E2B82D1437BF004632FF /* SceneModule */ = {
+		2CF5E2B82D1437BF004632FF /* SceneModel */ = {
 			isa = PBXGroup;
 			children = (
 				2CF5E2DC2D144360004632FF /* NumericSceneModule */,
@@ -180,14 +182,15 @@
 				2CF5E2C02D143F39004632FF /* ClownMap.swift */,
 				FC8FF0E52D10496700CA301A /* Localizable.xcstrings */,
 			);
-			path = SceneModule;
+			path = SceneModel;
 			sourceTree = "<group>";
 		};
-		2CF5E2B92D143B48004632FF /* Module */ = {
+		2CF5E2B92D143B48004632FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2CF5E3152D16FF5D004632FF /* Model.swift */,
 			);
-			path = Module;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		2CF5E2C22D143F69004632FF /* NumericScene */ = {
@@ -378,6 +381,7 @@
 				2CF5E30C2D144751004632FF /* Number6.swift in Sources */,
 				2CF5E2E02D14449D004632FF /* DragAndDrop1.swift in Sources */,
 				2CF5E3062D14473D004632FF /* Number3.swift in Sources */,
+				2CF5E3162D16FF5D004632FF /* Model.swift in Sources */,
 				2CF5E27B2D0F10E7004632FF /* GameViewController.swift in Sources */,
 				2CF5E3102D144760004632FF /* Number8.swift in Sources */,
 				2CF5E2EC2D1444DC004632FF /* Equation5.swift in Sources */,
