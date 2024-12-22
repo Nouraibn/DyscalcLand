@@ -66,4 +66,27 @@ class ClownMap: SKScene {
             node.run(sequence)
         })
     }
+    
+    // Handle touch events to navigate when the OpenN node is pressed
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let touchLocation = touch.location(in: self)
+            let node = self.atPoint(touchLocation)
+            
+            // Check if the OpenN node is tapped
+            if node == openN {
+                goToNextScene()
+            }
+        }
+    }
+    
+    // Function to navigate to the Number1 scene
+    func goToNextScene() {
+        guard let nextScene = SKScene(fileNamed: "Number1") else {
+            return
+        }
+        nextScene.scaleMode = .aspectFill
+        let transition = SKTransition.fade(withDuration: 1.0) // Fade transition
+        self.view?.presentScene(nextScene, transition: transition)
+    }
 }
