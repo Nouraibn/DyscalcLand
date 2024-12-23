@@ -108,7 +108,7 @@ class Equation4: SKScene {
     override func didMove(to view: SKView) {
         
         cottonCandyCart = self.childNode(withName: "CottonCandyCart") as? SKSpriteNode
-               mainEquation = self.childNode(withName: "Equation") as? SKLabelNode
+               mainEquation = self.childNode(withName: "Equation4") as? SKLabelNode
                 background2 = self.childNode(withName: "Background2") as? SKSpriteNode
                 self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
 
@@ -135,9 +135,10 @@ class Equation4: SKScene {
     }
     func updateEquation() {
         let baseEquation = "2 + 3 = "
+        
         if currentNumberIndex < numberCottonCandy.count {
-            let numText = numberCottonCandy[currentNumberIndex].text ?? "?"
-            mainEquation.text = "\(baseEquation)\(numText) ?"
+            let numText = numberCottonCandy[currentNumberIndex - 1].text ?? "?"
+            mainEquation.text = "\(baseEquation)\(numText)?"
         } else {
             let resultText = numberCottonCandy.last?.text ?? "?"
             mainEquation.text = "\(baseEquation)\(resultText)!"
@@ -154,10 +155,17 @@ class Equation4: SKScene {
             //see if the touch was on the cotton candy
             for (index, cottonCandy) in cottonCandies.enumerated() {
                             if cottonCandy.contains(touchLocation) {
+                                
                                 if currentNumberIndex < numberCottonCandy.count {
-                                    numberCottonCandy[index].isHidden = false // Show the label when pressed
-                                    currentNumberIndex += 1
-                                    updateEquation()
+                                    let numText = numberCottonCandy[index]
+                                    
+                                    numText.isHidden = false
+                                                           
+                                                          
+                                                           currentNumberIndex += 1
+                                                           
+                                                
+                                                           updateEquation()
                                
                     }
                     
