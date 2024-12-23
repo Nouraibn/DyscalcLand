@@ -14,6 +14,8 @@ class Number3: SKScene {
     var popBalloon3: SKSpriteNode!
     var guidingLabel: SKLabelNode!
     var equalLabel: SKLabelNode!
+    var nextButton: SKSpriteNode! // New node for navigation button
+    var nextLabel: SKLabelNode! // New node for navigation label
     
     // Flags to track progress
     var isBalloon1Popped = false
@@ -37,16 +39,19 @@ class Number3: SKScene {
         popBalloon3 = self.childNode(withName: "PopBalloon3") as? SKSpriteNode
         guidingLabel = self.childNode(withName: "GuidingLabel") as? SKLabelNode
         equalLabel = self.childNode(withName: "Equal") as? SKLabelNode
+        nextButton = self.childNode(withName: "NextButton") as? SKSpriteNode // Load the new button node
+        nextLabel = self.childNode(withName: "NextLabel") as? SKLabelNode // Load the new label node
         
         background?.zPosition = -1
         border?.zPosition = -1
         
-        
-        // Initial state: hide popBalloon1, popBalloon2, popBalloon3, and num3Balloon
+        // Initial state: hide popBalloon1, popBalloon2, popBalloon3, num3Balloon, nextButton, and nextLabel
         popBalloon1.isHidden = true
         popBalloon2.isHidden = true
         popBalloon3.isHidden = true
         num3Balloon.isHidden = true
+        nextButton?.isHidden = true
+        nextLabel?.isHidden = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -60,11 +65,16 @@ class Number3: SKScene {
                 handleBalloon2Tapped()
             } else if node == balloon3 {
                 handleBalloon3Tapped()
+            } else if node == nextButton || node == nextLabel {
+                navigateToNumber4()
             }
         }
     }
     
     func handleBalloon1Tapped() {
+        
+        run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
+
         // Hide balloon1 and show popBalloon1
         balloon1.isHidden = true
         popBalloon1.isHidden = false
@@ -75,6 +85,9 @@ class Number3: SKScene {
     }
     
     func handleBalloon2Tapped() {
+        
+        run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
+
         // Hide balloon2 and show popBalloon2
         balloon2.isHidden = true
         popBalloon2.isHidden = false
@@ -85,6 +98,9 @@ class Number3: SKScene {
     }
     
     func handleBalloon3Tapped() {
+        
+        run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
+
         // Hide balloon3 and show popBalloon3
         balloon3.isHidden = true
         popBalloon3.isHidden = false
@@ -95,9 +111,27 @@ class Number3: SKScene {
     }
     
     func checkCompletion() {
-        // If all balloons are popped, show num3Balloon
+        // If all balloons are popped, show num3Balloon and navigation options
         if isBalloon1Popped && isBalloon2Popped && isBalloon3Popped {
+            run(SKAction.playSoundFileNamed("NumAppear.wav", waitForCompletion: false))
             num3Balloon.isHidden = false
+            
+            // Show the NextButton and NextLabel after 3 seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
+                self?.nextButton?.isHidden = false
+                self?.nextLabel?.isHidden = false
+                self?.nextButton?.zPosition = 1
+                self?.nextLabel?.zPosition = 2
+            }
+        }
+    }
+    
+    func navigateToNumber4() {
+        // Navigate to the Number4 scene
+        if let number4Scene = SKScene(fileNamed: "Number4") {
+            number4Scene.scaleMode = .aspectFill
+            let transition = SKTransition.fade(withDuration: 1.0)
+            self.view?.presentScene(number4Scene, transition: transition)
         }
     }
 }
