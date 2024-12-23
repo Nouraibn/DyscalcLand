@@ -11,6 +11,7 @@
 		2C89BA142D1996C1004CFBB2 /* NumAppear.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C89BA132D1996C1004CFBB2 /* NumAppear.wav */; };
 		2C89BA162D199D5E004CFBB2 /* guess.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C89BA152D199D5E004CFBB2 /* guess.wav */; };
 		2C89BA182D19A861004CFBB2 /* Clown.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C89BA172D19A861004CFBB2 /* Clown.wav */; };
+		2C89BA1A2D19AE7E004CFBB2 /* mixkit-hard-pop-click-2364.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C89BA192D19AE7E004CFBB2 /* mixkit-hard-pop-click-2364.wav */; };
 		2CF5E2732D0F10E7004632FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E2722D0F10E7004632FF /* AppDelegate.swift */; };
 		2CF5E2752D0F10E7004632FF /* Equation4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5E2742D0F10E7004632FF /* Equation4.sks */; };
 		2CF5E2772D0F10E7004632FF /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5E2762D0F10E7004632FF /* Actions.sks */; };
@@ -70,6 +71,7 @@
 		2C89BA132D1996C1004CFBB2 /* NumAppear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = NumAppear.wav; path = ../../../../../Downloads/NumAppear.wav; sourceTree = "<group>"; };
 		2C89BA152D199D5E004CFBB2 /* guess.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = guess.wav; path = ../../../../../Downloads/Label/guess.wav; sourceTree = "<group>"; };
 		2C89BA172D19A861004CFBB2 /* Clown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Clown.wav; path = ../../../../../Downloads/Clown.wav; sourceTree = "<group>"; };
+		2C89BA192D19AE7E004CFBB2 /* mixkit-hard-pop-click-2364.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "mixkit-hard-pop-click-2364.wav"; sourceTree = "<group>"; };
 		2CF5E26F2D0F10E7004632FF /* DyscalcLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DyscalcLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF5E2722D0F10E7004632FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CF5E2742D0F10E7004632FF /* Equation4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Equation4.sks; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				2C89BA132D1996C1004CFBB2 /* NumAppear.wav */,
 				2C89BA172D19A861004CFBB2 /* Clown.wav */,
 				2C89BA152D199D5E004CFBB2 /* guess.wav */,
+				2C89BA192D19AE7E004CFBB2 /* mixkit-hard-pop-click-2364.wav */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				2C89BA122D19924E004CFBB2 /* PopBalloon.wav in Resources */,
 				2CF5E2F62D1446EA004632FF /* Number5.sks in Resources */,
 				2CF5E2F22D1446D3004632FF /* Number3.sks in Resources */,
+				2C89BA1A2D19AE7E004CFBB2 /* mixkit-hard-pop-click-2364.wav in Resources */,
 				2CF5E2CF2D14417B004632FF /* DragAndDrop5.sks in Resources */,
 				2CF5E27E2D0F10E7004632FF /* Base in Resources */,
 				2CF5E2FE2D144710004632FF /* Number9.sks in Resources */,
