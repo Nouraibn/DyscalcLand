@@ -24,7 +24,7 @@ class GameViewController: UIViewController {
         
         // Load the initial scene
         if let view = self.view as? SKView {
-            if let scene = WelcomeScreen(fileNamed: "WelcomeBoard") {
+            if let scene = WelcomeScreen(fileNamed: "WelcomeScreen") {
                 // Pass the ModelContext to the first scene
                 scene.scaleMode = .aspectFill
                 
