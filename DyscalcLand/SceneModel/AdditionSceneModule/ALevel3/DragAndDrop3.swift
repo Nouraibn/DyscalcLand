@@ -13,12 +13,30 @@ class DragAndDrop3: SKScene {
     let maxCottonCandyCount = 2
     let cottonCandySpacing: CGFloat = 60
     
+    var nextButton: SKSpriteNode!
+    var nextButtonLabel: SKLabelNode!
+    var mainText: SKLabelNode!
+
+
+    
     override func didMove(to view: SKView) {
         background2 = childNode(withName: "Background2") as? SKSpriteNode
         cottonCandyCart = childNode(withName: "CottonCandyCart") as? SKSpriteNode
-        background2.zPosition = -1
-       
+        mainText = childNode(withName: "MainText") as? SKLabelNode
         
+        nextButton = childNode(withName: "NextButton") as? SKSpriteNode
+        nextButtonLabel = childNode(withName: "ButtonLabel") as? SKLabelNode
+//        nextButtonLabel.text = "Next"
+        
+        mainText.zPosition = 10
+        background2.zPosition = -1
+        
+        nextButton.isUserInteractionEnabled = true
+        nextButton.alpha = 0.0
+        nextButtonLabel.isHidden = true
+        
+        playSound()
+       
         for i in 1...maxCottonCandyCount {
             if let yellowCottonCandy = childNode(withName: "YellowCottonCandy\(i)") as? SKSpriteNode {
                 yellowCottonCandies.append(yellowCottonCandy)
@@ -35,6 +53,10 @@ class DragAndDrop3: SKScene {
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0)
         
       
+    }
+    func playSound(){
+        let sound = SKAction.playSoundFileNamed("AMakeCotton.mp3", waitForCompletion: false)
+        self.run(sound)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -79,10 +101,40 @@ class DragAndDrop3: SKScene {
 
                     
                     cottonCandyCount += 1
+                    if cottonCandyCount == maxCottonCandyCount {
+                        mainText.text = "Well Done!"
+                       
+                        
+                        
+                        let waitAction = SKAction.wait(forDuration: 3.0)
+                        let showButtonAction = SKAction.run {
+                            self.showNextButton()
+                        }
+                        let sequence = SKAction.sequence([waitAction, showButtonAction])
+                        self.run(sequence)
+                    }
                 }
             }
+            
+            if nextButton.alpha > 0.0 && nextButton.contains(location) {
+                goToEScreen()
+            }
+                
+            
         }
     }
-
+    func showNextButton() {
+        nextButton.alpha = 1.0 //make it show
+        nextButtonLabel.isHidden = false
+    }
+    
+    func goToEScreen() {
+        let nextScene = SKScene(fileNamed: "Equation3")
+        if let nextScene = nextScene {
+            nextScene.scaleMode = .aspectFill
+            let transition = SKTransition.fade(withDuration: 0.1)
+            self.view?.presentScene(nextScene, transition: transition)
+        }
+    }
     
 }

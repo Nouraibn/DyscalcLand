@@ -21,8 +21,8 @@ class DragAndDrop1: SKScene {
         mainText = childNode(withName: "MainText") as? SKLabelNode
         
         nextButton = childNode(withName: "NextButton") as? SKSpriteNode
-        nextButtonLabel = childNode(withName: "NextButtonLabel") as? SKLabelNode
-
+        nextButtonLabel = childNode(withName: "ButtonLabel") as? SKLabelNode
+//        nextButtonLabel.text = "Next"
         
         mainText.zPosition = 10
         background2.zPosition = -1
@@ -31,9 +31,8 @@ class DragAndDrop1: SKScene {
         nextButton.alpha = 0.0
         nextButtonLabel.isHidden = true
        
-        mainText.text = "Let’s Make Some Cotton Candies!"
-        mainText.fontName = "Comic Sans MS"
-        
+//        mainText.text = "Let’s Make Some Cotton Candies!"
+        playSound()
         for i in 1...maxCottonCandyCount {
             if let yellowCottonCandy = childNode(withName: "YellowCottonCandy\(i)") as? SKSpriteNode {
                 yellowCottonCandies.append(yellowCottonCandy)
@@ -51,6 +50,10 @@ class DragAndDrop1: SKScene {
         
         
       
+    }
+    func playSound(){
+        let sound = SKAction.playSoundFileNamed("AMakeCotton.mp3", waitForCompletion: false)
+        self.run(sound)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -98,9 +101,7 @@ class DragAndDrop1: SKScene {
                     
                     if cottonCandyCount == maxCottonCandyCount {
                         mainText.text = "Well Done!"
-                        mainText.fontName = "Comic Sans MS"
-                        mainText.fontSize = 24
-                        mainText.fontColor = .black
+                       
                         
                         
                         let waitAction = SKAction.wait(forDuration: 3.0)
