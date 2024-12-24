@@ -7,7 +7,7 @@ class Equation1: SKScene {
     var cottonCandyCart: SKSpriteNode!
     var mainEquation: SKLabelNode!
         var background2: SKSpriteNode!
-
+    var mainText: SKLabelNode!
     
     var currentNumberIndex = 0 // to see which cotton candy is preseed
     
@@ -17,7 +17,9 @@ class Equation1: SKScene {
                mainEquation = self.childNode(withName: "Equation1") as? SKLabelNode
                 background2 = self.childNode(withName: "Background2") as? SKSpriteNode
                 self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
-
+//        mainText.text = "Let’s count how many cotton candies there are"
+//        mainText.fontName = "Comic Sans MS"
+        
         for i in 1..<3 {
             
             if let cottonCandy = self.childNode(withName: "PinkCottonCandy\(i)") as? SKSpriteNode {
@@ -72,6 +74,10 @@ class Equation1: SKScene {
                                                            
                                                 
                                                            updateEquation()
+                                    
+//                                    if currentNumberIndex == numberCottonCandy.count {
+//                                        mainText.text = "You got it!"
+//                                    }
                                
                     }
                     
