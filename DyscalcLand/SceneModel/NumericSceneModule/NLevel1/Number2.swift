@@ -1,4 +1,5 @@
 import SpriteKit
+import SwiftData
 
 class Number2: SKScene {
     
@@ -19,8 +20,9 @@ class Number2: SKScene {
     var isBalloon1Popped = false
     var isBalloon2Popped = false
     
+    var modelContext: ModelContext! // Reference to SwiftData model context
+    
     override func didMove(to view: SKView) {
-        
         // Set the background color programmatically
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
 
@@ -65,28 +67,20 @@ class Number2: SKScene {
     }
     
     func handleBalloon1Tapped() {
-        
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
         // Hide balloon1 and show popBalloon1
         balloon1.isHidden = true
         popBalloon1.isHidden = false
         isBalloon1Popped = true
-        
-        // Check if both balloons are popped
         checkCompletion()
     }
     
     func handleBalloon2Tapped() {
-        
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
         // Hide balloon2 and show popBalloon2
         balloon2.isHidden = true
         popBalloon2.isHidden = false
         isBalloon2Popped = true
-        
-        // Check if both balloons are popped
         checkCompletion()
     }
     
@@ -107,11 +101,32 @@ class Number2: SKScene {
     }
     
     func navigateToNumber3() {
+        // Update progress for Number2
+        completeCurrentClass()
+        
         // Navigate to the Number3 scene
-        if let number3Scene = SKScene(fileNamed: "Number3") {
+        if let number3Scene = SKScene(fileNamed: "Number3") as? Number3 {
+            number3Scene.modelContext = modelContext // Pass model context to the next scene
             number3Scene.scaleMode = .aspectFill
             let transition = SKTransition.fade(withDuration: 1.0)
             self.view?.presentScene(number3Scene, transition: transition)
+        }
+    }
+    
+    func completeCurrentClass() {
+        // Mark Number2 as completed and unlock Number3
+        let fetchRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 2 })
+        
+        if let currentClass = try? modelContext.fetch(fetchRequest).first {
+            currentClass.isCompleted = true
+            
+            // Unlock the next class (Number3)
+            let nextClassRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 3 })
+            if let nextClass = try? modelContext.fetch(nextClassRequest).first {
+                nextClass.isUnlocked = true
+            }
+            
+            try? modelContext.save()
         }
     }
 }

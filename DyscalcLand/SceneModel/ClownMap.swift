@@ -1,4 +1,6 @@
 import SpriteKit
+import SwiftData
+
 
 class ClownMap: SKScene {
     
@@ -14,6 +16,7 @@ class ClownMap: SKScene {
        private var selectBorder: SKSpriteNode! // New node
     
     // Static property to track if navigation is from Number10
+    var modelContext: ModelContext!
         static var navigatedFromNumber10 = false
     
     override func didMove(to view: SKView) {
@@ -122,5 +125,23 @@ class ClownMap: SKScene {
         nextScene.scaleMode = .aspectFill
         let transition = SKTransition.fade(withDuration: 1.0) // Fade transition
         self.view?.presentScene(nextScene, transition: transition)
+    }
+    
+    func updateClownMap() {
+        let fetchRequest = FetchDescriptor<GameProgress>()
+        
+        if let progress = try? modelContext.fetch(fetchRequest) {
+            for level in progress {
+                if level.levelID == 1 && level.partID == 1 && level.classID == 1 && level.isUnlocked {
+                    openN?.isHidden = false // Example: Show openN if unlocked
+                }
+                if level.levelID == 2 && level.partID == 1 && level.isUnlocked {
+                    luckA?.isHidden = false // Show luckA if unlocked
+                }
+                if level.levelID == 3 && level.isUnlocked {
+                    luckS?.isHidden = false // Show luckS if unlocked
+                }
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 import SpriteKit
+import SwiftData
 
 class Number3: SKScene {
     
@@ -22,8 +23,9 @@ class Number3: SKScene {
     var isBalloon2Popped = false
     var isBalloon3Popped = false
     
+    var modelContext: ModelContext! // Reference to SwiftData model context
+    
     override func didMove(to view: SKView) {
-        
         // Set the background color programmatically
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
 
@@ -72,41 +74,29 @@ class Number3: SKScene {
     }
     
     func handleBalloon1Tapped() {
-        
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
         // Hide balloon1 and show popBalloon1
         balloon1.isHidden = true
         popBalloon1.isHidden = false
         isBalloon1Popped = true
-        
-        // Check if all balloons are popped
         checkCompletion()
     }
     
     func handleBalloon2Tapped() {
-        
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
         // Hide balloon2 and show popBalloon2
         balloon2.isHidden = true
         popBalloon2.isHidden = false
         isBalloon2Popped = true
-        
-        // Check if all balloons are popped
         checkCompletion()
     }
     
     func handleBalloon3Tapped() {
-        
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
         // Hide balloon3 and show popBalloon3
         balloon3.isHidden = true
         popBalloon3.isHidden = false
         isBalloon3Popped = true
-        
-        // Check if all balloons are popped
         checkCompletion()
     }
     
@@ -127,11 +117,32 @@ class Number3: SKScene {
     }
     
     func navigateToNumber4() {
+        // Update progress for Number3
+        completeCurrentClass()
+        
         // Navigate to the Number4 scene
-        if let number4Scene = SKScene(fileNamed: "Number4") {
+        if let number4Scene = SKScene(fileNamed: "Number4") as? Number4 {
+            number4Scene.modelContext = modelContext // Pass model context to the next scene
             number4Scene.scaleMode = .aspectFill
             let transition = SKTransition.fade(withDuration: 1.0)
             self.view?.presentScene(number4Scene, transition: transition)
+        }
+    }
+    
+    func completeCurrentClass() {
+        // Mark Number3 as completed and unlock Number4
+        let fetchRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 3 })
+        
+        if let currentClass = try? modelContext.fetch(fetchRequest).first {
+            currentClass.isCompleted = true
+            
+            // Unlock the next class (Number4)
+            let nextClassRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 4 })
+            if let nextClass = try? modelContext.fetch(nextClassRequest).first {
+                nextClass.isUnlocked = true
+            }
+            
+            try? modelContext.save()
         }
     }
 }

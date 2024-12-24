@@ -1,4 +1,5 @@
 import SpriteKit
+import SwiftData
 
 class Number1: SKScene {
     
@@ -12,6 +13,9 @@ class Number1: SKScene {
     var GuidingLabel: SKSpriteNode!
     var NextButton: SKSpriteNode! // New node for navigation button
     var NextLabel: SKLabelNode! // New node for navigation label
+    
+    // Reference to SwiftData model context
+    var modelContext: ModelContext!
     
     override func didMove(to view: SKView) {
         // Set the background color programmatically
@@ -100,11 +104,34 @@ class Number1: SKScene {
     }
     
     func navigateToNumber2() {
+        // Update progress for Number1
+        completeCurrentClass()
+
         // Navigate to the Number2 scene
         if let number2Scene = SKScene(fileNamed: "Number2") {
+            if let number2 = number2Scene as? Number2 {
+                number2.modelContext = modelContext // Pass model context to the next scene
+            }
             number2Scene.scaleMode = .aspectFill
             let transition = SKTransition.fade(withDuration: 1.0)
             self.view?.presentScene(number2Scene, transition: transition)
+        }
+    }
+    
+    func completeCurrentClass() {
+        // Mark Number1 as completed and unlock Number2
+        let fetchRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 1 })
+        
+        if let currentClass = try? modelContext.fetch(fetchRequest).first {
+            currentClass.isCompleted = true
+            
+            // Unlock the next class (Number2)
+            let nextClassRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 2 })
+            if let nextClass = try? modelContext.fetch(nextClassRequest).first {
+                nextClass.isUnlocked = true
+            }
+            
+            try? modelContext.save()
         }
     }
 }

@@ -1,4 +1,5 @@
 import SpriteKit
+import SwiftData
 
 class Number4: SKScene {
     
@@ -25,6 +26,8 @@ class Number4: SKScene {
     var isBalloon3Popped = false
     var isBalloon4Popped = false
     
+    var modelContext: ModelContext! // Reference to SwiftData model context
+    
     override func didMove(to view: SKView) {
         
         // Set the background color programmatically
@@ -44,8 +47,8 @@ class Number4: SKScene {
         popBalloon4 = self.childNode(withName: "PopBalloon4") as? SKSpriteNode
         guidingLabel = self.childNode(withName: "GuidingLabel") as? SKLabelNode
         equalLabel = self.childNode(withName: "Equal") as? SKLabelNode
-        nextButton = self.childNode(withName: "NextButton") as? SKSpriteNode // Load the new button node
-        nextLabel = self.childNode(withName: "NextLabel") as? SKLabelNode // Load the new label node
+        nextButton = self.childNode(withName: "NextButton") as? SKSpriteNode
+        nextLabel = self.childNode(withName: "NextLabel") as? SKLabelNode
         
         background?.zPosition = -1
         border?.zPosition = -1
@@ -80,60 +83,38 @@ class Number4: SKScene {
     }
     
     func handleBalloon1Tapped() {
-        
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
-        // Hide balloon1 and show popBalloon1
         balloon1.isHidden = true
         popBalloon1.isHidden = false
         isBalloon1Popped = true
-        
-        // Check if all balloons are popped
         checkCompletion()
     }
     
     func handleBalloon2Tapped() {
-        
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
-        // Hide balloon2 and show popBalloon2
         balloon2.isHidden = true
         popBalloon2.isHidden = false
         isBalloon2Popped = true
-        
-        // Check if all balloons are popped
         checkCompletion()
     }
     
     func handleBalloon3Tapped() {
-        
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
-        // Hide balloon3 and show popBalloon3
         balloon3.isHidden = true
         popBalloon3.isHidden = false
         isBalloon3Popped = true
-        
-        // Check if all balloons are popped
         checkCompletion()
     }
     
     func handleBalloon4Tapped() {
-        
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
-        // Hide balloon4 and show popBalloon4
         balloon4.isHidden = true
         popBalloon4.isHidden = false
         isBalloon4Popped = true
-        
-        // Check if all balloons are popped
         checkCompletion()
     }
     
     func checkCompletion() {
-        
-        
         // If all balloons are popped, show num4Balloon and navigation options
         if isBalloon1Popped && isBalloon2Popped && isBalloon3Popped && isBalloon4Popped {
             run(SKAction.playSoundFileNamed("NumAppear.wav", waitForCompletion: false))
@@ -150,11 +131,32 @@ class Number4: SKScene {
     }
     
     func navigateToNumber5() {
+        // Update progress for Number4
+        completeCurrentClass()
+        
         // Navigate to the Number5 scene
-        if let number5Scene = SKScene(fileNamed: "Number5") {
+        if let number5Scene = SKScene(fileNamed: "Number5") as? Number5 {
+            number5Scene.modelContext = modelContext // Pass model context to the next scene
             number5Scene.scaleMode = .aspectFill
             let transition = SKTransition.fade(withDuration: 1.0)
             self.view?.presentScene(number5Scene, transition: transition)
+        }
+    }
+    
+    func completeCurrentClass() {
+        // Mark Number4 as completed and unlock Number5
+        let fetchRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 4 })
+        
+        if let currentClass = try? modelContext.fetch(fetchRequest).first {
+            currentClass.isCompleted = true
+            
+            // Unlock the next class (Number5)
+            let nextClassRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 5 })
+            if let nextClass = try? modelContext.fetch(nextClassRequest).first {
+                nextClass.isUnlocked = true
+            }
+            
+            try? modelContext.save()
         }
     }
 }

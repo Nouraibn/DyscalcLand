@@ -1,19 +1,18 @@
-
-
-import Foundation
 import SwiftData
 
 @Model
-class LevelProgress {
-    @Attribute(.unique) var levelID: Int // Level ID (1, 2, 3 for the balls)
-    var isUnlocked: Bool // Is this level (ball) unlocked?
-    var pagesCompleted: Int // Number of pages completed in this level
+class GameProgress {
+    @Attribute(.unique) var levelID: Int // Numeric: 1, Addition: 2, Subtraction: 3
+    @Attribute(.unique) var partID: Int // Part within a level (1-based index)
+    @Attribute(.unique) var classID: Int // Class within a part (1-based index)
+    var isUnlocked: Bool // Is this class unlocked?
+    var isCompleted: Bool // Is this class completed?
     
-    init(levelID: Int, isUnlocked: Bool = false, pagesCompleted: Int = 0) {
+    init(levelID: Int, partID: Int, classID: Int, isUnlocked: Bool, isCompleted: Bool) {
         self.levelID = levelID
+        self.partID = partID
+        self.classID = classID
         self.isUnlocked = isUnlocked
-        self.pagesCompleted = pagesCompleted
+        self.isCompleted = isCompleted
     }
 }
-
-
