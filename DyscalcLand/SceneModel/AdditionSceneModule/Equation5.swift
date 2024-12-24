@@ -38,10 +38,10 @@ class Equation5: SKScene {
                 background2?.zPosition = -1
         mainEquation.zPosition = 4
 
-        mainEquation.text = "2 + 3 = ?" // initial
+        mainEquation.text = "4 + 3 = ?" // initial
     }
     func updateEquation() {
-        let baseEquation = "2 + 3 = "
+        let baseEquation = "4 + 3 = "
         
         if currentNumberIndex < numberCottonCandy.count {
             let numText = numberCottonCandy[currentNumberIndex - 1].text ?? "?"
