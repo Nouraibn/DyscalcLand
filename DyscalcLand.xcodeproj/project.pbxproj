@@ -93,6 +93,17 @@
 		2CF5E3142D144771004632FF /* Number10.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E3132D144771004632FF /* Number10.swift */; };
 		2CF5E3162D16FF5D004632FF /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E3152D16FF5D004632FF /* Model.swift */; };
 		FC8FF0E62D10496700CA301A /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = FC8FF0E52D10496700CA301A /* Localizable.xcstrings */; };
+		FCFC9E072D1AF0BB0097CA2A /* A count cotton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FCFC9E062D1AF0BB0097CA2A /* A count cotton.mp3 */; };
+		FCFC9E092D1AF0F00097CA2A /* A lets play.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FCFC9E082D1AF0F00097CA2A /* A lets play.mp3 */; };
+		FCFC9E0D2D1AF1260097CA2A /* A pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FCFC9E0C2D1AF1260097CA2A /* A pop.mp3 */; };
+		FCFC9E0F2D1AFA000097CA2A /* AMakeCotton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FCFC9E0E2D1AFA000097CA2A /* AMakeCotton.mp3 */; };
+		FCFC9E112D1AFB090097CA2A /* A1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FCFC9E102D1AFB090097CA2A /* A1.mp3 */; };
+		FCFC9E132D1AFB130097CA2A /* A2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FCFC9E122D1AFB130097CA2A /* A2.mp3 */; };
+		FCFC9E152D1AFB230097CA2A /* A3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FCFC9E142D1AFB230097CA2A /* A3.mp3 */; };
+		FCFC9E172D1AFB360097CA2A /* A4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FCFC9E162D1AFB360097CA2A /* A4.mp3 */; };
+		FCFC9E192D1AFB400097CA2A /* A5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FCFC9E182D1AFB400097CA2A /* A5.mp3 */; };
+		FCFC9E1B2D1AFB4B0097CA2A /* A6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FCFC9E1A2D1AFB4B0097CA2A /* A6.mp3 */; };
+		FCFC9E1D2D1AFB620097CA2A /* A7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FCFC9E1C2D1AFB620097CA2A /* A7.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -183,6 +194,17 @@
 		2CF5E3132D144771004632FF /* Number10.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number10.swift; sourceTree = "<group>"; };
 		2CF5E3152D16FF5D004632FF /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		FC8FF0E52D10496700CA301A /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		FCFC9E062D1AF0BB0097CA2A /* A count cotton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A count cotton.mp3"; sourceTree = "<group>"; };
+		FCFC9E082D1AF0F00097CA2A /* A lets play.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A lets play.mp3"; sourceTree = "<group>"; };
+		FCFC9E0C2D1AF1260097CA2A /* A pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A pop.mp3"; sourceTree = "<group>"; };
+		FCFC9E0E2D1AFA000097CA2A /* AMakeCotton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AMakeCotton.mp3; sourceTree = "<group>"; };
+		FCFC9E102D1AFB090097CA2A /* A1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = A1.mp3; sourceTree = "<group>"; };
+		FCFC9E122D1AFB130097CA2A /* A2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = A2.mp3; sourceTree = "<group>"; };
+		FCFC9E142D1AFB230097CA2A /* A3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = A3.mp3; sourceTree = "<group>"; };
+		FCFC9E162D1AFB360097CA2A /* A4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = A4.mp3; sourceTree = "<group>"; };
+		FCFC9E182D1AFB400097CA2A /* A5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = A5.mp3; sourceTree = "<group>"; };
+		FCFC9E1A2D1AFB4B0097CA2A /* A6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = A6.mp3; sourceTree = "<group>"; };
+		FCFC9E1C2D1AFB620097CA2A /* A7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = A7.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,9 +222,20 @@
 			isa = PBXGroup;
 			children = (
 				2C89BA112D19924E004CFBB2 /* PopBalloon.wav */,
+				FCFC9E0C2D1AF1260097CA2A /* A pop.mp3 */,
 				2C89BA132D1996C1004CFBB2 /* NumAppear.wav */,
 				2C89BA1B2D19B062004CFBB2 /* guess.wav */,
 				2C89BA172D19A861004CFBB2 /* Clown.wav */,
+				FCFC9E082D1AF0F00097CA2A /* A lets play.mp3 */,
+				FCFC9E062D1AF0BB0097CA2A /* A count cotton.mp3 */,
+				FCFC9E0E2D1AFA000097CA2A /* AMakeCotton.mp3 */,
+				FCFC9E102D1AFB090097CA2A /* A1.mp3 */,
+				FCFC9E122D1AFB130097CA2A /* A2.mp3 */,
+				FCFC9E142D1AFB230097CA2A /* A3.mp3 */,
+				FCFC9E162D1AFB360097CA2A /* A4.mp3 */,
+				FCFC9E182D1AFB400097CA2A /* A5.mp3 */,
+				FCFC9E1A2D1AFB4B0097CA2A /* A6.mp3 */,
+				FCFC9E1C2D1AFB620097CA2A /* A7.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -642,19 +675,28 @@
 				2CF5E2FC2D144708004632FF /* Number8.sks in Resources */,
 				2C89BA1E2D1AD4D0004CFBB2 /* Count1.sks in Resources */,
 				2C89BA282D1AD5D7004CFBB2 /* SEquation2.sks in Resources */,
+				FCFC9E0D2D1AF1260097CA2A /* A pop.mp3 in Resources */,
+				FCFC9E0F2D1AFA000097CA2A /* AMakeCotton.mp3 in Resources */,
 				2C89BA382D1AD68D004CFBB2 /* Take5.sks in Resources */,
 				2CF5E2FA2D1446FF004632FF /* Number7.sks in Resources */,
 				2C89BA2A2D1AD613004CFBB2 /* Count3.sks in Resources */,
+				FCFC9E172D1AFB360097CA2A /* A4.mp3 in Resources */,
+				FCFC9E112D1AFB090097CA2A /* A1.mp3 in Resources */,
 				2C89BA122D19924E004CFBB2 /* PopBalloon.wav in Resources */,
 				2C89BA322D1AD659004CFBB2 /* Take4.sks in Resources */,
 				2CF5E2F62D1446EA004632FF /* Number5.sks in Resources */,
+				FCFC9E092D1AF0F00097CA2A /* A lets play.mp3 in Resources */,
 				2CF5E2F22D1446D3004632FF /* Number3.sks in Resources */,
+				FCFC9E152D1AFB230097CA2A /* A3.mp3 in Resources */,
 				2CF5E2CF2D14417B004632FF /* DragAndDrop5.sks in Resources */,
+				FCFC9E192D1AFB400097CA2A /* A5.mp3 in Resources */,
 				2CF5E27E2D0F10E7004632FF /* Base in Resources */,
 				2C89BA3A2D1AD698004CFBB2 /* SEquation5.sks in Resources */,
 				2CF5E2FE2D144710004632FF /* Number9.sks in Resources */,
+				FCFC9E072D1AF0BB0097CA2A /* A count cotton.mp3 in Resources */,
 				2C89BA1C2D19B062004CFBB2 /* guess.wav in Resources */,
 				2CF5E2C72D14414A004632FF /* DragAndDrop1.sks in Resources */,
+				FCFC9E1B2D1AFB4B0097CA2A /* A6.mp3 in Resources */,
 				2CF5E2F02D1446C4004632FF /* Number2.sks in Resources */,
 				2C89BA2E2D1AD62C004CFBB2 /* SEquation3.sks in Resources */,
 				2C89BA362D1AD67B004CFBB2 /* Count5.sks in Resources */,
@@ -665,11 +707,13 @@
 				2CF5E2D92D1441F6004632FF /* Equation3.sks in Resources */,
 				FC8FF0E62D10496700CA301A /* Localizable.xcstrings in Resources */,
 				2C89BA202D1AD4E2004CFBB2 /* Take1.sks in Resources */,
+				FCFC9E1D2D1AFB620097CA2A /* A7.mp3 in Resources */,
 				2CF5E2CD2D144172004632FF /* DragAndDrop4.sks in Resources */,
 				2CF5E2802D0F10E8004632FF /* Assets.xcassets in Resources */,
 				2CF5E2F42D1446E0004632FF /* Number4.sks in Resources */,
 				2CF5E2BF2D143F27004632FF /* ClownMap.sks in Resources */,
 				2CF5E2D52D1441DF004632FF /* Equation1.sks in Resources */,
+				FCFC9E132D1AFB130097CA2A /* A2.mp3 in Resources */,
 				2C89BA142D1996C1004CFBB2 /* NumAppear.wav in Resources */,
 				2CF5E2772D0F10E7004632FF /* Actions.sks in Resources */,
 				2C89BA242D1AD5AE004CFBB2 /* Count2.sks in Resources */,

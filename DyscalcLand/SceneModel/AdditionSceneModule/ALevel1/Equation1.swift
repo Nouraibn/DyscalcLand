@@ -15,11 +15,12 @@ class Equation1: SKScene {
         
         cottonCandyCart = self.childNode(withName: "CottonCandyCart") as? SKSpriteNode
                mainEquation = self.childNode(withName: "Equation1") as? SKLabelNode
-                background2 = self.childNode(withName: "Background2") as? SKSpriteNode
+                background2 = self.childNode(withName: "background2") as? SKSpriteNode
                 self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
 //        mainText.text = "Let’s count how many cotton candies there are"
 //        mainText.fontName = "Comic Sans MS"
-        
+        background2.zPosition = -1
+        playSound()
         for i in 1..<3 {
             
             if let cottonCandy = self.childNode(withName: "PinkCottonCandy\(i)") as? SKSpriteNode {
@@ -41,6 +42,11 @@ class Equation1: SKScene {
 
         mainEquation.text = "1 + 1 ?" // initial
     }
+    func playSound(){
+        let sound = SKAction.playSoundFileNamed("A count cotton.mp3", waitForCompletion: false)
+        self.run(sound)
+    }
+    
     func updateEquation() {
         let baseEquation = "1 + 1 = "
         
@@ -71,6 +77,8 @@ class Equation1: SKScene {
                                                            
                                                           
                                                            currentNumberIndex += 1
+                                    let soundFileName = "A\(index + 1).mp3" // Index starts from 0, so add 1
+                                                        playSound(named: soundFileName)
                                                            
                                                 
                                                            updateEquation()
@@ -85,6 +93,9 @@ class Equation1: SKScene {
             }
         }
     }
-    
+    func playSound(named soundName: String) {
+        let sound = SKAction.playSoundFileNamed(soundName, waitForCompletion: false)
+        self.run(sound)
+    }
 }
             
