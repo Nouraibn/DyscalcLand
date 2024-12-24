@@ -47,7 +47,7 @@ class Number10: SKScene {
         
         // Set the background color programmatically
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
-
+        
         // Initialize nodes from the .sks file
         background = self.childNode(withName: "Background") as? SKSpriteNode
         num10Balloon = self.childNode(withName: "Num10Balloon") as? SKSpriteNode
@@ -122,7 +122,7 @@ class Number10: SKScene {
             } else if node == balloon10 {
                 handleBalloon10Tapped()
             } else if node == nextButton || node == nextLabel {
-                navigateToWelcomeScreen()
+                navigateToClownMap()
             }
         }
     }
@@ -130,7 +130,7 @@ class Number10: SKScene {
     func handleBalloon1Tapped() {
         
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
+        
         balloon1.isHidden = true
         popBalloon1.isHidden = false
         isBalloon1Popped = true
@@ -140,7 +140,7 @@ class Number10: SKScene {
     func handleBalloon2Tapped() {
         
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
+        
         balloon2.isHidden = true
         popBalloon2.isHidden = false
         isBalloon2Popped = true
@@ -150,7 +150,7 @@ class Number10: SKScene {
     func handleBalloon3Tapped() {
         
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
+        
         balloon3.isHidden = true
         popBalloon3.isHidden = false
         isBalloon3Popped = true
@@ -160,7 +160,7 @@ class Number10: SKScene {
     func handleBalloon4Tapped() {
         
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
+        
         balloon4.isHidden = true
         popBalloon4.isHidden = false
         isBalloon4Popped = true
@@ -170,7 +170,7 @@ class Number10: SKScene {
     func handleBalloon5Tapped() {
         
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
+        
         balloon5.isHidden = true
         popBalloon5.isHidden = false
         isBalloon5Popped = true
@@ -180,7 +180,7 @@ class Number10: SKScene {
     func handleBalloon6Tapped() {
         
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
+        
         balloon6.isHidden = true
         popBalloon6.isHidden = false
         isBalloon6Popped = true
@@ -190,7 +190,7 @@ class Number10: SKScene {
     func handleBalloon7Tapped() {
         
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
+        
         balloon7.isHidden = true
         popBalloon7.isHidden = false
         isBalloon7Popped = true
@@ -200,7 +200,7 @@ class Number10: SKScene {
     func handleBalloon8Tapped() {
         
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
+        
         balloon8.isHidden = true
         popBalloon8.isHidden = false
         isBalloon8Popped = true
@@ -210,7 +210,7 @@ class Number10: SKScene {
     func handleBalloon9Tapped() {
         
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
+        
         balloon9.isHidden = true
         popBalloon9.isHidden = false
         isBalloon9Popped = true
@@ -220,7 +220,7 @@ class Number10: SKScene {
     func handleBalloon10Tapped() {
         
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
+        
         balloon10.isHidden = true
         popBalloon10.isHidden = false
         isBalloon10Popped = true
@@ -240,11 +240,13 @@ class Number10: SKScene {
         }
     }
     
-    func navigateToWelcomeScreen() {
-        if let welcomeScreen = SKScene(fileNamed: "WelcomeScreen") {
-            welcomeScreen.scaleMode = .aspectFill
+    func navigateToClownMap() {
+        ClownMap.navigatedFromNumber10 = true // Set the flag to true
+        if let clownMapScene = SKScene(fileNamed: "ClownMap") {
+            clownMapScene.scaleMode = .aspectFill
             let transition = SKTransition.fade(withDuration: 1.0)
-            self.view?.presentScene(welcomeScreen, transition: transition)
+            self.view?.presentScene(clownMapScene, transition: transition)
         }
     }
+
 }

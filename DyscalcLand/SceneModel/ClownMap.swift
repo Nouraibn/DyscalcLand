@@ -4,10 +4,17 @@ class ClownMap: SKScene {
     
     // Nodes for fixed assets
     private var background2: SKSpriteNode!
-    private var clown: SKSpriteNode!
-    private var luckS: SKSpriteNode!
-    private var luckA: SKSpriteNode!
-    private var openN: SKSpriteNode!
+       private var clown: SKSpriteNode!
+       private var luckS: SKSpriteNode!
+       private var luckA: SKSpriteNode!
+       private var openN: SKSpriteNode!
+       private var cloud: SKSpriteNode! // New node
+       private var cloudLabel: SKLabelNode! // New node
+       private var winN: SKSpriteNode! // New node
+       private var selectBorder: SKSpriteNode! // New node
+    
+    // Static property to track if navigation is from Number10
+        static var navigatedFromNumber10 = false
     
     override func didMove(to view: SKView) {
         
@@ -16,20 +23,40 @@ class ClownMap: SKScene {
 
         // Load fixed nodes from the scene
         background2 = self.childNode(withName: "Background2") as? SKSpriteNode
-        clown = self.childNode(withName: "Clown") as? SKSpriteNode
-        luckS = self.childNode(withName: "LuckS") as? SKSpriteNode
-        luckA = self.childNode(withName: "LuckA") as? SKSpriteNode
-        openN = self.childNode(withName: "OpenN") as? SKSpriteNode
+               clown = self.childNode(withName: "Clown") as? SKSpriteNode
+               luckS = self.childNode(withName: "LuckS") as? SKSpriteNode
+               luckA = self.childNode(withName: "LuckA") as? SKSpriteNode
+               openN = self.childNode(withName: "OpenN") as? SKSpriteNode
+               cloud = self.childNode(withName: "Cloud") as? SKSpriteNode // Load Cloud node
+               cloudLabel = self.childNode(withName: "CloudLabel") as? SKLabelNode // Load CloudLabel node
+               winN = self.childNode(withName: "WinN") as? SKSpriteNode // Load WinN node
+               selectBorder = self.childNode(withName: "SelectBorder") as? SKSpriteNode // Load SelectBorder node
+               
         
         // Set initial zPositions
         background2?.zPosition = -1
         clown?.zPosition = 1
+        cloudLabel?.zPosition = 2
+        selectBorder?.zPosition = 1
+        openN?.zPosition = 2
         
         // Hide nodes initially
         clown?.alpha = 0.0
         luckS?.alpha = 0.0
         luckA?.alpha = 0.0
         openN?.alpha = 0.0
+        cloud?.alpha = 0.0
+        winN?.alpha = 0.0
+        cloudLabel?.alpha = 0.0
+        selectBorder?.alpha = 0.0
+        
+        if ClownMap.navigatedFromNumber10 {
+            winN?.isHidden = false
+            selectBorder?.isHidden = true
+            openN?.isHidden = true
+               } else {
+                   winN?.isHidden = true // Keep WinN hidden
+               }
         
         // Animate the balls
         animateBalls()
@@ -42,16 +69,23 @@ class ClownMap: SKScene {
         let fadeOut = SKAction.fadeOut(withDuration: 2.0) // Fade out while moving
         let group = SKAction.group([moveUp, fadeOut]) // Combine actions
         
+        let sound = SKAction.playSoundFileNamed("Clown.wav", waitForCompletion: false)
+
+        
         // Action to reveal fixed nodes
         let revealFixedNodes = SKAction.run {
             self.clown?.run(SKAction.fadeIn(withDuration: 1.0))
             self.luckS?.run(SKAction.fadeIn(withDuration: 1.0))
             self.luckA?.run(SKAction.fadeIn(withDuration: 1.0))
             self.openN?.run(SKAction.fadeIn(withDuration: 1.0))
+            self.cloudLabel?.run(SKAction.fadeIn(withDuration: 1.0))
+            self.selectBorder?.run(SKAction.fadeIn(withDuration: 1.0))
+            self.cloud?.run(SKAction.fadeIn(withDuration: 1.0))
+            self.winN?.run(SKAction.fadeIn(withDuration: 1.0))
         }
         
         // Sequence: Animate balls, then reveal fixed nodes
-        let sequence = SKAction.sequence([group, revealFixedNodes])
+        let sequence = SKAction.sequence([group, revealFixedNodes, sound])
         
         // Animate all balls
         self.enumerateChildNodes(withName: "BlueBall*", using: { node, _ in
