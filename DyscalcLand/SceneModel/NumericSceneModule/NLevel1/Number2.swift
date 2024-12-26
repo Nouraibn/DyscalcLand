@@ -6,21 +6,23 @@ class Number2: SKScene {
     // Nodes from the .sks file
     var background: SKSpriteNode!
     var num2Balloon: SKSpriteNode!
-    var balloon1: SKSpriteNode!
-    var balloon2: SKSpriteNode!
+    var balloons: [SKSpriteNode] = []
+    var popBalloons: [SKSpriteNode] = []
     var border: SKSpriteNode!
-    var popBalloon1: SKSpriteNode!
-    var popBalloon2: SKSpriteNode!
     var guidingLabel: SKLabelNode!
     var equalLabel: SKLabelNode!
-    var nextButton: SKSpriteNode! // New node for navigation button
-    var nextLabel: SKLabelNode! // New node for navigation label
+    var nextButton: SKSpriteNode!
+    var nextLabel: SKLabelNode!
     
     // Flags to track progress
-    var isBalloon1Popped = false
-    var isBalloon2Popped = false
+    var balloonPoppedFlags: [Bool] = []
     
-    var modelContext: ModelContext! // Reference to SwiftData model context
+    // Model Context and Scene Parameters
+    var modelContext: ModelContext?
+    var levelID: Int = 1
+    var partID: Int = 1
+    var classID: Int = 2
+    var nextClassID: Int = 3
     
     override func didMove(to view: SKView) {
         // Set the background color programmatically
@@ -29,26 +31,28 @@ class Number2: SKScene {
         // Initialize nodes from the .sks file
         background = self.childNode(withName: "Background") as? SKSpriteNode
         num2Balloon = self.childNode(withName: "Num2Balloon") as? SKSpriteNode
-        balloon1 = self.childNode(withName: "Balloon1") as? SKSpriteNode
-        balloon2 = self.childNode(withName: "Balloon2") as? SKSpriteNode
         border = self.childNode(withName: "Border") as? SKSpriteNode
-        popBalloon1 = self.childNode(withName: "PopBalloon1") as? SKSpriteNode
-        popBalloon2 = self.childNode(withName: "PopBalloon2") as? SKSpriteNode
         guidingLabel = self.childNode(withName: "GuidingLabel") as? SKLabelNode
         equalLabel = self.childNode(withName: "Equal") as? SKLabelNode
-        nextButton = self.childNode(withName: "NextButton") as? SKSpriteNode // Load the new button node
-        nextLabel = self.childNode(withName: "NextLabel") as? SKLabelNode // Load the new label node
-        
-        // Set zPosition for background and border
-        background?.zPosition = -1
-        border?.zPosition = -1
-        
-        // Initial state: hide popBalloon1, popBalloon2, num2Balloon, nextButton, and nextLabel
-        popBalloon1.isHidden = true
-        popBalloon2.isHidden = true
-        num2Balloon.isHidden = true
+        nextButton = self.childNode(withName: "NextButton") as? SKSpriteNode
+        nextLabel = self.childNode(withName: "NextLabel") as? SKLabelNode
+
+        // Load balloons and popBalloons
+        for i in 1...5 { // Adjust based on the number of balloons
+            if let balloon = self.childNode(withName: "Balloon\(i)") as? SKSpriteNode,
+               let popBalloon = self.childNode(withName: "PopBalloon\(i)") as? SKSpriteNode {
+                balloons.append(balloon)
+                popBalloons.append(popBalloon)
+                balloonPoppedFlags.append(false)
+                popBalloon.isHidden = true
+            }
+        }
+
+        num2Balloon?.isHidden = true
         nextButton?.isHidden = true
         nextLabel?.isHidden = true
+        background?.zPosition = -1
+        border?.zPosition = -1
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -56,41 +60,35 @@ class Number2: SKScene {
             let location = touch.location(in: self)
             let node = self.atPoint(location)
             
-            if node == balloon1 {
-                handleBalloon1Tapped()
-            } else if node == balloon2 {
-                handleBalloon2Tapped()
-            } else if node == nextButton || node == nextLabel {
+            // Handle balloon taps
+            for (index, balloon) in balloons.enumerated() {
+                if node == balloon {
+                    handleBalloonTapped(index: index)
+                    return
+                }
+            }
+            
+            // Handle navigation button tap
+            if node == nextButton || node == nextLabel {
                 navigateToNumber3()
             }
         }
     }
     
-    func handleBalloon1Tapped() {
+    func handleBalloonTapped(index: Int) {
+        guard index < balloons.count else { return }
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-        // Hide balloon1 and show popBalloon1
-        balloon1.isHidden = true
-        popBalloon1.isHidden = false
-        isBalloon1Popped = true
-        checkCompletion()
-    }
-    
-    func handleBalloon2Tapped() {
-        run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-        // Hide balloon2 and show popBalloon2
-        balloon2.isHidden = true
-        popBalloon2.isHidden = false
-        isBalloon2Popped = true
+        balloons[index].isHidden = true
+        popBalloons[index].isHidden = false
+        balloonPoppedFlags[index] = true
         checkCompletion()
     }
     
     func checkCompletion() {
-        // If both balloons are popped, show num2Balloon and navigation options
-        if isBalloon1Popped && isBalloon2Popped {
+        if balloonPoppedFlags.allSatisfy({ $0 }) {
             run(SKAction.playSoundFileNamed("NumAppear.wav", waitForCompletion: false))
-            num2Balloon.isHidden = false
+            num2Balloon?.isHidden = false
             
-            // Show the NextButton and NextLabel after 3 seconds
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
                 self?.nextButton?.isHidden = false
                 self?.nextLabel?.isHidden = false
@@ -101,32 +99,50 @@ class Number2: SKScene {
     }
     
     func navigateToNumber3() {
-        // Update progress for Number2
+        guard let context = modelContext else {
+            print("Error: ModelContext is nil. Cannot navigate to Number3.")
+            return
+        }
+        
         completeCurrentClass()
         
-        // Navigate to the Number3 scene
-        if let number3Scene = SKScene(fileNamed: "Number3") as? Number3 {
-            number3Scene.modelContext = modelContext // Pass model context to the next scene
+        if let number3Scene = SKScene(fileNamed: "Number3") as? Number2 {
+            number3Scene.modelContext = context
+            number3Scene.levelID = levelID
+            number3Scene.partID = partID
+            number3Scene.classID = nextClassID
+            number3Scene.nextClassID = nextClassID + 1
             number3Scene.scaleMode = .aspectFill
             let transition = SKTransition.fade(withDuration: 1.0)
             self.view?.presentScene(number3Scene, transition: transition)
+        } else {
+            print("Error: Could not load Number3.sks.")
         }
     }
     
     func completeCurrentClass() {
-        // Mark Number2 as completed and unlock Number3
-        let fetchRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 2 })
+        guard let context = modelContext else {
+            print("Error: ModelContext is nil. Cannot complete the current class.")
+            return
+        }
         
-        if let currentClass = try? modelContext.fetch(fetchRequest).first {
-            currentClass.isCompleted = true
-            
-            // Unlock the next class (Number3)
-            let nextClassRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 3 })
-            if let nextClass = try? modelContext.fetch(nextClassRequest).first {
-                nextClass.isUnlocked = true
+        let fetchRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == levelID && $0.partID == partID && $0.classID == classID })
+        
+        do {
+            if let currentClass = try context.fetch(fetchRequest).first {
+                currentClass.isCompleted = true
+                
+                let nextClassRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == levelID && $0.partID == partID && $0.classID == nextClassID })
+                if let nextClass = try context.fetch(nextClassRequest).first {
+                    nextClass.isUnlocked = true
+                }
+                
+                try context.save()
+            } else {
+                print("Error: Current class not found in GameProgress.")
             }
-            
-            try? modelContext.save()
+        } catch {
+            print("Error completing current class: \(error.localizedDescription)")
         }
     }
 }

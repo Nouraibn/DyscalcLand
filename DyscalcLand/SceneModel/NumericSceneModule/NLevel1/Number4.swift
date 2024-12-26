@@ -17,8 +17,8 @@ class Number4: SKScene {
     var popBalloon4: SKSpriteNode!
     var guidingLabel: SKLabelNode!
     var equalLabel: SKLabelNode!
-    var nextButton: SKSpriteNode! // New node for navigation button
-    var nextLabel: SKLabelNode! // New node for navigation label
+    var nextButton: SKSpriteNode!
+    var nextLabel: SKLabelNode!
     
     // Flags to track progress
     var isBalloon1Popped = false
@@ -26,10 +26,9 @@ class Number4: SKScene {
     var isBalloon3Popped = false
     var isBalloon4Popped = false
     
-    var modelContext: ModelContext! // Reference to SwiftData model context
+    var modelContext: ModelContext? // Reference to SwiftData model context
     
     override func didMove(to view: SKView) {
-        
         // Set the background color programmatically
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
 
@@ -53,12 +52,12 @@ class Number4: SKScene {
         background?.zPosition = -1
         border?.zPosition = -1
         
-        // Initial state: hide popBalloon1, popBalloon2, popBalloon3, popBalloon4, num4Balloon, nextButton, and nextLabel
-        popBalloon1.isHidden = true
-        popBalloon2.isHidden = true
-        popBalloon3.isHidden = true
-        popBalloon4.isHidden = true
-        num4Balloon.isHidden = true
+        // Initial state: hide unnecessary elements
+        popBalloon1?.isHidden = true
+        popBalloon2?.isHidden = true
+        popBalloon3?.isHidden = true
+        popBalloon4?.isHidden = true
+        num4Balloon?.isHidden = true
         nextButton?.isHidden = true
         nextLabel?.isHidden = true
     }
@@ -84,43 +83,41 @@ class Number4: SKScene {
     
     func handleBalloon1Tapped() {
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-        balloon1.isHidden = true
-        popBalloon1.isHidden = false
+        balloon1?.isHidden = true
+        popBalloon1?.isHidden = false
         isBalloon1Popped = true
         checkCompletion()
     }
     
     func handleBalloon2Tapped() {
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-        balloon2.isHidden = true
-        popBalloon2.isHidden = false
+        balloon2?.isHidden = true
+        popBalloon2?.isHidden = false
         isBalloon2Popped = true
         checkCompletion()
     }
     
     func handleBalloon3Tapped() {
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-        balloon3.isHidden = true
-        popBalloon3.isHidden = false
+        balloon3?.isHidden = true
+        popBalloon3?.isHidden = false
         isBalloon3Popped = true
         checkCompletion()
     }
     
     func handleBalloon4Tapped() {
         run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-        balloon4.isHidden = true
-        popBalloon4.isHidden = false
+        balloon4?.isHidden = true
+        popBalloon4?.isHidden = false
         isBalloon4Popped = true
         checkCompletion()
     }
     
     func checkCompletion() {
-        // If all balloons are popped, show num4Balloon and navigation options
         if isBalloon1Popped && isBalloon2Popped && isBalloon3Popped && isBalloon4Popped {
             run(SKAction.playSoundFileNamed("NumAppear.wav", waitForCompletion: false))
-            num4Balloon.isHidden = false
+            num4Balloon?.isHidden = false
             
-            // Show the NextButton and NextLabel after 3 seconds
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
                 self?.nextButton?.isHidden = false
                 self?.nextLabel?.isHidden = false
@@ -131,32 +128,46 @@ class Number4: SKScene {
     }
     
     func navigateToNumber5() {
-        // Update progress for Number4
+        guard let context = modelContext else {
+            print("Error: ModelContext is nil. Cannot navigate to Number5.")
+            return
+        }
+        
         completeCurrentClass()
         
-        // Navigate to the Number5 scene
         if let number5Scene = SKScene(fileNamed: "Number5") as? Number5 {
-            number5Scene.modelContext = modelContext // Pass model context to the next scene
+            number5Scene.modelContext = context
             number5Scene.scaleMode = .aspectFill
             let transition = SKTransition.fade(withDuration: 1.0)
             self.view?.presentScene(number5Scene, transition: transition)
+        } else {
+            print("Error: Could not load Number5.sks.")
         }
     }
     
     func completeCurrentClass() {
-        // Mark Number4 as completed and unlock Number5
+        guard let context = modelContext else {
+            print("Error: ModelContext is nil. Cannot complete the current class.")
+            return
+        }
+        
         let fetchRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 4 })
         
-        if let currentClass = try? modelContext.fetch(fetchRequest).first {
-            currentClass.isCompleted = true
-            
-            // Unlock the next class (Number5)
-            let nextClassRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 5 })
-            if let nextClass = try? modelContext.fetch(nextClassRequest).first {
-                nextClass.isUnlocked = true
+        do {
+            if let currentClass = try context.fetch(fetchRequest).first {
+                currentClass.isCompleted = true
+                
+                let nextClassRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 5 })
+                if let nextClass = try context.fetch(nextClassRequest).first {
+                    nextClass.isUnlocked = true
+                }
+                
+                try context.save()
+            } else {
+                print("Error: Current class not found in GameProgress.")
             }
-            
-            try? modelContext.save()
+        } catch {
+            print("Error completing current class: \(error.localizedDescription)")
         }
     }
 }
