@@ -2,7 +2,7 @@ import SpriteKit
 import SwiftData
 
 class Number1: SKScene {
-    
+  
     // Nodes for fixed assets
     var Background: SKSpriteNode!
     var Border: SKSpriteNode!
@@ -16,8 +16,10 @@ class Number1: SKScene {
     
     // Reference to SwiftData model context
     var modelContext: ModelContext!
-    
+
     override func didMove(to view: SKView) {
+        
+      
         // Set the background color programmatically
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
         
@@ -58,12 +60,7 @@ class Number1: SKScene {
             if node == Balloon {
                 BalloonTapped()
             }
-            
-            // Check if the pop balloon or number balloon is tapped
-            if node == PopBalloon || node == Num1Balloon {
-                ResetBalloons()
-            }
-            
+           
             // Check if the NextButton or NextLabel is tapped
             if node == NextButton || node == NextLabel {
                 navigateToNumber2()
@@ -92,16 +89,6 @@ class Number1: SKScene {
         }
     }
     
-    func ResetBalloons() {
-        // When the pop balloon or number balloon is tapped:
-        // 1. Hide the pop balloon and number balloon
-        // 2. Show the balloon
-        Balloon?.isHidden = false
-        PopBalloon?.isHidden = true
-        Num1Balloon?.isHidden = true
-        NextButton?.isHidden = true // Hide NextButton again
-        NextLabel?.isHidden = true // Hide NextLabel again
-    }
     
     func navigateToNumber2() {
         // Update progress for Number1
@@ -119,19 +106,34 @@ class Number1: SKScene {
     }
     
     func completeCurrentClass() {
-        // Mark Number1 as completed and unlock Number2
-        let fetchRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 1 })
+        guard let modelContext = modelContext else {
+            print("Error: ModelContext is nil.")
+            return
+        }
         
-        if let currentClass = try? modelContext.fetch(fetchRequest).first {
-            currentClass.isCompleted = true
+        do {
+            let fetchRequest = GameProgress(
+                levelID: 1,
+                partID: 1,
+                classID: 1,
+                isUnlocked: true,
+                isCompleted: true
+            )
             
-            // Unlock the next class (Number2)
-            let nextClassRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 2 })
-            if let nextClass = try? modelContext.fetch(nextClassRequest).first {
+            // Update the current class
+            fetchRequest.isCompleted = true
+
+            // Unlock the next class
+            let nextClassRequest = FetchDescriptor<GameProgress>(
+                predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 2 }
+            )
+            if let nextClass = try modelContext.fetch(nextClassRequest).first {
                 nextClass.isUnlocked = true
             }
             
-            try? modelContext.save()
+            try modelContext.save()
+        } catch {
+            print("Error updating game progress: \(error.localizedDescription)")
         }
     }
 }
