@@ -38,11 +38,6 @@ class GameProgress {
         ]
     }
 
-    func getMainLevel(_ index: Int) -> MainLevel? {
-        return mainLevels[index]
-    }
-
-    // Add saveProgress to update the current sub-level or complete a main level
     func saveProgress(for mainLevel: Int, subLevel: Int) {
         if let level = mainLevels[mainLevel] {
             level.currentSubLevel = subLevel

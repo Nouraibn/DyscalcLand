@@ -2,6 +2,9 @@ import SpriteKit
 import SwiftData
 
 class Number1: SKScene {
+    
+  
+
   
     // Nodes for fixed assets
     var Background: SKSpriteNode!
