@@ -192,24 +192,11 @@ class Number8: SKScene {
     }
     
     func navigateToNumber9() {
-        completeCurrentClass()
-        if let number9Scene = SKScene(fileNamed: "Number9") as? Number9 {
-            number9Scene.modelContext = modelContext
-            number9Scene.scaleMode = .aspectFill
-            let transition = SKTransition.fade(withDuration: 1.0)
-            self.view?.presentScene(number9Scene, transition: transition)
-        }
-    }
-    
-    func completeCurrentClass() {
-        let fetchRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 2 && $0.classID == 8 })
-        if let currentClass = try? modelContext.fetch(fetchRequest).first {
-            currentClass.isCompleted = true
-            let nextClassRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 2 && $0.classID == 9 })
-            if let nextClass = try? modelContext.fetch(nextClassRequest).first {
-                nextClass.isUnlocked = true
-            }
-            try? modelContext.save()
-        }
-    }
+         // Navigate to the Number4 scene
+         if let number9Scene = SKScene(fileNamed: "Number9") {
+             number9Scene.scaleMode = .aspectFill
+             let transition = SKTransition.fade(withDuration: 1.0)
+             self.view?.presentScene(number9Scene, transition: transition)
+         }
+     }
 }

@@ -31,9 +31,7 @@ class Number6: SKScene {
     var isBalloon4Popped = false
     var isBalloon5Popped = false
     var isBalloon6Popped = false
-    
-    var modelContext: ModelContext! // Reference to SwiftData model context
-    
+      
     override func didMove(to view: SKView) {
         
         // Set the background color programmatically
@@ -163,31 +161,11 @@ class Number6: SKScene {
     }
     
     func navigateToNumber7() {
-        completeCurrentClass()
-        
-        // Navigate to the Number7 scene
-        if let number7Scene = SKScene(fileNamed: "Number7") as? Number7 {
-            number7Scene.modelContext = modelContext
-            number7Scene.scaleMode = .aspectFill
-            let transition = SKTransition.fade(withDuration: 1.0)
-            self.view?.presentScene(number7Scene, transition: transition)
-        }
-    }
-    
-    func completeCurrentClass() {
-        // Mark Number6 as completed and unlock Number7
-        let fetchRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 2 && $0.classID == 6 })
-        
-        if let currentClass = try? modelContext.fetch(fetchRequest).first {
-            currentClass.isCompleted = true
-            
-            // Unlock the next class (Number7)
-            let nextClassRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 2 && $0.classID == 7 })
-            if let nextClass = try? modelContext.fetch(nextClassRequest).first {
-                nextClass.isUnlocked = true
-            }
-            
-            try? modelContext.save()
-        }
-    }
+         // Navigate to the Number4 scene
+         if let number7Scene = SKScene(fileNamed: "Number7") {
+             number7Scene.scaleMode = .aspectFill
+             let transition = SKTransition.fade(withDuration: 1.0)
+             self.view?.presentScene(number7Scene, transition: transition)
+         }
+     }
 }
