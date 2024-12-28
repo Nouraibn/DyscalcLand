@@ -241,6 +241,9 @@ class Number10: SKScene {
     }
     
     func navigateToClownMap() {
+        
+        GameProgress.shared.saveProgress(for: 1, subLevel: 10)
+
         ClownMap.navigatedFromNumber10 = true // Set the flag to true
         if let clownMapScene = SKScene(fileNamed: "ClownMap") {
             clownMapScene.scaleMode = .aspectFill

@@ -4,6 +4,8 @@ import SwiftData
 
 class ClownMap: SKScene {
     
+    var parentController: GameViewController?
+    
     // Nodes for fixed assets
     private var background2: SKSpriteNode!
        private var clown: SKSpriteNode!
@@ -127,21 +129,4 @@ class ClownMap: SKScene {
         self.view?.presentScene(nextScene, transition: transition)
     }
     
-    func updateClownMap() {
-        let fetchRequest = FetchDescriptor<GameProgress>()
-        
-        if let progress = try? modelContext.fetch(fetchRequest) {
-            for level in progress {
-                if level.levelID == 1 && level.partID == 1 && level.classID == 1 && level.isUnlocked {
-                    openN?.isHidden = false // Example: Show openN if unlocked
-                }
-                if level.levelID == 2 && level.partID == 1 && level.isUnlocked {
-                    luckA?.isHidden = false // Show luckA if unlocked
-                }
-                if level.levelID == 3 && level.isUnlocked {
-                    luckS?.isHidden = false // Show luckS if unlocked
-                }
-            }
-        }
-    }
 }

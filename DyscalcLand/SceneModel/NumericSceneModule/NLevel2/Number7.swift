@@ -176,6 +176,9 @@ class Number7: SKScene {
     }
     
     func navigateToNumber8() {
+        
+        GameProgress.shared.saveProgress(for: 1, subLevel: 7)
+
          // Navigate to the Number4 scene
          if let number8Scene = SKScene(fileNamed: "Number8") {
              number8Scene.scaleMode = .aspectFill

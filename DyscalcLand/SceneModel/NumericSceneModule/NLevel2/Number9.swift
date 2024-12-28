@@ -224,6 +224,9 @@ class Number9: SKScene {
     }
     
     func navigateToNumber10() {
+        
+        GameProgress.shared.saveProgress(for: 1, subLevel: 9)
+
         if let number10Scene = SKScene(fileNamed: "Number10") {
             number10Scene.scaleMode = .aspectFill
             let transition = SKTransition.fade(withDuration: 1.0)

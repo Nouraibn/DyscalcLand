@@ -4,6 +4,7 @@ import SwiftData
 
 class WelcomeScreen: SKScene {
     
+    var parentController: GameViewController?
     // Nodes (References to nodes from the .sks file)
     private var background: SKSpriteNode!
     private var welcomeBoard: SKSpriteNode!
