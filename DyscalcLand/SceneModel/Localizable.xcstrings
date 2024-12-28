@@ -1,8 +1,62 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Key" : {
-      "extractionState" : "manual"
+    "Cotton Candy" : {
+      "comment" : "cart label",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "غزل البنات"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cotton Candy "
+          }
+        }
+      }
+    },
+    "Let’s Make Some Cotton Candies!" : {
+      "comment" : "AddDraqAndDrop",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هيا نحضر بعض غزل البنات!"
+          }
+        }
+      }
+    },
+    "Pop the balloons and guess the number" : {
+      "comment" : "NumGuiding",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أفقع البالونات وخمن الرقم!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pop the balloons and guess the number!"
+          }
+        }
+      }
+    },
+    "Well Done!" : {
+      "comment" : "bravo text",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أحسنت!"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
