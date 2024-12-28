@@ -128,46 +128,11 @@ class Number4: SKScene {
     }
     
     func navigateToNumber5() {
-        guard let context = modelContext else {
-            print("Error: ModelContext is nil. Cannot navigate to Number5.")
-            return
-        }
-        
-        completeCurrentClass()
-        
-        if let number5Scene = SKScene(fileNamed: "Number5") as? Number5 {
-            number5Scene.modelContext = context
-            number5Scene.scaleMode = .aspectFill
-            let transition = SKTransition.fade(withDuration: 1.0)
-            self.view?.presentScene(number5Scene, transition: transition)
-        } else {
-            print("Error: Could not load Number5.sks.")
-        }
-    }
-    
-    func completeCurrentClass() {
-        guard let context = modelContext else {
-            print("Error: ModelContext is nil. Cannot complete the current class.")
-            return
-        }
-        
-        let fetchRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 4 })
-        
-        do {
-            if let currentClass = try context.fetch(fetchRequest).first {
-                currentClass.isCompleted = true
-                
-                let nextClassRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 5 })
-                if let nextClass = try context.fetch(nextClassRequest).first {
-                    nextClass.isUnlocked = true
-                }
-                
-                try context.save()
-            } else {
-                print("Error: Current class not found in GameProgress.")
-            }
-        } catch {
-            print("Error completing current class: \(error.localizedDescription)")
-        }
-    }
+         // Navigate to the Number4 scene
+         if let number5Scene = SKScene(fileNamed: "Number5") {
+             number5Scene.scaleMode = .aspectFill
+             let transition = SKTransition.fade(withDuration: 1.0)
+             self.view?.presentScene(number5Scene, transition: transition)
+         }
+     }
 }

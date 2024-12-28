@@ -23,8 +23,6 @@ class Number3: SKScene {
     var isBalloon2Popped = false
     var isBalloon3Popped = false
     
-    var modelContext: ModelContext? // Reference to SwiftData model context
-    
     override func didMove(to view: SKView) {
         // Set the background color programmatically
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
@@ -112,46 +110,11 @@ class Number3: SKScene {
     }
     
     func navigateToNumber4() {
-        guard let context = modelContext else {
-            print("Error: ModelContext is nil. Cannot navigate to Number4.")
-            return
-        }
-        
-        completeCurrentClass()
-        
-        if let number4Scene = SKScene(fileNamed: "Number4") as? Number4 {
-            number4Scene.modelContext = context
-            number4Scene.scaleMode = .aspectFill
-            let transition = SKTransition.fade(withDuration: 1.0)
-            self.view?.presentScene(number4Scene, transition: transition)
-        } else {
-            print("Error: Could not load Number4.sks.")
-        }
-    }
-    
-    func completeCurrentClass() {
-        guard let context = modelContext else {
-            print("Error: ModelContext is nil. Cannot complete the current class.")
-            return
-        }
-        
-        let fetchRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 3 })
-        
-        do {
-            if let currentClass = try context.fetch(fetchRequest).first {
-                currentClass.isCompleted = true
-                
-                let nextClassRequest = FetchDescriptor<GameProgress>(predicate: #Predicate { $0.levelID == 1 && $0.partID == 1 && $0.classID == 4 })
-                if let nextClass = try context.fetch(nextClassRequest).first {
-                    nextClass.isUnlocked = true
-                }
-                
-                try context.save()
-            } else {
-                print("Error: Current class not found in GameProgress.")
-            }
-        } catch {
-            print("Error completing current class: \(error.localizedDescription)")
-        }
-    }
+         // Navigate to the Number4 scene
+         if let number4Scene = SKScene(fileNamed: "Number4") {
+             number4Scene.scaleMode = .aspectFill
+             let transition = SKTransition.fade(withDuration: 1.0)
+             self.view?.presentScene(number4Scene, transition: transition)
+         }
+     }
 }
