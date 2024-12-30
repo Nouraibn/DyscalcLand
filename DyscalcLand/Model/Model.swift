@@ -48,3 +48,37 @@ class GameProgress {
     }
 }
 
+class EquationManager {
+    var equationsByLevel: [Int: [Int: (equation: String, answer: Int)]] = [:]
+    
+    init() {
+        self.setupEquations()
+    }
+    private func setupEquations() {
+        equationsByLevel = [
+            2: [
+                2: ("1 + 1 = ", 2),
+                4: ("2 + 2 = ", 4),
+                6: ("4 + 2 = ", 6),
+                8: ("3 + 2 = ", 5),
+                10:("3 + 4 = ", 7)
+            ]
+        ]
+    }
+    func getEquation(for mainLevel: Int, subLevel: Int) -> (equation: String, answer: Int)? {
+        if mainLevel == 2, let sublevels = equationsByLevel[mainLevel] {
+            if let equation = sublevels[subLevel] {
+                return equation
+            } else {
+                print("No equation found for \(mainLevel) \(subLevel)")
+                return nil
+                
+            }
+        }
+        print("No equation found for \(mainLevel) \(subLevel)")
+        return nil
+    }
+}
+
+
+
