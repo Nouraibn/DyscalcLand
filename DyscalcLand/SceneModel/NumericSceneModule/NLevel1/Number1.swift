@@ -20,7 +20,6 @@ class Number1: SKScene {
 
     override func didMove(to view: SKView) {
         
-      
         // Set the background color programmatically
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
         
