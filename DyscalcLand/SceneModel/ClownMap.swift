@@ -255,12 +255,35 @@ class ClownMap: SKScene {
     }
 
     func goToSubtraction() {
-        let nextScene = SKScene(fileNamed: "Sub1")
-        if let nextScene = nextScene {
-            nextScene.scaleMode = .aspectFill
-            let transition = SKTransition.fade(withDuration: 0.1)
-            self.view?.presentScene(nextScene, transition: transition)
+        // Access the shared GameProgress instance
+        let gameProgress = GameProgress.shared
+
+        // Define the main level for subtraction scenes
+        let mainLevel = 3
+
+        // Retrieve the main level from GameProgress
+        if let currentMainLevel = gameProgress.mainLevels[mainLevel] {
+            let subLevel = currentMainLevel.currentSubLevel
+
+            // Ensure the sub-level is within the valid range
+            if subLevel >= 1 && subLevel <= currentMainLevel.totalSubLevels {
+                let sceneName = "Sub\(subLevel)" // Construct the scene name dynamically
+                
+                // Attempt to load the scene
+                if let nextScene = SKScene(fileNamed: sceneName) {
+                    nextScene.scaleMode = .aspectFill
+                    let transition = SKTransition.fade(withDuration: 0.1)
+                    self.view?.presentScene(nextScene, transition: transition)
+                } else {
+                    print("Error: Scene \(sceneName) not found!")
+                }
+            } else {
+                print("Error: Sub Level \(subLevel) is out of range for Main Level \(mainLevel).")
+            }
+        } else {
+            print("Error: Main Level \(mainLevel) not found in progress.")
         }
     }
+
         }
     
