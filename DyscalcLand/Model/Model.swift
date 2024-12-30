@@ -25,7 +25,6 @@ class MainLevel {
         }
     }
 }
-
 class GameProgress {
     static let shared = GameProgress() // Singleton
     var mainLevels: [Int: MainLevel] = [:]
@@ -46,7 +45,14 @@ class GameProgress {
             print("Error: Main Level \(mainLevel) not found.")
         }
     }
-    
-    
+
+    func fetchProgress(for mainLevel: Int) -> (mainLevel: Int, subLevel: Int)? {
+        if let level = mainLevels[mainLevel] {
+            return (mainLevel, level.currentSubLevel)
+        } else {
+            print("Error: Main Level \(mainLevel) not found.")
+            return nil
+        }
+    }
 }
 

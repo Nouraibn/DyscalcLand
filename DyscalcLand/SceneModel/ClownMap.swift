@@ -187,22 +187,73 @@ class ClownMap: SKScene {
         
         // Function to navigate to the Number1 scene
     func goToNumeric() {
-        let nextScene = SKScene(fileNamed: "Number1")
-        if let nextScene = nextScene {
-            nextScene.scaleMode = .aspectFill
-            let transition = SKTransition.fade(withDuration: 1.0) // Fade transition
-            self.view?.presentScene(nextScene, transition: transition)
+        // Access the shared GameProgress instance
+        let gameProgress = GameProgress.shared
+        
+        // Assume we are working with mainLevel 1 for now
+        let mainLevel = 1
+        
+        // Retrieve the main level from GameProgress
+        if let currentMainLevel = gameProgress.mainLevels[mainLevel] {
+            let subLevel = currentMainLevel.currentSubLevel
+            
+            // Ensure subLevel is valid
+            if subLevel >= 1 && subLevel <= currentMainLevel.totalSubLevels {
+                let sceneName = "Number\(subLevel)" // Construct the scene name dynamically
+                
+                if let nextScene = SKScene(fileNamed: sceneName) {
+                    nextScene.scaleMode = .aspectFill
+                    let transition = SKTransition.fade(withDuration: 1.0)
+                    self.view?.presentScene(nextScene, transition: transition)
+                } else {
+                    print("Error: Scene \(sceneName) not found!")
+                }
+            } else {
+                print("Error: Sub Level \(subLevel) is out of range for Main Level \(mainLevel).")
+            }
+        } else {
+            print("Error: Main Level \(mainLevel) not found in progress.")
         }
     }
+
     
     func goToAddition() {
-        let nextScene = SKScene(fileNamed: "DragAndDrop1")
-        if let nextScene = nextScene {
-            nextScene.scaleMode = .aspectFill
-            let transition = SKTransition.fade(withDuration: 0.1)
-            self.view?.presentScene(nextScene, transition: transition)
+        // Access the shared GameProgress instance
+        let gameProgress = GameProgress.shared
+
+        // Define the main level for addition scenes
+        let mainLevel = 2
+
+        // Retrieve the main level from GameProgress
+        if let currentMainLevel = gameProgress.mainLevels[mainLevel] {
+            let subLevel = currentMainLevel.currentSubLevel
+            
+            // Define the sub-level scene names for mainLevel 2
+            let subLevelNames = [
+                "DragAndDrop1", "Equation1", "DragAndDrop2", "Equation2",
+                "DragAndDrop3", "Equation3", "DragAndDrop4", "Equation4",
+                "DragAndDrop5", "Equation5"
+            ]
+            
+            // Ensure the sub-level is within the valid range
+            if subLevel > 0 && subLevel <= subLevelNames.count {
+                let sceneName = subLevelNames[subLevel - 1] // Get the scene name for the current sub-level
+                
+                if let nextScene = SKScene(fileNamed: sceneName) {
+                    nextScene.scaleMode = .aspectFill
+                    let transition = SKTransition.fade(withDuration: 0.1)
+                    self.view?.presentScene(nextScene, transition: transition)
+                } else {
+                    print("Error: Scene \(sceneName) not found!")
+                }
+            } else {
+                print("Error: Sub Level \(subLevel) is out of range for Main Level \(mainLevel).")
+            }
+        } else {
+            print("Error: Main Level \(mainLevel) not found in progress.")
         }
     }
+
     func goToSubtraction() {
         let nextScene = SKScene(fileNamed: "Sub1")
         if let nextScene = nextScene {
