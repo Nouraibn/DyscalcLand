@@ -1,6 +1,7 @@
 import SpriteKit
 
-class Sub1: SKScene {
+class Sub2 : SKScene {
+    
     
     
     var background : SKSpriteNode!
@@ -19,16 +20,12 @@ class Sub1: SKScene {
     var bourdLablel : SKLabelNode!
     var NextLablel : SKLabelNode!
     var tiketLablel : SKLabelNode!
-    var LabelNode : SKLabelNode!
+    var Bowling1Drop : SKSpriteNode!
+    var Bowling2Drop : SKSpriteNode!
+    var Qustion : SKSpriteNode!
     
-    var bowlingArray : [SKSpriteNode] = []
-    var bowlingArrayLabel : [SKLabelNode] = []
-
-    
-    var counter: Int = 0
-    
-
     override func didMove(to view: SKView) {
+        
         
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
         // Load fixed nodes from the scene
@@ -49,34 +46,16 @@ class Sub1: SKScene {
         tiket2 = self.childNode(withName: "tiket2") as? SKSpriteNode
         tiket3 = self.childNode(withName: "tiket3") as? SKSpriteNode
         tiketLablel = self.childNode(withName: "tiketLablel") as? SKLabelNode
-        LabelNode = self.childNode(withName: "LabelNode") as? SKLabelNode
+        Bowling1Drop = self.childNode(withName: "Bowling1Drop") as? SKSpriteNode
+        Bowling2Drop = self.childNode(withName: "Bowling2Drop") as? SKSpriteNode
+        Qustion = self.childNode(withName: "Qustion") as? SKSpriteNode
         
         
         
-        for i in 1..<8 {
-            
-            if let bowling = self.childNode(withName: "Bowling\(i)") as? SKSpriteNode {
-                bowlingArray.append(bowling)
-                bowling.zPosition = 1
-            }
-            if let bowlingLabel = self.childNode(withName: "LabelNode\(i)") as? SKLabelNode {
-                bowlingArrayLabel.append(bowlingLabel)
-                bowlingLabel.isHidden = true //hide the label so it dosent show the word Label
-                bowlingLabel.zPosition = 2
-                bowlingLabel.text = "\(i)"
-            }
-        }
-        
-        
-        // Ensure Background and Border are not nil and set positions
-
         background?.zPosition = -2
         bourd?.zPosition = -1
         
-        
-        // Set the initial state for other nodes
-        
-        
+                
         bourdLablel?.isHidden = false
         bowling1?.isHidden = false
         bowling2?.isHidden = false
@@ -91,41 +70,23 @@ class Sub1: SKScene {
         Next?.isHidden = true
         NextLablel?.isHidden = true
         tiketLablel?.isHidden = true
-        LabelNode?.isHidden = true
+        Bowling1Drop?.isHidden = true
+        Bowling2Drop?.isHidden = true
+        Qustion?.isHidden = true
         
-        // func toches begin يشوف اذا اللمسه علا البولنق \
         
-        func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            for touch in touches {
-                let location = touch.location(in: self)
-                
-                for bowling in bowlingArray {
-                    if bowling.contains(location) {
-                        showLabel()
-                    }
-                }
-               
-               func showLabel(){
-                   
-                    LabelNode?.isHidden = false
-                }
-             
-            }
-        }
         
-//not hideen
         
         
     }
     
     
     
-    
-    
-    
-    
-    
+ 
     
     
 }
     
+
+
+

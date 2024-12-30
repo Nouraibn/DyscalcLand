@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2A6748892D22694A0021C45C /* sub1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A6748882D22694A0021C45C /* sub1.sks */; };
+		2A6748A32D22C0FB0021C45C /* sub2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A6748A22D22C0FB0021C45C /* sub2.sks */; };
+		2A6748A52D22D3820021C45C /* Sub5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6748A42D22D3820021C45C /* Sub5.swift */; };
+		2A6748A72D22D3900021C45C /* Sub6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6748A62D22D3900021C45C /* Sub6.swift */; };
+		2A6748A92D22D39D0021C45C /* Sub7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6748A82D22D39D0021C45C /* Sub7.swift */; };
+		2A6748AB2D22D3AA0021C45C /* Sub8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6748AA2D22D3AA0021C45C /* Sub8.swift */; };
 		2C794B992D2055DB006AA61A /* Sub1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B982D2055DB006AA61A /* Sub1.swift */; };
 		2C794B9B2D2055FE006AA61A /* Sub2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B9A2D2055FE006AA61A /* Sub2.swift */; };
 		2C794B9D2D205627006AA61A /* Sub3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B9C2D205627006AA61A /* Sub3.swift */; };
@@ -85,6 +90,11 @@
 
 /* Begin PBXFileReference section */
 		2A6748882D22694A0021C45C /* sub1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = sub1.sks; sourceTree = SOURCE_ROOT; };
+		2A6748A22D22C0FB0021C45C /* sub2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = sub2.sks; sourceTree = SOURCE_ROOT; };
+		2A6748A42D22D3820021C45C /* Sub5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub5.swift; sourceTree = "<group>"; };
+		2A6748A62D22D3900021C45C /* Sub6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub6.swift; sourceTree = "<group>"; };
+		2A6748A82D22D39D0021C45C /* Sub7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub7.swift; sourceTree = "<group>"; };
+		2A6748AA2D22D3AA0021C45C /* Sub8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub8.swift; sourceTree = "<group>"; };
 		2C794B982D2055DB006AA61A /* Sub1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub1.swift; sourceTree = "<group>"; };
 		2C794B9A2D2055FE006AA61A /* Sub2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub2.swift; sourceTree = "<group>"; };
 		2C794B9C2D205627006AA61A /* Sub3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub3.swift; sourceTree = "<group>"; };
@@ -207,6 +217,7 @@
 		2C89BA3E2D1AD827004CFBB2 /* SLevel2 */ = {
 			isa = PBXGroup;
 			children = (
+				2A6748A22D22C0FB0021C45C /* sub2.sks */,
 			);
 			path = SLevel2;
 			sourceTree = "<group>";
@@ -367,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				2C794B982D2055DB006AA61A /* Sub1.swift */,
+				2C794B9A2D2055FE006AA61A /* Sub2.swift */,
 			);
 			path = SLevel1;
 			sourceTree = "<group>";
@@ -374,7 +386,8 @@
 		2C89BA6F2D1ADAF8004CFBB2 /* SLevel2 */ = {
 			isa = PBXGroup;
 			children = (
-				2C794B9A2D2055FE006AA61A /* Sub2.swift */,
+				2C794B9C2D205627006AA61A /* Sub3.swift */,
+				2C794B9E2D20563C006AA61A /* Sub4.swift */,
 			);
 			path = SLevel2;
 			sourceTree = "<group>";
@@ -382,7 +395,8 @@
 		2C89BA702D1ADB03004CFBB2 /* SLevel3 */ = {
 			isa = PBXGroup;
 			children = (
-				2C794B9C2D205627006AA61A /* Sub3.swift */,
+				2A6748A42D22D3820021C45C /* Sub5.swift */,
+				2A6748A62D22D3900021C45C /* Sub6.swift */,
 			);
 			path = SLevel3;
 			sourceTree = "<group>";
@@ -390,7 +404,8 @@
 		2C89BA712D1ADB12004CFBB2 /* SLevel4 */ = {
 			isa = PBXGroup;
 			children = (
-				2C794B9E2D20563C006AA61A /* Sub4.swift */,
+				2A6748A82D22D39D0021C45C /* Sub7.swift */,
+				2A6748AA2D22D3AA0021C45C /* Sub8.swift */,
 			);
 			path = SLevel4;
 			sourceTree = "<group>";
@@ -623,6 +638,7 @@
 				2C89BA142D1996C1004CFBB2 /* NumAppear.wav in Resources */,
 				2CF5E2772D0F10E7004632FF /* Actions.sks in Resources */,
 				2CF5E2832D0F10E8004632FF /* Base in Resources */,
+				2A6748A32D22C0FB0021C45C /* sub2.sks in Resources */,
 				2C89BA182D19A861004CFBB2 /* Clown.wav in Resources */,
 				2CF5E2BB2D143E69004632FF /* WelcomeScreen.sks in Resources */,
 				2CF5E2EE2D1446B4004632FF /* Number1.sks in Resources */,
@@ -645,6 +661,7 @@
 				2CF5E3042D144736004632FF /* Number2.swift in Sources */,
 				2CF5E2E42D1444B0004632FF /* DragAndDrop3.swift in Sources */,
 				2CF5E2C12D143F39004632FF /* ClownMap.swift in Sources */,
+				2A6748A92D22D39D0021C45C /* Sub7.swift in Sources */,
 				2CF5E2D32D1441BB004632FF /* Equation2.swift in Sources */,
 				2CF5E30C2D144751004632FF /* Number6.swift in Sources */,
 				2CF5E2E02D14449D004632FF /* DragAndDrop1.swift in Sources */,
@@ -655,9 +672,12 @@
 				2CF5E2EC2D1444DC004632FF /* Equation5.swift in Sources */,
 				2C794B9B2D2055FE006AA61A /* Sub2.swift in Sources */,
 				2CF5E2BD2D143E85004632FF /* WelcomeScreen.swift in Sources */,
+				2A6748A52D22D3820021C45C /* Sub5.swift in Sources */,
 				2CF5E2EA2D1444D4004632FF /* Equation3.swift in Sources */,
 				2C794B992D2055DB006AA61A /* Sub1.swift in Sources */,
+				2A6748A72D22D3900021C45C /* Sub6.swift in Sources */,
 				2CF5E30E2D144758004632FF /* Number7.swift in Sources */,
+				2A6748AB2D22D3AA0021C45C /* Sub8.swift in Sources */,
 				2CF5E2E82D1444C2004632FF /* DragAndDrop5.swift in Sources */,
 				2CF5E30A2D14474A004632FF /* Number5.swift in Sources */,
 				2CF5E2E62D1444B8004632FF /* DragAndDrop4.swift in Sources */,
