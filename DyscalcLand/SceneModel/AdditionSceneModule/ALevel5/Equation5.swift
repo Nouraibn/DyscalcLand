@@ -8,6 +8,8 @@ class Equation5: SKScene {
     var cottonCandyCart: SKSpriteNode!
     var mainEquation: SKLabelNode!
         var background2: SKSpriteNode!
+    var nextButton: SKSpriteNode!
+    var nextButtonLabel: SKLabelNode!
 
     
     var currentNumberIndex = 0 // to see which cotton candy is preseed
@@ -15,6 +17,8 @@ class Equation5: SKScene {
     override func didMove(to view: SKView) {
         
         cottonCandyCart = self.childNode(withName: "CottonCandyCart") as? SKSpriteNode
+        nextButton = childNode(withName: "NextButton") as? SKSpriteNode
+        nextButtonLabel = childNode(withName: "ButtonLabel") as? SKLabelNode
                mainEquation = self.childNode(withName: "Equation5") as? SKLabelNode
                 background2 = self.childNode(withName: "Background2") as? SKSpriteNode
                 self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
@@ -64,10 +68,21 @@ class Equation5: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let touchLocation = touch.location(in: self)
+            let node = self.atPoint(touchLocation)
+           
             
+            if node == nextButton{
+                
+                navigateToClownMap()
+            }
             //see if the touch was on the cotton candy
             for (index, cottonCandy) in cottonCandies.enumerated() {
                             if cottonCandy.contains(touchLocation) {
+                                
+                                if node == nextButton{
+                                    
+                                    navigateToClownMap()
+                                }
                                 
                                 if currentNumberIndex < numberCottonCandy.count {
                                     let numText = numberCottonCandy[index]
@@ -96,6 +111,16 @@ class Equation5: SKScene {
     func playSound(named soundName: String) {
         let sound = SKAction.playSoundFileNamed(soundName, waitForCompletion: false)
         self.run(sound)
+    }
+    
+    func navigateToClownMap() {
+        
+        ClownMap.Equation5 = true  // Set the flag to true
+        if let clownMapScene = SKScene(fileNamed: "ClownMap") {
+            clownMapScene.scaleMode = .aspectFill
+            let transition = SKTransition.fade(withDuration: 1.0)
+            self.view?.presentScene(clownMapScene, transition: transition)
+        }
     }
 }
     
