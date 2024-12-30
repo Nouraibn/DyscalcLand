@@ -1,7 +1,4 @@
 import SwiftData
-
-
-import SwiftData
 import Foundation
 
 @Model
@@ -25,15 +22,16 @@ class MainLevel {
         }
     }
 }
+
 class GameProgress {
     static let shared = GameProgress() // Singleton
     var mainLevels: [Int: MainLevel] = [:]
 
     private init() {
         mainLevels = [
-            1: MainLevel(totalSubLevels: 10),
-            2: MainLevel(totalSubLevels: 10),
-            3: MainLevel(totalSubLevels: 4)
+            1: MainLevel(totalSubLevels: 10), // Main Level 1 has 10 sub-levels
+            2: MainLevel(totalSubLevels: 10), // Main Level 2 has 10 sub-levels
+            3: MainLevel(totalSubLevels: 8)  // Main Level 3 now has 8 sub-levels
         ]
     }
 
@@ -55,4 +53,3 @@ class GameProgress {
         }
     }
 }
-
