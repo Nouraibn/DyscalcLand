@@ -14,13 +14,15 @@ class GameViewController: UIViewController {
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'WelcomeScreen.sks'
-            if let scene = SKScene(fileNamed: "Equation1") {
+            if let scene = SKScene(fileNamed: "Number10") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
                 // Pass reference to this controller for scene management
                 if let welcomeScene = scene as? WelcomeScreen {
                     welcomeScene.parentController = self
+                    
+            
                 }
                 
                 // Present the scene
@@ -42,6 +44,8 @@ class GameViewController: UIViewController {
             fatalError("Failed to create ModelContainer: \(error)")
         }
     }
+    
+
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
