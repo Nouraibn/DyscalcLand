@@ -16,6 +16,7 @@ class Number1: SKScene {
     var GuidingLabel: SKSpriteNode!
     var NextButton: SKSpriteNode! // New node for navigation button
     var NextLabel: SKLabelNode! // New node for navigation label
+    var Click: SKSpriteNode!
     
 
     override func didMove(to view: SKView) {
@@ -31,12 +32,14 @@ class Number1: SKScene {
         PopBalloon = self.childNode(withName: "PopBalloon") as? SKSpriteNode
         EqualLabel = self.childNode(withName: "Equal") as? SKSpriteNode
         GuidingLabel = self.childNode(withName: "GuidingLabel") as? SKSpriteNode
-        NextButton = self.childNode(withName: "NextButton") as? SKSpriteNode // Load the new button node
+        NextButton = self.childNode(withName: "NextButton") as? SKSpriteNode
+        Click = self.childNode(withName: "Click") as? SKSpriteNode// Load the new button node
         NextLabel = self.childNode(withName: "NextLabel") as? SKLabelNode // Load the new label node
         
         // Ensure Background and Border are not nil and set positions
         Background?.zPosition = -2
         Border?.zPosition = -1
+        Click?.zPosition = 2
         
         // Set the initial state for other nodes
         PopBalloon?.isHidden = true
@@ -46,6 +49,13 @@ class Number1: SKScene {
         GuidingLabel?.isHidden = false
         NextButton?.isHidden = true // Initially hide the NextButton
         NextLabel?.isHidden = true // Initially hide the NextLabel
+        
+        addPulsingAnimation(to: NextButton)
+        addPulsingAnimation(to: NextLabel)
+        
+        startOscillatingAnimation(for: Click, fromLeftOffset: 80, duration: 1.5)
+         
+
         
         print("Scene initialized successfully.")
         run(SKAction.playSoundFileNamed("guess.wav", waitForCompletion: false))
@@ -59,13 +69,54 @@ class Number1: SKScene {
             // Check if the balloon is tapped
             if node == Balloon {
                 BalloonTapped()
+                stopAndDisappear(for: Click)
             }
            
             // Check if the NextButton or NextLabel is tapped
             if node == NextButton || node == NextLabel {
+                run(SKAction.playSoundFileNamed("Button.mp3", waitForCompletion: false))
                 navigateToNumber2()
             }
         }
+    }
+    func startOscillatingAnimation(for node: SKNode?, fromLeftOffset offset: CGFloat, duration: TimeInterval = 3.0) {
+            guard let node = node else { return }
+            
+            // Save the original position
+            let originalPosition = node.position
+            
+            // Define actions
+            let moveLeft = SKAction.moveBy(x: -offset, y: 0, duration: duration) // Move left in 3 seconds
+            let moveRight = SKAction.move(to: originalPosition, duration: duration) // Return to original position in 3 seconds
+        let pause = SKAction.wait(forDuration: 1.0) // Pause at the original position
+                let oscillate = SKAction.sequence([moveLeft, moveRight, pause]) // Add pause to the sequence
+                let repeatOscillation = SKAction.repeatForever(oscillate)
+
+            // Run the oscillation
+            node.run(repeatOscillation)
+        }
+        
+        // Function to stop the animation and make the node disappear
+        func stopAndDisappear(for node: SKNode?) {
+            guard let node = node else { return }
+            
+            // Remove all actions
+            node.removeAllActions()
+            
+            // Fade out and remove the node
+            let fadeOut = SKAction.fadeOut(withDuration: 0.5)
+            let remove = SKAction.removeFromParent()
+            let sequence = SKAction.sequence([fadeOut, remove])
+            node.run(sequence)
+        }
+    
+    func addPulsingAnimation(to node: SKNode) {
+        node.setScale(1.0) // Ensure the node starts at its original size
+        let scaleDown = SKAction.scale(to: 0.8, duration: 0.6) // Scale down to 80% of the original size
+        let scaleUp = SKAction.scale(to: 1.0, duration: 0.6) // Scale back to the original size
+        let pulse = SKAction.sequence([scaleDown, scaleUp]) // Create a sequence of actions
+        let repeatPulse = SKAction.repeatForever(pulse) // Repeat the pulsing forever
+        node.run(repeatPulse) // Apply the animation to the node
     }
     
     func BalloonTapped() {

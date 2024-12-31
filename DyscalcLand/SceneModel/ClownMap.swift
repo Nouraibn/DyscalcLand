@@ -52,14 +52,15 @@ class ClownMap: SKScene {
         openA?.zPosition = 2
 
         // Hide nodes initially
-        cloud?.alpha = 0.0
-        cloudLabel?.alpha = 0.0
-
-        // Show cloud and cloudLabel only the first time
-        if ClownMap.isFirstTime {
-            ClownMap.isFirstTime = false // Set to false so it won't show again
-            showCloudAndLabel()
-        }
+        clown?.alpha = 0.0
+        luckA?.alpha = 0.0
+        luckS?.alpha = 0.0
+        openA?.alpha = 0.0
+        openN?.alpha = 0.0
+        openS?.alpha = 0.0
+        winA?.alpha = 0.0
+        winN?.alpha = 0.0
+        winS?.alpha = 0.0
        
 
         updateUIState()
@@ -71,22 +72,6 @@ class ClownMap: SKScene {
         addPulsingAnimation(to: openS)
     }
 
-    private func showCloudAndLabel() {
-        // Animate the cloud and cloudLabel appearance
-        cloud?.isHidden = false
-        cloudLabel?.isHidden = false
-        self.cloudLabel?.run(SKAction.fadeIn(withDuration: 1.0))
-        self.cloud?.run(SKAction.fadeIn(withDuration: 1.0))
-        
-        let delay = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
-        let playSound = SKAction.playSoundFileNamed("Clown.wav", waitForCompletion: false)
-        let delayedSound = SKAction.sequence([delay, playSound])
-
-        self.run(delayedSound)
-    }
-    
-  
-
     private func updateUIState() {
         luckA?.isHidden = false
         luckS?.isHidden = false
@@ -96,6 +81,9 @@ class ClownMap: SKScene {
         winS?.isHidden = true
         openS?.isHidden = true
         openA?.isHidden = true
+        cloud?.isHidden = true
+        cloudLabel.isHidden = true
+        
         // Handle conditions based on ClownMap properties
         if ClownMap.Equation5 {
             
@@ -127,6 +115,28 @@ class ClownMap: SKScene {
             winS?.isHidden = true
             openS?.isHidden = true
         }
+        
+        if ClownMap.isFirstTime{
+            ClownMap.isFirstTime = false
+            cloud?.isHidden = false
+            cloudLabel?.isHidden = false
+            cloud?.alpha = 0.0
+            cloudLabel?.alpha = 0.0
+            let delay1 = SKAction.wait(forDuration: 2.0)
+            let group =  SKAction.run {
+                self.cloudLabel?.run(SKAction.fadeIn(withDuration: 1.0))
+                self.cloud?.run(SKAction.fadeIn(withDuration: 1.0))}
+            let delayedAction = SKAction.sequence([delay1, group])
+            self.run(delayedAction)
+
+            
+            
+            let delay = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
+            let playSound = SKAction.playSoundFileNamed("Clown.wav", waitForCompletion: false)
+            let delayedSound = SKAction.sequence([delay, playSound])
+
+            self.run(delayedSound)
+        }
     }
 
     func addPulsingAnimation(to node: SKNode) {
@@ -139,22 +149,22 @@ class ClownMap: SKScene {
 
     func animateBalls() {
         // Action to move up and fade out
-        let moveUp = SKAction.moveBy(x: 0, y: 1000, duration: 3.0) // Move up off the screen
-        let fadeOut = SKAction.fadeOut(withDuration: 2.0) // Fade out while moving
+        let moveUp = SKAction.moveBy(x: 0, y: 1000, duration: 2.0) // Move up off the screen
+        let fadeOut = SKAction.fadeOut(withDuration: 1.0) // Fade out while moving
         let group = SKAction.group([moveUp, fadeOut]) // Combine actions
 
       
         // Action to reveal fixed nodes
         let revealFixedNodes = SKAction.run {
-            self.clown?.run(SKAction.fadeIn(withDuration: 2.0))
-            self.openA?.run(SKAction.fadeIn(withDuration: 2.0))
-            self.luckS?.run(SKAction.fadeIn(withDuration: 2.0))
-            self.luckA?.run(SKAction.fadeIn(withDuration: 2.0))
-            self.openN?.run(SKAction.fadeIn(withDuration: 2.0))
-            self.winN?.run(SKAction.fadeIn(withDuration: 2.5))
-            self.openS?.run(SKAction.fadeIn(withDuration: 2.0))
-            self.winA?.run(SKAction.fadeIn(withDuration: 2.0))
-            self.winS?.run(SKAction.fadeIn(withDuration: 2.0))
+            self.clown?.run(SKAction.fadeIn(withDuration: 1.0))
+            self.openA?.run(SKAction.fadeIn(withDuration: 1.0))
+            self.luckS?.run(SKAction.fadeIn(withDuration: 1.0))
+            self.luckA?.run(SKAction.fadeIn(withDuration: 1.0))
+            self.openN?.run(SKAction.fadeIn(withDuration: 1.0))
+            self.winN?.run(SKAction.fadeIn(withDuration: 1.5))
+            self.openS?.run(SKAction.fadeIn(withDuration: 1.0))
+            self.winA?.run(SKAction.fadeIn(withDuration: 1.0))
+            self.winS?.run(SKAction.fadeIn(withDuration: 1.0))
         }
 
         // Sequence: Animate balls, then reveal fixed nodes
@@ -181,14 +191,17 @@ class ClownMap: SKScene {
 
             // Check if the OpenN node is tapped
             if node == openN {
+                run(SKAction.playSoundFileNamed("Button.mp3", waitForCompletion: false))
                 goToNumeric()
             }
             if node == openA {
                 GameProgress.shared.saveProgress(for: 2, subLevel: 1)
+                run(SKAction.playSoundFileNamed("Button.mp3", waitForCompletion: false))
                 goToAddition()
             }
             if node == openS {
                 GameProgress.shared.saveProgress(for: 3, subLevel: 1)
+                run(SKAction.playSoundFileNamed("Button.mp3", waitForCompletion: false))
                 goToSubtraction()
             }
         }

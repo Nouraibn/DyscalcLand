@@ -88,6 +88,9 @@ class Number9: SKScene {
         num9Balloon.isHidden = true
         nextButton?.isHidden = true
         nextLabel?.isHidden = true
+        
+        addPulsingAnimation(to: nextButton)
+        addPulsingAnimation(to: nextLabel)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -114,9 +117,18 @@ class Number9: SKScene {
             } else if node == balloon9 {
                 handleBalloon9Tapped()
             } else if node == nextButton || node == nextLabel {
+                run(SKAction.playSoundFileNamed("Button.mp3", waitForCompletion: false))
                 navigateToNumber10()
             }
         }
+    }
+    func addPulsingAnimation(to node: SKNode) {
+        node.setScale(1.0) // Ensure the node starts at its original size
+        let scaleDown = SKAction.scale(to: 0.8, duration: 0.6) // Scale down to 80% of the original size
+        let scaleUp = SKAction.scale(to: 1.0, duration: 0.6) // Scale back to the original size
+        let pulse = SKAction.sequence([scaleDown, scaleUp]) // Create a sequence of actions
+        let repeatPulse = SKAction.repeatForever(pulse) // Repeat the pulsing forever
+        node.run(repeatPulse) // Apply the animation to the node
     }
     
     func handleBalloon1Tapped() {

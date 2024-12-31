@@ -17,10 +17,14 @@
 		2C794B9B2D2055FE006AA61A /* Sub2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B9A2D2055FE006AA61A /* Sub2.swift */; };
 		2C794B9D2D205627006AA61A /* Sub3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B9C2D205627006AA61A /* Sub3.swift */; };
 		2C794B9F2D20563C006AA61A /* Sub4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B9E2D20563C006AA61A /* Sub4.swift */; };
-		2C89BA142D1996C1004CFBB2 /* NumAppear.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C89BA132D1996C1004CFBB2 /* NumAppear.wav */; };
 		2C89BA182D19A861004CFBB2 /* Clown.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C89BA172D19A861004CFBB2 /* Clown.wav */; };
 		2C89BA1C2D19B062004CFBB2 /* guess.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C89BA1B2D19B062004CFBB2 /* guess.wav */; };
 		2CC5306D2D22DC720051DBD0 /* AExcellentnext.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2CC5306C2D22DC720051DBD0 /* AExcellentnext.mp3 */; };
+		2CC530742D2329330051DBD0 /* PopBalloon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2CC530732D2329330051DBD0 /* PopBalloon.wav */; };
+		2CC530762D232A050051DBD0 /* NumAppear.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2CC530752D232A050051DBD0 /* NumAppear.wav */; };
+		2CC530782D23E5250051DBD0 /* Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2CC530772D23E5250051DBD0 /* Button.mp3 */; };
+		2CC5307A2D23EDD70051DBD0 /* SplashScreen.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CC530792D23EDD70051DBD0 /* SplashScreen.sks */; };
+		2CC5307C2D23EDEA0051DBD0 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC5307B2D23EDEA0051DBD0 /* SplashScreen.swift */; };
 		2CF5E2732D0F10E7004632FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E2722D0F10E7004632FF /* AppDelegate.swift */; };
 		2CF5E2752D0F10E7004632FF /* Equation4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5E2742D0F10E7004632FF /* Equation4.sks */; };
 		2CF5E2772D0F10E7004632FF /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5E2762D0F10E7004632FF /* Actions.sks */; };
@@ -72,8 +76,6 @@
 		2CF5E3122D14476A004632FF /* Number9.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E3112D14476A004632FF /* Number9.swift */; };
 		2CF5E3142D144771004632FF /* Number10.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E3132D144771004632FF /* Number10.swift */; };
 		2CF5E3162D16FF5D004632FF /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E3152D16FF5D004632FF /* Model.swift */; };
-		FC3C77BD2D22E1AF00ECBE05 /* PopBalloon.wav in Resources */ = {isa = PBXBuildFile; fileRef = FC3C77BC2D22E1AF00ECBE05 /* PopBalloon.wav */; };
-		FC3C77BF2D22E1CE00ECBE05 /* NumAppear.wav in Resources */ = {isa = PBXBuildFile; fileRef = FC3C77BE2D22E1CE00ECBE05 /* NumAppear.wav */; };
 		FC8FF0E62D10496700CA301A /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = FC8FF0E52D10496700CA301A /* Localizable.xcstrings */; };
 		FCFC9E092D1AF0F00097CA2A /* A lets play.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FCFC9E082D1AF0F00097CA2A /* A lets play.mp3 */; };
 		FCFC9E0D2D1AF1260097CA2A /* A pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FCFC9E0C2D1AF1260097CA2A /* A pop.mp3 */; };
@@ -101,10 +103,14 @@
 		2C794B9A2D2055FE006AA61A /* Sub2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub2.swift; sourceTree = "<group>"; };
 		2C794B9C2D205627006AA61A /* Sub3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub3.swift; sourceTree = "<group>"; };
 		2C794B9E2D20563C006AA61A /* Sub4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub4.swift; sourceTree = "<group>"; };
-		2C89BA132D1996C1004CFBB2 /* NumAppear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = NumAppear.wav; path = ../../../../../Downloads/NumAppear.wav; sourceTree = "<group>"; };
 		2C89BA172D19A861004CFBB2 /* Clown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Clown.wav; path = ../../../../../Downloads/Clown.wav; sourceTree = "<group>"; };
 		2C89BA1B2D19B062004CFBB2 /* guess.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = guess.wav; sourceTree = "<group>"; };
 		2CC5306C2D22DC720051DBD0 /* AExcellentnext.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AExcellentnext.mp3; sourceTree = "<group>"; };
+		2CC530732D2329330051DBD0 /* PopBalloon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = PopBalloon.wav; sourceTree = "<group>"; };
+		2CC530752D232A050051DBD0 /* NumAppear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = NumAppear.wav; sourceTree = "<group>"; };
+		2CC530772D23E5250051DBD0 /* Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Button.mp3; sourceTree = "<group>"; };
+		2CC530792D23EDD70051DBD0 /* SplashScreen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SplashScreen.sks; sourceTree = "<group>"; };
+		2CC5307B2D23EDEA0051DBD0 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		2CF5E26F2D0F10E7004632FF /* DyscalcLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DyscalcLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF5E2722D0F10E7004632FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CF5E2742D0F10E7004632FF /* Equation4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Equation4.sks; sourceTree = "<group>"; };
@@ -189,16 +195,17 @@
 		2C89BA102D198E9D004CFBB2 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				2C89BA112D19924E004CFBB2 /* PopBalloon.wav */,
 				2CC5306C2D22DC720051DBD0 /* AExcellentnext.mp3 */,
 				FCFC9E0C2D1AF1260097CA2A /* A pop.mp3 */,
-				2C89BA132D1996C1004CFBB2 /* NumAppear.wav */,
+				2CC530772D23E5250051DBD0 /* Button.mp3 */,
 				2C89BA1B2D19B062004CFBB2 /* guess.wav */,
 				2C89BA172D19A861004CFBB2 /* Clown.wav */,
 				FCFC9E082D1AF0F00097CA2A /* A lets play.mp3 */,
 				FCFC9E102D1AFB090097CA2A /* A1.mp3 */,
 				FCFC9E122D1AFB130097CA2A /* A2.mp3 */,
+				2CC530732D2329330051DBD0 /* PopBalloon.wav */,
 				FCFC9E142D1AFB230097CA2A /* A3.mp3 */,
+				2CC530752D232A050051DBD0 /* NumAppear.wav */,
 				FCFC9E162D1AFB360097CA2A /* A4.mp3 */,
 				FCFC9E182D1AFB400097CA2A /* A5.mp3 */,
 				FCFC9E1A2D1AFB4B0097CA2A /* A6.mp3 */,
@@ -414,11 +421,22 @@
 			path = SLevel4;
 			sourceTree = "<group>";
 		};
+		2CC5306E2D22E9F80051DBD0 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				2A6748A22D22C0FB0021C45C /* sub2.sks */,
+				FC3C77BE2D22E1CE00ECBE05 /* NumAppear.wav */,
+				FC3C77BC2D22E1AF00ECBE05 /* PopBalloon.wav */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		2CF5E2662D0F10E7004632FF = {
 			isa = PBXGroup;
 			children = (
 				2CF5E2712D0F10E7004632FF /* DyscalcLand */,
 				2CF5E2702D0F10E7004632FF /* Products */,
+				2CC5306E2D22E9F80051DBD0 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -453,6 +471,7 @@
 				2CF5E2C42D14400E004632FF /* AdditionSene */,
 				2CF5E2C52D144025004632FF /* SubtractionScene */,
 				2CF5E2762D0F10E7004632FF /* Actions.sks */,
+				2CC530792D23EDD70051DBD0 /* SplashScreen.sks */,
 				2CF5E2BA2D143E69004632FF /* WelcomeScreen.sks */,
 				2CF5E2BE2D143F27004632FF /* ClownMap.sks */,
 			);
@@ -467,6 +486,7 @@
 				2CF5E2DE2D144399004632FF /* SubtractionSceneModule */,
 				2CF5E2BC2D143E85004632FF /* WelcomeScreen.swift */,
 				2CF5E2C02D143F39004632FF /* ClownMap.swift */,
+				2CC5307B2D23EDEA0051DBD0 /* SplashScreen.swift */,
 				FC8FF0E52D10496700CA301A /* Localizable.xcstrings */,
 			);
 			path = SceneModel;
@@ -609,6 +629,7 @@
 				2CF5E2CB2D144167004632FF /* DragAndDrop3.sks in Resources */,
 				2CF5E2FC2D144708004632FF /* Number8.sks in Resources */,
 				FCFC9E0D2D1AF1260097CA2A /* A pop.mp3 in Resources */,
+				2CC5307A2D23EDD70051DBD0 /* SplashScreen.sks in Resources */,
 				FCFC9E0F2D1AFA000097CA2A /* AMakeCotton.mp3 in Resources */,
 				2CF5E2FA2D1446FF004632FF /* Number7.sks in Resources */,
 				FCFC9E172D1AFB360097CA2A /* A4.mp3 in Resources */,
@@ -623,6 +644,7 @@
 				2CF5E27E2D0F10E7004632FF /* Base in Resources */,
 				2CF5E2FE2D144710004632FF /* Number9.sks in Resources */,
 				2C89BA1C2D19B062004CFBB2 /* guess.wav in Resources */,
+				2CC530782D23E5250051DBD0 /* Button.mp3 in Resources */,
 				2CF5E2C72D14414A004632FF /* DragAndDrop1.sks in Resources */,
 				FCFC9E1B2D1AFB4B0097CA2A /* A6.mp3 in Resources */,
 				2CF5E2F02D1446C4004632FF /* Number2.sks in Resources */,
@@ -635,10 +657,11 @@
 				2CF5E2CD2D144172004632FF /* DragAndDrop4.sks in Resources */,
 				2CF5E2802D0F10E8004632FF /* Assets.xcassets in Resources */,
 				2CF5E2F42D1446E0004632FF /* Number4.sks in Resources */,
+				2CC530762D232A050051DBD0 /* NumAppear.wav in Resources */,
+				2CC530742D2329330051DBD0 /* PopBalloon.wav in Resources */,
 				2CF5E2BF2D143F27004632FF /* ClownMap.sks in Resources */,
 				2CF5E2D52D1441DF004632FF /* Equation1.sks in Resources */,
 				FCFC9E132D1AFB130097CA2A /* A2.mp3 in Resources */,
-				2C89BA142D1996C1004CFBB2 /* NumAppear.wav in Resources */,
 				2CF5E2772D0F10E7004632FF /* Actions.sks in Resources */,
 				2CF5E2832D0F10E8004632FF /* Base in Resources */,
 				2A6748A32D22C0FB0021C45C /* sub2.sks in Resources */,
@@ -647,9 +670,7 @@
 				2CF5E2BB2D143E69004632FF /* WelcomeScreen.sks in Resources */,
 				2CF5E2EE2D1446B4004632FF /* Number1.sks in Resources */,
 				2CF5E2D72D1441EF004632FF /* Equation2.sks in Resources */,
-				FC3C77BF2D22E1CE00ECBE05 /* NumAppear.wav in Resources */,
 				2CF5E2C92D14415A004632FF /* DragAndDrop2.sks in Resources */,
-				FC3C77BD2D22E1AF00ECBE05 /* PopBalloon.wav in Resources */,
 				2CF5E2DB2D144209004632FF /* Equation5.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -687,6 +708,7 @@
 				2CF5E2E82D1444C2004632FF /* DragAndDrop5.swift in Sources */,
 				2CF5E30A2D14474A004632FF /* Number5.swift in Sources */,
 				2CF5E2E62D1444B8004632FF /* DragAndDrop4.swift in Sources */,
+				2CC5307C2D23EDEA0051DBD0 /* SplashScreen.swift in Sources */,
 				2CF5E3142D144771004632FF /* Number10.swift in Sources */,
 				2CF5E2732D0F10E7004632FF /* AppDelegate.swift in Sources */,
 				2CF5E2E22D1444A5004632FF /* DragAndDrop2.swift in Sources */,
@@ -847,6 +869,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 98X6PVF3R7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -858,7 +881,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = w.DyscalcLand;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -874,6 +897,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 98X6PVF3R7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -885,7 +909,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = w.DyscalcLand;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -26,7 +26,17 @@ class WelcomeScreen: SKScene {
         background?.zPosition = -1 // Place it behind everything
         welcomeBoard?.zPosition = 1 // Place it above the background
         startButton?.zPosition = 10 // Ensure button is in front
+        addPulsingAnimation(to: startButton)
     }
+    func addPulsingAnimation(to node: SKNode) {
+        node.setScale(1.0) // Ensure the node starts at its original size
+        let scaleDown = SKAction.scale(to: 0.8, duration: 0.6) // Scale down to 80% of the original size
+        let scaleUp = SKAction.scale(to: 1.0, duration: 0.6) // Scale back to the original size
+        let pulse = SKAction.sequence([scaleDown, scaleUp]) // Create a sequence of actions
+        let repeatPulse = SKAction.repeatForever(pulse) // Repeat the pulsing forever
+        node.run(repeatPulse) // Apply the animation to the node
+    }
+
     
     // Handle touch events to navigate when the Start Button is pressed
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -36,6 +46,7 @@ class WelcomeScreen: SKScene {
             
             // Check if the Start Button is tapped
             if node.name == "Button" {
+                run(SKAction.playSoundFileNamed("Button.mp3", waitForCompletion: false))
                 goToNextScene()
             }
         }
