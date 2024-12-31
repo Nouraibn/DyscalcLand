@@ -144,6 +144,9 @@ class DragAndDrop1: SKScene {
     }
     
     func goToEScreen() {
+        
+        GameProgress.shared.saveProgress(for: 2, subLevel: 1)
+        
         let nextScene = SKScene(fileNamed: "Equation1")
         if let nextScene = nextScene {
             nextScene.scaleMode = .aspectFill

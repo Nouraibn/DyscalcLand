@@ -7,19 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A6748892D22694A0021C45C /* sub1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A6748882D22694A0021C45C /* sub1.sks */; };
+		2A6748892D22694A0021C45C /* Sub1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A6748882D22694A0021C45C /* Sub1.sks */; };
 		2A6748A32D22C0FB0021C45C /* sub2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A6748A22D22C0FB0021C45C /* sub2.sks */; };
 		2A6748A52D22D3820021C45C /* Sub5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6748A42D22D3820021C45C /* Sub5.swift */; };
 		2A6748A72D22D3900021C45C /* Sub6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6748A62D22D3900021C45C /* Sub6.swift */; };
 		2A6748A92D22D39D0021C45C /* Sub7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6748A82D22D39D0021C45C /* Sub7.swift */; };
 		2A6748AB2D22D3AA0021C45C /* Sub8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6748AA2D22D3AA0021C45C /* Sub8.swift */; };
+		2A6748AF2D231DB10021C45C /* wrongAnswer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2A6748AE2D231DB10021C45C /* wrongAnswer.wav */; };
+		2A6748B12D231DE70021C45C /* correctAnswer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2A6748B02D231DE70021C45C /* correctAnswer.wav */; };
+		2A6748B92D23D9210021C45C /* Bdrop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2A6748B82D23D9210021C45C /* Bdrop.wav */; };
+		2A6748BB2D23E9FC0021C45C /* Our-butten-click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2A6748BA2D23E9FC0021C45C /* Our-butten-click.mp3 */; };
 		2C794B992D2055DB006AA61A /* Sub1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B982D2055DB006AA61A /* Sub1.swift */; };
 		2C794B9B2D2055FE006AA61A /* Sub2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B9A2D2055FE006AA61A /* Sub2.swift */; };
 		2C794B9D2D205627006AA61A /* Sub3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B9C2D205627006AA61A /* Sub3.swift */; };
 		2C794B9F2D20563C006AA61A /* Sub4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B9E2D20563C006AA61A /* Sub4.swift */; };
-		2C89BA142D1996C1004CFBB2 /* NumAppear.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C89BA132D1996C1004CFBB2 /* NumAppear.wav */; };
-		2C89BA182D19A861004CFBB2 /* Clown.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C89BA172D19A861004CFBB2 /* Clown.wav */; };
 		2C89BA1C2D19B062004CFBB2 /* guess.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C89BA1B2D19B062004CFBB2 /* guess.wav */; };
+		2CC5306D2D22DC720051DBD0 /* AExcellentnext.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2CC5306C2D22DC720051DBD0 /* AExcellentnext.mp3 */; };
 		2CF5E2732D0F10E7004632FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E2722D0F10E7004632FF /* AppDelegate.swift */; };
 		2CF5E2752D0F10E7004632FF /* Equation4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5E2742D0F10E7004632FF /* Equation4.sks */; };
 		2CF5E2772D0F10E7004632FF /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5E2762D0F10E7004632FF /* Actions.sks */; };
@@ -92,19 +95,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2A6748882D22694A0021C45C /* sub1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = sub1.sks; sourceTree = SOURCE_ROOT; };
+		2A6748882D22694A0021C45C /* Sub1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Sub1.sks; sourceTree = SOURCE_ROOT; };
 		2A6748A22D22C0FB0021C45C /* sub2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = sub2.sks; sourceTree = SOURCE_ROOT; };
 		2A6748A42D22D3820021C45C /* Sub5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub5.swift; sourceTree = "<group>"; };
 		2A6748A62D22D3900021C45C /* Sub6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub6.swift; sourceTree = "<group>"; };
 		2A6748A82D22D39D0021C45C /* Sub7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub7.swift; sourceTree = "<group>"; };
 		2A6748AA2D22D3AA0021C45C /* Sub8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub8.swift; sourceTree = "<group>"; };
+		2A6748AE2D231DB10021C45C /* wrongAnswer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wrongAnswer.wav; sourceTree = "<group>"; };
+		2A6748B02D231DE70021C45C /* correctAnswer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = correctAnswer.wav; sourceTree = "<group>"; };
+		2A6748B82D23D9210021C45C /* Bdrop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Bdrop.wav; sourceTree = "<group>"; };
+		2A6748BA2D23E9FC0021C45C /* Our-butten-click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Our-butten-click.mp3"; sourceTree = "<group>"; };
 		2C794B982D2055DB006AA61A /* Sub1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub1.swift; sourceTree = "<group>"; };
 		2C794B9A2D2055FE006AA61A /* Sub2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub2.swift; sourceTree = "<group>"; };
 		2C794B9C2D205627006AA61A /* Sub3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub3.swift; sourceTree = "<group>"; };
 		2C794B9E2D20563C006AA61A /* Sub4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub4.swift; sourceTree = "<group>"; };
-		2C89BA132D1996C1004CFBB2 /* NumAppear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = NumAppear.wav; path = ../../../../../Downloads/NumAppear.wav; sourceTree = "<group>"; };
-		2C89BA172D19A861004CFBB2 /* Clown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Clown.wav; path = ../../../../../Downloads/Clown.wav; sourceTree = "<group>"; };
 		2C89BA1B2D19B062004CFBB2 /* guess.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = guess.wav; sourceTree = "<group>"; };
+		2CC5306C2D22DC720051DBD0 /* AExcellentnext.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AExcellentnext.mp3; sourceTree = "<group>"; };
 		2CF5E26F2D0F10E7004632FF /* DyscalcLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DyscalcLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF5E2722D0F10E7004632FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CF5E2742D0F10E7004632FF /* Equation4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Equation4.sks; sourceTree = "<group>"; };
@@ -191,16 +197,20 @@
 		2C89BA102D198E9D004CFBB2 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				2C89BA112D19924E004CFBB2 /* PopBalloon.wav */,
+				2CC5306C2D22DC720051DBD0 /* AExcellentnext.mp3 */,
 				FCFC9E0C2D1AF1260097CA2A /* A pop.mp3 */,
-				2C89BA132D1996C1004CFBB2 /* NumAppear.wav */,
 				2C89BA1B2D19B062004CFBB2 /* guess.wav */,
-				2C89BA172D19A861004CFBB2 /* Clown.wav */,
 				FCFC9E082D1AF0F00097CA2A /* A lets play.mp3 */,
 				FCFC9E102D1AFB090097CA2A /* A1.mp3 */,
+				2A6748BA2D23E9FC0021C45C /* Our-butten-click.mp3 */,
 				FCFC9E122D1AFB130097CA2A /* A2.mp3 */,
 				FCFC9E142D1AFB230097CA2A /* A3.mp3 */,
 				FCFC9E162D1AFB360097CA2A /* A4.mp3 */,
 				FCFC9E182D1AFB400097CA2A /* A5.mp3 */,
+				2A6748B02D231DE70021C45C /* correctAnswer.wav */,
+				2A6748AE2D231DB10021C45C /* wrongAnswer.wav */,
+				2A6748B82D23D9210021C45C /* Bdrop.wav */,
 				FCFC9E1A2D1AFB4B0097CA2A /* A6.mp3 */,
 				FCFC9E1C2D1AFB620097CA2A /* A7.mp3 */,
 				FCFC9EFB2D1EA5450097CA2A /* ARCountCotton.mp3 */,
@@ -218,7 +228,8 @@
 		2C89BA3B2D1AD6A3004CFBB2 /* SLevel1 */ = {
 			isa = PBXGroup;
 			children = (
-				2A6748882D22694A0021C45C /* sub1.sks */,
+				2A6748882D22694A0021C45C /* Sub1.sks */,
+				2A6748A22D22C0FB0021C45C /* sub2.sks */,
 			);
 			path = SLevel1;
 			sourceTree = "<group>";
@@ -226,7 +237,6 @@
 		2C89BA3E2D1AD827004CFBB2 /* SLevel2 */ = {
 			isa = PBXGroup;
 			children = (
-				2A6748A22D22C0FB0021C45C /* sub2.sks */,
 			);
 			path = SLevel2;
 			sourceTree = "<group>";
@@ -611,7 +621,8 @@
 				FC3C77C12D23F33600ECBE05 /* ENTryagain.wav in Resources */,
 				FCFC9F0C2D1EBABC0097CA2A /* ENcountCotton.wav in Resources */,
 				2CF5E2752D0F10E7004632FF /* Equation4.sks in Resources */,
-				2A6748892D22694A0021C45C /* sub1.sks in Resources */,
+				2A6748892D22694A0021C45C /* Sub1.sks in Resources */,
+				2A6748BB2D23E9FC0021C45C /* Our-butten-click.mp3 in Resources */,
 				2CF5E2CB2D144167004632FF /* DragAndDrop3.sks in Resources */,
 				2CF5E2FC2D144708004632FF /* Number8.sks in Resources */,
 				FCFC9E0D2D1AF1260097CA2A /* A pop.mp3 in Resources */,
@@ -641,20 +652,23 @@
 				FC8FF0E62D10496700CA301A /* Localizable.xcstrings in Resources */,
 				FCFC9E1D2D1AFB620097CA2A /* A7.mp3 in Resources */,
 				2CF5E2CD2D144172004632FF /* DragAndDrop4.sks in Resources */,
+				2A6748B12D231DE70021C45C /* correctAnswer.wav in Resources */,
+				2A6748B92D23D9210021C45C /* Bdrop.wav in Resources */,
 				2CF5E2802D0F10E8004632FF /* Assets.xcassets in Resources */,
 				2CF5E2F42D1446E0004632FF /* Number4.sks in Resources */,
 				2CF5E2BF2D143F27004632FF /* ClownMap.sks in Resources */,
 				2CF5E2D52D1441DF004632FF /* Equation1.sks in Resources */,
 				FCFC9E132D1AFB130097CA2A /* A2.mp3 in Resources */,
-				2C89BA142D1996C1004CFBB2 /* NumAppear.wav in Resources */,
 				2CF5E2772D0F10E7004632FF /* Actions.sks in Resources */,
 				2CF5E2832D0F10E8004632FF /* Base in Resources */,
 				2A6748A32D22C0FB0021C45C /* sub2.sks in Resources */,
 				2C89BA182D19A861004CFBB2 /* Clown.wav in Resources */,
+				2CC5306D2D22DC720051DBD0 /* AExcellentnext.mp3 in Resources */,
 				2CF5E2BB2D143E69004632FF /* WelcomeScreen.sks in Resources */,
 				FC3C77C52D23F35F00ECBE05 /* ARTryagain.mp3 in Resources */,
 				2CF5E2EE2D1446B4004632FF /* Number1.sks in Resources */,
 				2CF5E2D72D1441EF004632FF /* Equation2.sks in Resources */,
+				2A6748AF2D231DB10021C45C /* wrongAnswer.wav in Resources */,
 				2CF5E2C92D14415A004632FF /* DragAndDrop2.sks in Resources */,
 				2CF5E2DB2D144209004632FF /* Equation5.sks in Resources */,
 			);
@@ -853,6 +867,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q6T9F8HZA3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -880,6 +895,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q6T9F8HZA3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

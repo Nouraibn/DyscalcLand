@@ -1,7 +1,6 @@
 import SpriteKit
 import SwiftData
 
-
 class ClownMap: SKScene {
     
     var parentController: GameViewController?
@@ -20,16 +19,17 @@ class ClownMap: SKScene {
     private var openA: SKSpriteNode! // New node
     private var openS: SKSpriteNode!
     
-    // Static property to track if navigation is from Number10
-  
+    // Static property to track if it's the first time the scene is opened
+    static var isFirstTime = true
+
+    // Static property to track specific navigation states
     static var navigatedFromNumber10 = false
     static var Equation5 = false
     
     override func didMove(to view: SKView) {
-        
         // Set the background color programmatically
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
-        
+
         // Load fixed nodes from the scene
         background2 = self.childNode(withName: "Background2") as? SKSpriteNode
         clown = self.childNode(withName: "Clown") as? SKSpriteNode
@@ -39,78 +39,96 @@ class ClownMap: SKScene {
         cloud = self.childNode(withName: "Cloud") as? SKSpriteNode // Load Cloud node
         cloudLabel = self.childNode(withName: "CloudLabel") as? SKLabelNode // Load CloudLabel node
         winN = self.childNode(withName: "WinN") as? SKSpriteNode // Load WinN node
-       
         winA = self.childNode(withName: "WinA") as? SKSpriteNode
         openA = self.childNode(withName: "OpenA") as? SKSpriteNode
-        openS = self.childNode(withName: "OpenS") as? SKSpriteNode 
+        openS = self.childNode(withName: "OpenS") as? SKSpriteNode
         winS = self.childNode(withName: "WinS") as? SKSpriteNode
-        
+
         // Set initial zPositions
         background2?.zPosition = -1
         clown?.zPosition = 1
         cloudLabel?.zPosition = 2
         openN?.zPosition = 2
         openA?.zPosition = 2
-        
+
         // Hide nodes initially
-        clown?.alpha = 0.0
-        luckS?.alpha = 0.0
-        luckA?.alpha = 0.0
-        openN?.alpha = 0.0
         cloud?.alpha = 0.0
-        winN?.alpha = 0.0
         cloudLabel?.alpha = 0.0
-        openA.alpha = 0.0
-        winA?.alpha = 0.0
-        openS?.alpha = 0.0
-                
-        
-        updateUIState()
-        
-        func updateUIState() {
-            // Reset all nodes to hidden state by default
-            winN?.isHidden = true
-            winA?.isHidden = true
-            winS?.isHidden = true
-            openS?.isHidden = true
-            openA?.isHidden = true
-            openN?.isHidden = true
-            luckA?.isHidden = true
-            luckS?.isHidden = true
 
-            // Handle conditions based on ClownMap properties
-            if ClownMap.Equation5 {
-                winN?.isHidden = false
-                winA?.isHidden = false
-                openS?.isHidden = false
-                openA?.isHidden = true
-                openN?.isHidden = true
-                luckA?.isHidden = true
-                luckS?.isHidden = true
-                winS?.isHidden = true
-            } else if ClownMap.navigatedFromNumber10 {
-                winN?.isHidden = false
-                openN?.isHidden = true
-                openA?.isHidden = false
-                luckA?.isHidden = true
-                winA?.isHidden = true
-                winS?.isHidden = true
-                openS?.isHidden = true
-            }
+        // Show cloud and cloudLabel only the first time
+        if ClownMap.isFirstTime {
+            ClownMap.isFirstTime = false // Set to false so it won't show again
+            showCloudAndLabel()
         }
-        
+       
 
-        
+        updateUIState()
+
         // Animate the balls
         animateBalls()
         addPulsingAnimation(to: openN)
         addPulsingAnimation(to: openA)
         addPulsingAnimation(to: openS)
-       
     }
-   
 
+    private func showCloudAndLabel() {
+        // Animate the cloud and cloudLabel appearance
+        cloud?.isHidden = false
+        cloudLabel?.isHidden = false
+        self.cloudLabel?.run(SKAction.fadeIn(withDuration: 1.0))
+        self.cloud?.run(SKAction.fadeIn(withDuration: 1.0))
+        
+        let delay = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
+        let playSound = SKAction.playSoundFileNamed("Clown.wav", waitForCompletion: false)
+        let delayedSound = SKAction.sequence([delay, playSound])
+
+        self.run(delayedSound)
+    }
     
+  
+
+    private func updateUIState() {
+        luckA?.isHidden = false
+        luckS?.isHidden = false
+        openN?.isHidden = false
+        winN?.isHidden = true
+        winA?.isHidden = true
+        winS?.isHidden = true
+        openS?.isHidden = true
+        openA?.isHidden = true
+        // Handle conditions based on ClownMap properties
+        if ClownMap.Equation5 {
+            
+            let delay2 = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
+            let playSound2 = SKAction.playSoundFileNamed("AExcellentnext.mp3", waitForCompletion: false)
+            let delayedSound2 = SKAction.sequence([delay2, playSound2])
+            self.run(delayedSound2)
+            
+            winN?.isHidden = false
+            winA?.isHidden = false
+            openS?.isHidden = false
+            openA?.isHidden = true
+            openN?.isHidden = true
+            luckA?.isHidden = true
+            luckS?.isHidden = true
+            winS?.isHidden = true
+        } else if ClownMap.navigatedFromNumber10 {
+            
+            let delay1 = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
+            let playSound1 = SKAction.playSoundFileNamed("AExcellentnext.mp3", waitForCompletion: false)
+            let delayedSound1 = SKAction.sequence([delay1, playSound1])
+            self.run(delayedSound1)
+            
+            winN?.isHidden = false
+            openN?.isHidden = true
+            openA?.isHidden = false
+            luckA?.isHidden = true
+            winA?.isHidden = true
+            winS?.isHidden = true
+            openS?.isHidden = true
+        }
+    }
+
     func addPulsingAnimation(to node: SKNode) {
         let scaleUp = SKAction.scale(to: 1.2, duration: 0.6) // Scale up by 20%
         let scaleDown = SKAction.scale(to: 1.0, duration: 0.6) // Scale back to original size
@@ -119,88 +137,72 @@ class ClownMap: SKScene {
         node.run(repeatPulse) // Apply the animation to the node
     }
 
-    // Function to animate balls and reveal other nodes
     func animateBalls() {
         // Action to move up and fade out
         let moveUp = SKAction.moveBy(x: 0, y: 1000, duration: 3.0) // Move up off the screen
         let fadeOut = SKAction.fadeOut(withDuration: 2.0) // Fade out while moving
         let group = SKAction.group([moveUp, fadeOut]) // Combine actions
-        
-        let sound = SKAction.playSoundFileNamed("Clown.wav", waitForCompletion: false)
-        
-        
-        
+
+      
         // Action to reveal fixed nodes
         let revealFixedNodes = SKAction.run {
-            self.clown?.run(SKAction.fadeIn(withDuration: 1.0))
-            self.openA?.run(SKAction.fadeIn(withDuration: 1.0))
-            self.luckS?.run(SKAction.fadeIn(withDuration: 1.0))
-            self.luckA?.run(SKAction.fadeIn(withDuration: 1.0))
-            self.openN?.run(SKAction.fadeIn(withDuration: 1.0))
-            self.cloudLabel?.run(SKAction.fadeIn(withDuration: 1.0))
-            self.cloud?.run(SKAction.fadeIn(withDuration: 1.0))
-            self.winN?.run(SKAction.fadeIn(withDuration: 1.5))
-            self.openS?.run(SKAction.fadeIn(withDuration: 1.0))
-            self.winA?.run(SKAction.fadeIn(withDuration: 1.0))
-            self.winS?.run(SKAction.fadeIn(withDuration: 1.0))
+            self.clown?.run(SKAction.fadeIn(withDuration: 2.0))
+            self.openA?.run(SKAction.fadeIn(withDuration: 2.0))
+            self.luckS?.run(SKAction.fadeIn(withDuration: 2.0))
+            self.luckA?.run(SKAction.fadeIn(withDuration: 2.0))
+            self.openN?.run(SKAction.fadeIn(withDuration: 2.0))
+            self.winN?.run(SKAction.fadeIn(withDuration: 2.5))
+            self.openS?.run(SKAction.fadeIn(withDuration: 2.0))
+            self.winA?.run(SKAction.fadeIn(withDuration: 2.0))
+            self.winS?.run(SKAction.fadeIn(withDuration: 2.0))
         }
-        
+
         // Sequence: Animate balls, then reveal fixed nodes
-        let sequence = SKAction.sequence([group, revealFixedNodes, sound])
-        
-  
-        
+        let sequence = SKAction.sequence([group, revealFixedNodes])
+
         // Animate all balls
         self.enumerateChildNodes(withName: "BlueBall*", using: { node, _ in
             node.run(sequence)
         })
-        
+
         self.enumerateChildNodes(withName: "PinkBall*", using: { node, _ in
             node.run(sequence)
         })
-        
+
         self.enumerateChildNodes(withName: "YellowBall*", using: { node, _ in
             node.run(sequence)
         })
     }
-    
-    // Handle touch events to navigate when the OpenN node is pressed
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let touchLocation = touch.location(in: self)
             let node = self.atPoint(touchLocation)
-            
+
             // Check if the OpenN node is tapped
             if node == openN {
                 goToNumeric()
             }
             if node == openA {
-                
+                GameProgress.shared.saveProgress(for: 2, subLevel: 1)
                 goToAddition()
             }
             if node == openS {
-                
+                GameProgress.shared.saveProgress(for: 3, subLevel: 1)
                 goToSubtraction()
             }
-                        }
         }
-        
-        // Function to navigate to the Number1 scene
+    }
+
     func goToNumeric() {
-        // Access the shared GameProgress instance
         let gameProgress = GameProgress.shared
-        
-        // Assume we are working with mainLevel 1 for now
         let mainLevel = 1
-        
-        // Retrieve the main level from GameProgress
+
         if let currentMainLevel = gameProgress.mainLevels[mainLevel] {
             let subLevel = currentMainLevel.currentSubLevel
-            
-            // Ensure subLevel is valid
+
             if subLevel >= 1 && subLevel <= currentMainLevel.totalSubLevels {
-                let sceneName = "Number\(subLevel)" // Construct the scene name dynamically
-                
+                let sceneName = "Number\(subLevel)"
                 if let nextScene = SKScene(fileNamed: sceneName) {
                     nextScene.scaleMode = .aspectFill
                     let transition = SKTransition.fade(withDuration: 1.0)
@@ -216,29 +218,29 @@ class ClownMap: SKScene {
         }
     }
 
-    
     func goToAddition() {
-        // Access the shared GameProgress instance
         let gameProgress = GameProgress.shared
-
-        // Define the main level for addition scenes
         let mainLevel = 2
 
-        // Retrieve the main level from GameProgress
+        // Static variable to track if this function has been called before
+        var isFirstCall = true
+
+        if isFirstCall {
+            isFirstCall = false
+            GameProgress.shared.saveProgress(for: mainLevel, subLevel: 1)
+        }
+
         if let currentMainLevel = gameProgress.mainLevels[mainLevel] {
             let subLevel = currentMainLevel.currentSubLevel
-            
-            // Define the sub-level scene names for mainLevel 2
+
             let subLevelNames = [
                 "DragAndDrop1", "Equation1", "DragAndDrop2", "Equation2",
                 "DragAndDrop3", "Equation3", "DragAndDrop4", "Equation4",
                 "DragAndDrop5", "Equation5"
             ]
-            
-            // Ensure the sub-level is within the valid range
-            if subLevel > 0 && subLevel <= subLevelNames.count {
-                let sceneName = subLevelNames[subLevel - 1] // Get the scene name for the current sub-level
-                
+
+            if subLevel >= 1 && subLevel <= currentMainLevel.totalSubLevels {
+                let sceneName = subLevelNames[subLevel - 1]
                 if let nextScene = SKScene(fileNamed: sceneName) {
                     nextScene.scaleMode = .aspectFill
                     let transition = SKTransition.fade(withDuration: 0.1)
@@ -255,21 +257,22 @@ class ClownMap: SKScene {
     }
 
     func goToSubtraction() {
-        // Access the shared GameProgress instance
         let gameProgress = GameProgress.shared
-
-        // Define the main level for subtraction scenes
         let mainLevel = 3
 
-        // Retrieve the main level from GameProgress
+        // Static variable to track if this function has been called before
+        var isFirstCall = true
+
+        if isFirstCall {
+            isFirstCall = false
+            GameProgress.shared.saveProgress(for: mainLevel, subLevel: 1)
+        }
+
         if let currentMainLevel = gameProgress.mainLevels[mainLevel] {
             let subLevel = currentMainLevel.currentSubLevel
 
-            // Ensure the sub-level is within the valid range
             if subLevel >= 1 && subLevel <= currentMainLevel.totalSubLevels {
-                let sceneName = "Sub\(subLevel)" // Construct the scene name dynamically
-                
-                // Attempt to load the scene
+                let sceneName = "Sub\(subLevel)"
                 if let nextScene = SKScene(fileNamed: sceneName) {
                     nextScene.scaleMode = .aspectFill
                     let transition = SKTransition.fade(withDuration: 0.1)
@@ -285,5 +288,4 @@ class ClownMap: SKScene {
         }
     }
 
-        }
-    
+}

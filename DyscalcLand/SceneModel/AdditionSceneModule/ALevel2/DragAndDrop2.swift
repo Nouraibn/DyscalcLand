@@ -35,7 +35,7 @@ class DragAndDrop2: SKScene {
         cartLabel.zPosition = 10
         background2.zPosition = -1
         
-        nextButton.isUserInteractionEnabled = true
+        
         nextButton.alpha = 0.0
         nextButtonLabel.isHidden = true
        
@@ -145,6 +145,8 @@ class DragAndDrop2: SKScene {
     }
     
     func goToEScreen() {
+        
+        GameProgress.shared.saveProgress(for: 2, subLevel: 3)
         let nextScene = SKScene(fileNamed: "Equation2")
         if let nextScene = nextScene {
             nextScene.scaleMode = .aspectFill

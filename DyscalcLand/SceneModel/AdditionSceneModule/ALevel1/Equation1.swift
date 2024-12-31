@@ -89,9 +89,11 @@ class Equation1: SKScene {
         mainText.zPosition = 4
         border.zPosition = 3
         
-        nextButton.isUserInteractionEnabled = true
+       
         nextButton.isHidden = true
         nextButtonLabel.isHidden = true
+        
+        showNextButton()
         
         mainText.text = "Let’s count how many cotton candies there are"
         
@@ -233,21 +235,19 @@ class Equation1: SKScene {
     }
     
     
-    func goToEScreen() {
-        let nextScene = SKScene(fileNamed: "DragAndDrop2")
-        if let nextScene = nextScene {
-            nextScene.scaleMode = .aspectFill
-            let transition = SKTransition.fade(withDuration: 0.1)
-            self.view?.presentScene(nextScene, transition: transition)
-        }
-    }
+   
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let touchLocation = touch.location(in: self)
+            let node = self.atPoint(touchLocation)
+            
+            if node == nextButton {
+                goToEScreen()
+            }
             
             
-            for (index, cottonCandy) in cottonCandies.enumerated() {
+            for (_, cottonCandy) in cottonCandies.enumerated() {
                 if cottonCandy.contains(touchLocation) {
                    
                     stopHandPress()
@@ -261,9 +261,16 @@ class Equation1: SKScene {
                 }
             }
             
-            // If the Next button is clicked, go to the next screen
-            if nextButton.contains(touchLocation) {
-                goToEScreen()
+           
+        }
+        func goToEScreen() {
+            GameProgress.shared.saveProgress(for: 2, subLevel: 2)
+            
+            let nextScene = SKScene(fileNamed: "DragAndDrop2")
+            if let nextScene = nextScene {
+                nextScene.scaleMode = .aspectFill
+                let transition = SKTransition.fade(withDuration: 0.1)
+                self.view?.presentScene(nextScene, transition: transition)
             }
         }
     }
