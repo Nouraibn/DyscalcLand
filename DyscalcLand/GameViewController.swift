@@ -14,7 +14,7 @@ class GameViewController: UIViewController {
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'WelcomeScreen.sks'
-            if let scene = SKScene(fileNamed: "DragAndDrop1") {
+            if let scene = SKScene(fileNamed: "Sub1") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
