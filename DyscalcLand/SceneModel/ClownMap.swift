@@ -21,9 +21,10 @@ class ClownMap: SKScene {
     
     // Static property to track if it's the first time the scene is opened
     static var isFirstTime = true
+    static var fromSub2 = false
 
     // Static property to track specific navigation states
-    static var navigatedFromNumber10 = false
+    static var navigatedFromNumber5 = false
     static var Equation5 = false
     
     override func didMove(to view: SKView) {
@@ -100,7 +101,7 @@ class ClownMap: SKScene {
             luckA?.isHidden = true
             luckS?.isHidden = true
             winS?.isHidden = true
-        } else if ClownMap.navigatedFromNumber10 {
+        } else if ClownMap.navigatedFromNumber5 {
             
             let delay1 = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
             let playSound1 = SKAction.playSoundFileNamed("AExcellentnext.mp3", waitForCompletion: false)
@@ -129,11 +130,31 @@ class ClownMap: SKScene {
                 self.cloud?.run(SKAction.fadeIn(withDuration: 1.0))}
             let delayedAction = SKAction.sequence([delay1, group])
             self.run(delayedAction)
+            
+            if ClownMap.fromSub2{
+                let delay1 = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
+                let playSound1 = SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false)
+                let clap = SKAction.playSoundFileNamed("Clapping.mp3", waitForCompletion: false)
+            
+                run(SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false))
+                winN?.isHidden = false
+                openN?.isHidden = true
+                openA?.isHidden = true
+                luckA?.isHidden = true
+                winA?.isHidden = false
+                winS?.isHidden = false
+                openS?.isHidden = true
+                luckA?.isHidden = true
+                luckS?.isHidden = true
+                
+                
+                
+            }
 
             
             
             let delay = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
-            let playSound = SKAction.playSoundFileNamed("Clown.wav", waitForCompletion: false)
+            let playSound = SKAction.playSoundFileNamed("Aclown.mp3", waitForCompletion: false)
             let delayedSound = SKAction.sequence([delay, playSound])
 
             self.run(delayedSound)

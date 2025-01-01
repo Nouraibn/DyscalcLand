@@ -115,6 +115,11 @@ class Sub1: SKScene {
             } else if tiket3?.contains(location) == true {
                 checkAnswer(selectedAnswer: 7)
             }
+            
+            if NextButton.contains(location) == true {
+                
+                navigate()
+            }
         }
     }
     
@@ -197,5 +202,15 @@ class Sub1: SKScene {
         addPulsingAnimation(to: hand)
         // حركة اليد إلى كرة البولينج
         hand.run(moveAction)
+    }
+    
+    func navigate() {
+       
+     
+        if let number6Scene = SKScene(fileNamed: "Sub2") {
+            number6Scene.scaleMode = .aspectFill
+            let transition = SKTransition.fade(withDuration: 1.0)
+            self.view?.presentScene(number6Scene, transition: transition)
+        }
     }
 }

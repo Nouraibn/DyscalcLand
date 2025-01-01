@@ -157,12 +157,16 @@ class Sub2: SKScene {
         if tiket1?.contains(location) == true {
             playSound(named: "correctAnswer.wav") // صوت الإجابة الصحيحة
             Next?.isHidden = false
-            Nextlablel?.text = "Next"
+            Nextlablel?.text = "اتمام"
             Nextlablel?.zPosition = 10
             Nextlablel?.isHidden = false
             addPulsingAnimation(to: Next)
         } else if tiket2?.contains(location) == true || tiket3?.contains(location) == true  {
             playSound(named: "wrongAnswer.wav") // صوت الإجابة الخاطئة
+        }
+        if Next?.contains(location) == true{
+            navigate()
+            
         }
         
         //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -172,5 +176,13 @@ class Sub2: SKScene {
         //    }
         
     }
-    
+    func navigate() {
+       
+        ClownMap.fromSub2 = true
+        if let number6Scene = SKScene(fileNamed: "ClownMap") {
+            number6Scene.scaleMode = .aspectFill
+            let transition = SKTransition.fade(withDuration: 1.0)
+            self.view?.presentScene(number6Scene, transition: transition)
+        }
+    }
 }

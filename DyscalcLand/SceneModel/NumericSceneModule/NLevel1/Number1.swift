@@ -17,6 +17,8 @@ class Number1: SKScene {
     var NextButton: SKSpriteNode! // New node for navigation button
     var NextLabel: SKLabelNode! // New node for navigation label
     var Click: SKSpriteNode!
+    var NumBalloon: SKSpriteNode!
+    var EndLabel: SKLabelNode!
     
 
     override func didMove(to view: SKView) {
@@ -28,7 +30,8 @@ class Number1: SKScene {
         Background = self.childNode(withName: "Background2") as? SKSpriteNode
         Border = self.childNode(withName: "Border2") as? SKSpriteNode
         Balloon = self.childNode(withName: "Balloon") as? SKSpriteNode
-        Num1Balloon = self.childNode(withName: "Num1Balloon") as? SKSpriteNode
+        Num1Balloon = self.childNode(withName: "ABalloon1") as? SKSpriteNode
+        NumBalloon = self.childNode(withName: "Num1Balloon") as? SKSpriteNode
         PopBalloon = self.childNode(withName: "PopBalloon") as? SKSpriteNode
         EqualLabel = self.childNode(withName: "Equal") as? SKSpriteNode
         GuidingLabel = self.childNode(withName: "GuidingLabel") as? SKSpriteNode
@@ -36,12 +39,16 @@ class Number1: SKScene {
         Click = self.childNode(withName: "Click") as? SKSpriteNode// Load the new button node
         NextLabel = self.childNode(withName: "NextLabel") as? SKLabelNode // Load the new label node
         
+        EndLabel = self.childNode(withName: "EndLabel") as? SKLabelNode
+        
         // Ensure Background and Border are not nil and set positions
         Background?.zPosition = -2
         Border?.zPosition = -1
         Click?.zPosition = 2
         
         // Set the initial state for other nodes
+        EndLabel?.isHidden = true
+        NumBalloon?.isHidden = true
         PopBalloon?.isHidden = true
         Num1Balloon?.isHidden = true
         Balloon?.isHidden = false
@@ -58,7 +65,7 @@ class Number1: SKScene {
 
         
         print("Scene initialized successfully.")
-        run(SKAction.playSoundFileNamed("guess.wav", waitForCompletion: false))
+        run(SKAction.playSoundFileNamed("A pop.mp3", waitForCompletion: false))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -124,17 +131,24 @@ class Number1: SKScene {
     }
     
     func BalloonTapped() {
-        // When the balloon is tapped:
-        run(SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false))
-
-        // 1. Hide the balloon
-        // 2. Show the pop balloon and number balloon
+        
         Balloon?.isHidden = true
         PopBalloon?.isHidden = false
-        run(SKAction.playSoundFileNamed("NumAppear.wav", waitForCompletion: false))
-
-        Num1Balloon?.isHidden = false
+    
         
+        let Sound1 = SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false)
+        let Sound2 = SKAction.playSoundFileNamed("A1.mp3", waitForCompletion: false)
+        let delay = SKAction.wait(forDuration: 2.0)
+        let revealAction = SKAction.run { [weak self] in
+               self?.Num1Balloon?.isHidden = false
+               self?.EndLabel?.isHidden = false
+           }
+        let Sound3 = SKAction.playSoundFileNamed("NumAppear.wav", waitForCompletion: false)
+        let Sound4 = SKAction.playSoundFileNamed("Ayes1.mp3", waitForCompletion: false)
+        let PlaySound = SKAction.sequence([Sound1, Sound2,delay,revealAction,Sound3, Sound4,])
+        self.run(PlaySound)
+
+       
         // Show the NextButton and NextLabel after 5 seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { [weak self] in
             self?.NextButton?.isHidden = false

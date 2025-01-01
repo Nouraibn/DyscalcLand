@@ -45,7 +45,8 @@ class Equation1: SKScene {
         
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0)
         
-        playSound(named: "CountCotton")
+        let sound = SKAction.playSoundFileNamed("ARCountCotton.mp3", waitForCompletion: false)
+            self.run(sound)
         
         for i in 1..<3 {
             if let cottonCandy = self.childNode(withName: "PinkCottonCandy\(i)") as? SKSpriteNode {
@@ -95,31 +96,31 @@ class Equation1: SKScene {
         
         showNextButton()
         
-        mainText.text = "Let’s count how many cotton candies there are"
+        mainText.text = "هيا لنعد غزل البنات!"
         
         setEquation(mainLevel: mainLevel, subLevel: subLevel)
     }
     
-    func playSound(named soundName: String) {
+   // func playSound(named : sound) {
         
-        let currentLanguage = Locale.current.languageCode ?? "en"
+//        let currentLanguage = Locale.current.language.languageCode?.identifier ?? "en"
+//
+//        var localizedSoundName: String
+//
+//        if currentLanguage.prefix(2) == "ar" {
+//            localizedSoundName = "AR\(soundName).mp3" // Use Arabic sound file
+//        } else {
+//            localizedSoundName = "EN\(soundName).wav" // Default to English sound file
+//        }
         
-        var localizedSoundName: String
-        
-        if currentLanguage.prefix(2) == "ar" {
-            localizedSoundName = "AR\(soundName).mp3" // Use Arabic sound file
-        } else {
-            localizedSoundName = "EN\(soundName).wav" // Default to English sound file
-        }
-        
-        let sound = SKAction.playSoundFileNamed("\(localizedSoundName).mp3", waitForCompletion: false)
-            self.run(sound)
-    }
+      //  let sound = SKAction.playSoundFileNamed("ARCountCotton.mp3", waitForCompletion: false)
+          //  self.run(sound)
+   // }
 
         func setEquation(mainLevel: Int, subLevel: Int) {
                 if let equation1 = equationManager.getEquation(for: mainLevel, subLevel: subLevel) {
                     // Update the equation text and correct answer
-                    mainEquation.text = "\(equation1.equation) ?"
+                    mainEquation.text = "\(equation1.equation) "
                     correctAnswer = equation1.answer
                     
                     showMCQs(correctAnswer: correctAnswer)
@@ -173,8 +174,9 @@ class Equation1: SKScene {
             currentCottonCandyCount += 1
             
            
-            let soundFileName = "A\(currentCottonCandyCount)"
-            playSound(named: soundFileName)
+            let soundFileName = SKAction.playSoundFileNamed("A\(currentCottonCandyCount)", waitForCompletion: false)
+            self.run(soundFileName)
+//            playSound()
             
             
             if currentCottonCandyCount == cottonCandies.count {
@@ -196,9 +198,12 @@ class Equation1: SKScene {
     func checkAnswer(_ selectedAnswer: Int) {
         // If the answer is correct, update the text and show the Next button
         if selectedAnswer == correctAnswer {
-            mainText.text = "Correct! Well Done"
+            
+            mainText.text = "احسنت!"
             mainEquation.text = "\(mainEquation.text ?? "")\(correctAnswer)!" // Show the correct answer in the equation
-            playSound(named: "Exellent")
+           run(SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false))
+            run(SKAction.playSoundFileNamed("correctAnswer.wav", waitForCompletion: false))
+            
             let waitAction = SKAction.wait(forDuration: 1.0)
             let showButtonAction = SKAction.run {
                 self.showNextButton()
@@ -207,9 +212,10 @@ class Equation1: SKScene {
             self.run(sequence)
         } else {
            
-            mainText.text = "Try Again!"
-            playSound(named: "Tryagain")
-            resetLevel()
+            mainText.text = "حاول مره اخرى!"
+            run(SKAction.playSoundFileNamed("wrongAnswer.wav", waitForCompletion: false))
+            run(SKAction.playSoundFileNamed("ARTryagain.mp3", waitForCompletion: false))
+          
         }
     }
     
@@ -265,8 +271,8 @@ class Equation1: SKScene {
         }
         func goToEScreen() {
             GameProgress.shared.saveProgress(for: 2, subLevel: 2)
-            
-            let nextScene = SKScene(fileNamed: "DragAndDrop2")
+            ClownMap.Equation5 = true
+            let nextScene = SKScene(fileNamed: "ClownMap")
             if let nextScene = nextScene {
                 nextScene.scaleMode = .aspectFill
                 let transition = SKTransition.fade(withDuration: 0.1)

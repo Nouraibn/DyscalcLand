@@ -257,7 +257,7 @@ class Number10: SKScene {
         
         GameProgress.shared.saveProgress(for: 1, subLevel: 10)
 
-        ClownMap.navigatedFromNumber10 = true // Set the flag to true
+       // ClownMap.navigatedFromNumber10 = true // Set the flag to true
         if let clownMapScene = SKScene(fileNamed: "ClownMap") {
             clownMapScene.scaleMode = .aspectFill
             let transition = SKTransition.fade(withDuration: 1.0)

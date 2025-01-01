@@ -8,7 +8,7 @@ class DragAndDrop1: SKScene {
     var background2: SKSpriteNode!
     var mainText: SKLabelNode!
     var cartLabel: SKLabelNode!
-    
+    var hand:SKSpriteNode!
     var cottonCandyCount: Int = 0
     let maxCottonCandyCount = 1
     let cottonCandySpacing: CGFloat = 60
@@ -23,7 +23,7 @@ class DragAndDrop1: SKScene {
         cottonCandyCart = childNode(withName: "CottonCandyCart") as? SKSpriteNode
         mainText = childNode(withName: "MainText") as? SKLabelNode
         cartLabel = childNode(withName: "CartLabel") as? SKLabelNode
-        
+        hand = childNode(withName: "Hand") as? SKSpriteNode
         nextButton = childNode(withName: "NextButton") as? SKSpriteNode
         nextButtonLabel = childNode(withName: "NextLabel") as? SKLabelNode
 //        nextButtonLabel.text = "Next"
@@ -38,6 +38,7 @@ class DragAndDrop1: SKScene {
         nextButton.alpha = 0.0
         nextButtonLabel.isHidden = true
        
+        startOscillatingAnimation(for: hand, fromLeftOffset: 150, duration: 1.0)
 //        mainText.text = "Let’s Make Some Cotton Candies!"
         playSound()
         for i in 1...maxCottonCandyCount {
@@ -82,6 +83,7 @@ class DragAndDrop1: SKScene {
                 if yellowCottonCandy.contains(location) {
                     yellowCottonCandy.alpha = 0.5
                     yellowCottonCandy.zPosition = 10
+                    stopAndDisappear(for: hand)
                 }
             }
         }
@@ -118,6 +120,7 @@ class DragAndDrop1: SKScene {
                     
                     if cottonCandyCount == maxCottonCandyCount {
                         mainText.text = NSLocalizedString("Well Done!", comment: "bravo text")
+                        run(SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false))
 
                         
                         
@@ -137,6 +140,40 @@ class DragAndDrop1: SKScene {
                 
             
         }
+    } 
+    func startOscillatingAnimation(for node: SKNode?, fromLeftOffset offset: CGFloat, duration: TimeInterval = 3.0) {
+        guard let node = node else { return }
+        
+        // Save the original position
+        let originalPosition = node.position
+        
+        // Define actions
+        let moveLeft = SKAction.moveBy(x: -offset, y: 0, duration: duration) // Move left in 3 seconds
+        let moveRight = SKAction.move(to: originalPosition, duration: duration) // Return to original position in 3 seconds
+    let pause = SKAction.wait(forDuration: 1.0) // Pause at the original position
+    
+    let scaleDown = SKAction.scale(to: 0.8, duration: 0.6) // Scale down to 80% of the original size
+    let scaleUp = SKAction.scale(to: 1.0, duration: 0.6) // Scale back to the original size
+    let pulse = SKAction.sequence([scaleDown, scaleUp])
+            let oscillate = SKAction.sequence([pulse, moveLeft, moveRight, pause, pulse]) // Add pause to the sequence
+            let repeatOscillation = SKAction.repeatForever(oscillate)
+
+        // Run the oscillation
+        node.run(repeatOscillation)
+    }
+    
+    // Function to stop the animation and make the node disappear
+    func stopAndDisappear(for node: SKNode?) {
+        guard let node = node else { return }
+        
+        // Remove all actions
+        node.removeAllActions()
+        
+        // Fade out and remove the node
+        let fadeOut = SKAction.fadeOut(withDuration: 0.5)
+        let remove = SKAction.removeFromParent()
+        let sequence = SKAction.sequence([fadeOut, remove])
+        node.run(sequence)
     }
     func showNextButton() {
         nextButton.alpha = 1.0 //make it show
