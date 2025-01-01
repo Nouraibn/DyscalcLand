@@ -16,6 +16,10 @@ class Sub1: SKScene {
     var bowlingArrayLabel: [SKLabelNode] = []
     var counter: Int = 0 // عداد الضغطات
     var allBowlingPressed: Bool = false
+    var hand : SKSpriteNode!
+    var handPositions: CGPoint!
+    var isPressing: Bool = false // to control whether i want the hand to move or not
+    var handMoveAction: SKAction? // action that makes the hand loop back and forth
     
     
     
@@ -35,6 +39,7 @@ class Sub1: SKScene {
         tiketLablel3 = self.childNode(withName: "TiketLablel3") as? SKLabelNode
         NextButton = self.childNode(withName: "NextButton") as? SKSpriteNode
         NextLablel = self.childNode(withName: "NextLablel") as? SKLabelNode
+        hand = self.childNode(withName: "hand") as? SKSpriteNode
         // إعداد كرات البولينج والليبلات المرتبطة بها
         for i in 1...7 {
             if let bowling = self.childNode(withName: "Bowling\(i)") as? SKSpriteNode {
@@ -46,11 +51,14 @@ class Sub1: SKScene {
                 bowlingLabel.isHidden = true
                 bowlingLabel.zPosition = 2
                 
+               
                 background?.zPosition = -2
                        bourd?.zPosition = -1
-                
+                hand.zPosition = 10
                        
             }
+            playSound(named: "Button.mp3")
+
         }
         
         // إخفاء التذاكر والليبلات
@@ -63,22 +71,41 @@ class Sub1: SKScene {
         NextButton?.isHidden = true
         NextLablel?.isHidden = true
         
-        let playClickSound = SKAction.playSoundFileNamed("Our-butten-click.wav", waitForCompletion: false)
-          self.run(playClickSound)
+     
+        
     }
     
+    func playSound(named soundName: String) {
+        let playAction = SKAction.playSoundFileNamed(soundName, waitForCompletion: false)
+        self.run(playAction)
+    }
+    func addPulsingAnimation(to node: SKNode) {
+        let scaleUp = SKAction.scale(to: 1.2, duration: 0.6) // Scale up
+        let scaleDown = SKAction.scale(to: 1.0, duration: 0.6) // Scale
+        
+        let pulse = SKAction.sequence([scaleUp, scaleDown]) // Create a
+        
+        let repeatPulse = SKAction.repeatForever (pulse) // Repeat the pu
+        node.run(repeatPulse) // Apply the animation to the node
+    }
+        
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
-        
+
         // التحقق من الكرات المضغوطة
         for (index, bowling) in bowlingArray.enumerated() {
             if bowling.contains(location) {
-                showLabel(for: index)
+                // إذا تم الضغط على كرة البولينج رقم 4
+                if index == 3 { // الرقم 4 (العداد يبدأ من 0)
+                    hand.alpha = 0 // إخفاء اليد عند الضغط
+                }
+
+                showLabel(for: index) // عرض الليبل
                 
             }
         }
-        
+
         // التفاعل مع التيكتس
         if allBowlingPressed {
             if tiket1?.contains(location) == true {
@@ -94,15 +121,17 @@ class Sub1: SKScene {
     func showLabel(for index: Int) {
         guard index < bowlingArrayLabel.count else { return }
         let labelNode = bowlingArrayLabel[index]
-        let playClickSound = SKAction.playSoundFileNamed("Our-butten-click.wav", waitForCompletion: false)
-          self.run(playClickSound)
-          
+
         // إذا لم يتم كشف الليبل مسبقًا، قم بزيادة العداد وكشفه
         if labelNode.isHidden {
             counter += 1
             labelNode.text = "\(counter)"
             labelNode.isHidden = false
-            
+
+            // تشغيل الصوت
+            playSound(named: "Button.mp3")
+
+
             // إذا تم الضغط على جميع كرات البولينج
             if counter == bowlingArray.count {
                 allBowlingPressed = true
@@ -142,18 +171,31 @@ class Sub1: SKScene {
         }
     }
     
+   
+    
     func checkAnswer(selectedAnswer: Int) {
         if selectedAnswer == 7 {
-            let playCorrectSound = SKAction.playSoundFileNamed("correctAnswer.wav", waitForCompletion: false)
-                    self.run(playCorrectSound) // تشغيل صوت الإجابة الصحيحة
+            playSound(named: "correctAnswer.wav")
+ // تشغيل صوت الإجابة الصحيحة
             NextButton?.isHidden = false
             NextLablel?.isHidden = false
+            NextLablel?.zPosition = 10
             NextLablel.text = "Next"
+            addPulsingAnimation(to: NextButton)
             // يمكنك إضافة حركة أو تأثير لإظهار النجاح
         } else {
-            let playCorrectSound = SKAction.playSoundFileNamed("wrongAnswer.wav", waitForCompletion: false)
-                    self.run(playCorrectSound)
+            playSound(named: "wrongAnswer.wav")
             // يمكنك إضافة تأثير لإظهار الخطأ
         }
+    }
+    func showHandHint(for Bowling: SKSpriteNode) {
+        hand.alpha = 1.0 // إظهار اليد
+        let bowlingBallPosition = Bowling.position // موقع كرة البولينج
+
+        let moveAction = SKAction.move(to: bowlingBallPosition, duration: 1)
+        _ = SKAction.scale(to: 0.9, duration: 0.2)
+        addPulsingAnimation(to: hand)
+        // حركة اليد إلى كرة البولينج
+        hand.run(moveAction)
     }
 }

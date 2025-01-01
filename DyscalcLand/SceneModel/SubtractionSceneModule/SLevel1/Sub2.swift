@@ -1,7 +1,7 @@
 import SpriteKit
 import CoreMotion
 
-class sub2: SKScene {
+class Sub2: SKScene {
     
     var background: SKSpriteNode!
     var bourd: SKSpriteNode!
@@ -74,9 +74,19 @@ class sub2: SKScene {
         
         background?.zPosition = -2
         bourd?.zPosition = -1
-        
+        bowlingBall?.zPosition = 2
+        addPulsingAnimation(to: bowlingBall)
+
     }
-    
+    func addPulsingAnimation(to node: SKNode) {
+        let scaleUp = SKAction.scale(to: 1.2, duration: 0.6) // Scale up
+        let scaleDown = SKAction.scale(to: 1.0, duration: 0.6) // Scale
+        
+        let pulse = SKAction.sequence([scaleUp, scaleDown]) // Create a
+        
+        let repeatPulse = SKAction.repeatForever (pulse) // Repeat the pu
+        node.run(repeatPulse) // Apply the animation to the node
+    }
     
     
     func playSound(named soundName: String) {
@@ -129,21 +139,28 @@ class sub2: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
+        
+        if bowlingBall.contains(location) {
+              playSound(named: "Button.mp3") // تشغيل الصوت أثناء الضغط
+          }
         if touch.tapCount == 2 {
+           
+
             if bowlingBall.contains(location) { // استبدل "bowlingBall" بالاسم الفعلي للعنصر
                 dropBowlingPins()// إسقاط الكرات عند الضغط مرتين
                 bowlingBall?.isHidden = true
-
                 return
             }
+
         }
 
         if tiket1?.contains(location) == true {
             playSound(named: "correctAnswer.wav") // صوت الإجابة الصحيحة
             Next?.isHidden = false
             Nextlablel?.text = "Next"
+            Nextlablel?.zPosition = 10
             Nextlablel?.isHidden = false
-            
+            addPulsingAnimation(to: Next)
         } else if tiket2?.contains(location) == true || tiket3?.contains(location) == true  {
             playSound(named: "wrongAnswer.wav") // صوت الإجابة الخاطئة
         }
