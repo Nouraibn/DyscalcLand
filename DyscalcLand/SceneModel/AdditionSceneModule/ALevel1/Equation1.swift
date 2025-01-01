@@ -37,7 +37,7 @@ class Equation1: SKScene {
         border = self.childNode(withName: "border") as? SKSpriteNode
         cottonCandyCart = self.childNode(withName: "CottonCandyCart") as? SKSpriteNode
         nextButton = self.childNode(withName: "NextButton") as? SKSpriteNode
-        nextButtonLabel = self.childNode(withName: "ButtonLabel") as? SKLabelNode
+        nextButtonLabel = self.childNode(withName: "NextLabel") as? SKLabelNode
         mainText = childNode(withName: "MainText") as? SKLabelNode
         mainEquation = self.childNode(withName: "Equation1") as? SKLabelNode
         hand = childNode(withName: "Hand") as? SKSpriteNode

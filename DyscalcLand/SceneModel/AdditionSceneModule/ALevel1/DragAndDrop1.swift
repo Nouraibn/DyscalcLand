@@ -25,7 +25,7 @@ class DragAndDrop1: SKScene {
         cartLabel = childNode(withName: "CartLabel") as? SKLabelNode
         
         nextButton = childNode(withName: "NextButton") as? SKSpriteNode
-        nextButtonLabel = childNode(withName: "ButtonLabel") as? SKLabelNode
+        nextButtonLabel = childNode(withName: "NextLabel") as? SKLabelNode
 //        nextButtonLabel.text = "Next"
         mainText.text = NSLocalizedString("Let’s Make Some Cotton Candies!", comment: "AddDraqAndDrop")
         cartLabel.text = NSLocalizedString("Cotton Candy", comment: "cart label")

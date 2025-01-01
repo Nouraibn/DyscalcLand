@@ -104,7 +104,8 @@ class ClownMap: SKScene {
             
             let delay1 = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
             let playSound1 = SKAction.playSoundFileNamed("AExcellentnext.mp3", waitForCompletion: false)
-            let delayedSound1 = SKAction.sequence([delay1, playSound1])
+            let clap = SKAction.playSoundFileNamed("Clapping.mp3", waitForCompletion: false)
+            let delayedSound1 = SKAction.sequence([delay1,clap,playSound1])
             self.run(delayedSound1)
             
             winN?.isHidden = false

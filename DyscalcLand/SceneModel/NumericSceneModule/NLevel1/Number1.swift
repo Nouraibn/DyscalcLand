@@ -53,7 +53,7 @@ class Number1: SKScene {
         addPulsingAnimation(to: NextButton)
         addPulsingAnimation(to: NextLabel)
         
-        startOscillatingAnimation(for: Click, fromLeftOffset: 80, duration: 1.5)
+        startOscillatingAnimation(for: Click, fromLeftOffset: 50, duration: 1.0)
          
 
         
@@ -89,7 +89,11 @@ class Number1: SKScene {
             let moveLeft = SKAction.moveBy(x: -offset, y: 0, duration: duration) // Move left in 3 seconds
             let moveRight = SKAction.move(to: originalPosition, duration: duration) // Return to original position in 3 seconds
         let pause = SKAction.wait(forDuration: 1.0) // Pause at the original position
-                let oscillate = SKAction.sequence([moveLeft, moveRight, pause]) // Add pause to the sequence
+        
+        let scaleDown = SKAction.scale(to: 0.8, duration: 0.6) // Scale down to 80% of the original size
+        let scaleUp = SKAction.scale(to: 1.0, duration: 0.6) // Scale back to the original size
+        let pulse = SKAction.sequence([scaleDown, scaleUp])
+                let oscillate = SKAction.sequence([pulse, moveLeft, moveRight, pause, pulse]) // Add pause to the sequence
                 let repeatOscillation = SKAction.repeatForever(oscillate)
 
             // Run the oscillation
