@@ -2,12 +2,12 @@ import SpriteKit
 
 class Equation1: SKScene {
     
-    
+
     var cottonCandies: [SKSpriteNode] = []
     var numberCottonCandy: [SKLabelNode] = []
     var MCQs: [SKSpriteNode] = []
     var MCQLabels: [SKLabelNode] = []
-    
+
     var cottonCandyCart: SKSpriteNode!
     var mainEquation: SKLabelNode!
     var background2: SKSpriteNode!
@@ -15,23 +15,24 @@ class Equation1: SKScene {
     var border: SKSpriteNode!
     var nextButton: SKSpriteNode!
     var nextButtonLabel: SKLabelNode!
-    
+    var hand2: SKSpriteNode!
     var hand: SKSpriteNode!
     var handPositions: CGPoint!
-    var isPressing: Bool = false // to control whether i want the hand to move or not
-    var handMoveAction: SKAction? // action that makes the hand loop back and forth
+    var isPressing: Bool = false
+    var handMoveAction: SKAction?
+    var cartLabel: SKLabelNode!
     
-    
-    var currentNumberIndex = 0 // Tracks which cotton candy is pressed
-    var currentCottonCandyCount = 0 // Tracks the total number of clicked cotton candies
+
+    var currentNumberIndex = 0
+    var currentCottonCandyCount = 0
     var correctAnswer: Int = 0
-    var answers: [Int] = [] // hold shuffled answers
-    
+    var answers: [Int] = []
+
     var mainLevel: Int = 2
     var subLevel: Int = 2
     let gameProgress = GameProgress.shared
     let equationManager = EquationManager()
-    
+
     override func didMove(to view: SKView) {
         
         border = self.childNode(withName: "border") as? SKSpriteNode
@@ -41,13 +42,15 @@ class Equation1: SKScene {
         mainText = childNode(withName: "MainText") as? SKLabelNode
         mainEquation = self.childNode(withName: "Equation1") as? SKLabelNode
         hand = childNode(withName: "Hand") as? SKSpriteNode
+        hand2 = childNode(withName: "Hand2") as? SKSpriteNode
         background2 = self.childNode(withName: "background2") as? SKSpriteNode
-        
+        cartLabel = childNode(withName: "CartLabel") as? SKLabelNode
+
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0)
-        
+
         let sound = SKAction.playSoundFileNamed("ARCountCotton.mp3", waitForCompletion: false)
-            self.run(sound)
-        
+        self.run(sound)
+
         for i in 1..<3 {
             if let cottonCandy = self.childNode(withName: "PinkCottonCandy\(i)") as? SKSpriteNode {
                 cottonCandies.append(cottonCandy)
@@ -57,10 +60,10 @@ class Equation1: SKScene {
                 numberCottonCandy.append(numLabel)
                 numLabel.isHidden = true
                 numLabel.zPosition = 2
-                numLabel.text = "\(i)"
+                numLabel.text = convertToArabicNumerals(i)
             }
         }
-        
+
         for i in 1..<4 {
             if let MCQ = self.childNode(withName: "MCQTicket\(i)") as? SKSpriteNode {
                 MCQs.append(MCQ)
@@ -75,150 +78,120 @@ class Equation1: SKScene {
                 MCQLabel.zPosition = 3
             }
         }
-        
-        handPositions = hand.position
-        hand.alpha = 1
-        
+
+
         if let firstCottonCandy = cottonCandies.first {
             handPress(cottonCandy: firstCottonCandy)
         }
-        
-        hand.zPosition = 3
-        cottonCandyCart.zPosition = 0
+
+        hand2?.isHidden = true
+        cottonCandyCart?.zPosition = 0
         background2?.zPosition = -1
-        mainEquation.zPosition = 4
-        mainText.zPosition = 4
-        border.zPosition = 3
+        mainEquation?.zPosition = 4
+        mainText?.zPosition = 4
+        border?.zPosition = 3
+        nextButtonLabel?.zPosition = 4
+        hand?.zPosition = 5
+        hand2?.zPosition = 5
+        cartLabel?.zPosition = 10
+
+        nextButton?.isHidden = true
+        nextButtonLabel?.isHidden = true
         
-       
-        nextButton.isHidden = true
-        nextButtonLabel.isHidden = true
-        
-        showNextButton()
-        
+        cartLabel?.text = "غزل البنات"
+
         mainText.text = "هيا لنعد غزل البنات!"
         
-        setEquation(mainLevel: mainLevel, subLevel: subLevel)
-    }
-    
-   // func playSound(named : sound) {
+        startOscillatingAnimation(for: hand, fromLeftOffset: 100)
         
-//        let currentLanguage = Locale.current.language.languageCode?.identifier ?? "en"
-//
-//        var localizedSoundName: String
-//
-//        if currentLanguage.prefix(2) == "ar" {
-//            localizedSoundName = "AR\(soundName).mp3" // Use Arabic sound file
-//        } else {
-//            localizedSoundName = "EN\(soundName).wav" // Default to English sound file
-//        }
         
-      //  let sound = SKAction.playSoundFileNamed("ARCountCotton.mp3", waitForCompletion: false)
-          //  self.run(sound)
-   // }
 
-        func setEquation(mainLevel: Int, subLevel: Int) {
-                if let equation1 = equationManager.getEquation(for: mainLevel, subLevel: subLevel) {
-                    // Update the equation text and correct answer
-                    mainEquation.text = "\(equation1.equation) "
-                    correctAnswer = equation1.answer
-                    
-                    showMCQs(correctAnswer: correctAnswer)
+        setEquation(mainLevel: mainLevel, subLevel: subLevel)
+        
+    }
+
+    func setEquation(mainLevel: Int, subLevel: Int) {
+        if let equation1 = equationManager.getEquation(for: mainLevel, subLevel: subLevel) {
+            mainEquation?.text = String(equation1.equation.map { char in
+                if let digit = char.wholeNumberValue {
+                    return Character(UnicodeScalar(0x0660 + digit)!)
                 } else {
-            mainEquation.text = "Error"
+                    return char
+                }
+            })
+
+            correctAnswer = equation1.answer
+        } else {
+            mainEquation.text = "خطأ"
         }
     }
+
     func handPress(cottonCandy: SKSpriteNode) {
         isPressing = true
-        
-        hand.alpha = 0.5
-        
-        let cottonCandyPosition = cottonCandy.position //store the cotton candy i want to be pressed in a var
-        
-        //animation for the hand to move to the cotton candy
-        let moveAction = SKAction.move(to: cottonCandyPosition, duration: 1)
-        let scaleAction = SKAction.scale(to: 0.9, duration: 0.2)
-        
-        //animate the hand back (so the hand can go back and forth)
-        let revertMoveAction = SKAction.move(to: cottonCandyPosition, duration: 0.2)
-        let revertScaleAction = SKAction.scale(to: 1, duration: 0.2)
-        
-        let revertTransperncey = SKAction.fadeAlpha(to: 1, duration: 0.2)
-        
-        let pressSequaence = SKAction.sequence([moveAction, scaleAction,revertTransperncey, revertMoveAction, revertScaleAction])// group all the actions
-        
-        handMoveAction = SKAction.repeatForever(pressSequaence) // make pressSequanece repeat
-        hand.run(handMoveAction!)
-        
         let cottonPressAction = SKAction.scale(to: 1.1, duration: 0.1)
         let cottonRevertAction = SKAction.scale(to: 1, duration: 0.1)
-        
         let cottonSequence = SKAction.sequence([cottonPressAction, cottonRevertAction])
-        
         cottonCandy.run(cottonSequence)
-    //play sound??
-        
-//        self.isPressing = false
-        
-        
     }
-    func stopHandPress() {
-        hand.removeAllActions() // stop all the actions
-        hand.alpha = 0 // hide the hand
-    }
-   
+
+    
     func showNumbers() {
         if currentCottonCandyCount < numberCottonCandy.count {
             let numText = numberCottonCandy[currentCottonCandyCount]
             numText.isHidden = false
             currentCottonCandyCount += 1
-            
-           
-            let soundFileName = SKAction.playSoundFileNamed("A\(currentCottonCandyCount)", waitForCompletion: false)
-            self.run(soundFileName)
-//            playSound()
-            
-            
+
+            let soundFileName = "A\(currentCottonCandyCount).mp3"
+            let soundAction = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: false)
+            self.run(soundAction)
+
             if currentCottonCandyCount == cottonCandies.count {
+                stopAndDisappear(for: hand2)
                 showMCQs(correctAnswer: currentCottonCandyCount)
+                mainText.text = "اختار الاجابه الصحيحه"
+                let delay1 = SKAction.wait(forDuration: 1.0) // Wait for 3 seconds
+                let playSound1 =
+SKAction.playSoundFileNamed("ARSelectCorrectAnswer.mp3", waitForCompletion: false)
+                let delayedAction = SKAction.sequence([delay1, playSound1])
+                self.run(delayedAction)
             }
         }
     }
-    
+
     func showMCQs(correctAnswer: Int) {
-        answers = [correctAnswer, correctAnswer + 1, correctAnswer - 1].shuffled() // Shuffle the answers
-        
+        answers = [correctAnswer, correctAnswer + 1, correctAnswer - 1].shuffled()
         for (index, MCQ) in MCQs.enumerated() {
             MCQ.isHidden = false
-            MCQLabels[index].text = "\(answers[index])"
+            MCQLabels[index].text = convertToArabicNumerals(answers[index])
             MCQLabels[index].isHidden = false
         }
     }
-    
+
     func checkAnswer(_ selectedAnswer: Int) {
-        // If the answer is correct, update the text and show the Next button
         if selectedAnswer == correctAnswer {
-            
             mainText.text = "احسنت!"
-            mainEquation.text = "\(mainEquation.text ?? "")\(correctAnswer)!" // Show the correct answer in the equation
-           run(SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false))
+            mainEquation.text = "\(mainEquation.text ?? "")\(convertToArabicNumerals(correctAnswer))!"
+            run(SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false))
             run(SKAction.playSoundFileNamed("correctAnswer.wav", waitForCompletion: false))
-            
-            let waitAction = SKAction.wait(forDuration: 1.0)
+
+            let waitAction = SKAction.wait(forDuration: 3.0) // Wait for 3 seconds
             let showButtonAction = SKAction.run {
-                self.showNextButton()
+                self.showNextButton() // Show the Next Button after 3 seconds
             }
             let sequence = SKAction.sequence([waitAction, showButtonAction])
             self.run(sequence)
         } else {
-           
             mainText.text = "حاول مره اخرى!"
             run(SKAction.playSoundFileNamed("wrongAnswer.wav", waitForCompletion: false))
             run(SKAction.playSoundFileNamed("ARTryagain.mp3", waitForCompletion: false))
-          
         }
     }
-    
+
+    func showNextButton() {
+        nextButton.isHidden = false
+        nextButtonLabel.isHidden = false
+    }
+
     func resetLevel() {
         currentCottonCandyCount = 0
         for numLabel in numberCottonCandy {
@@ -231,53 +204,90 @@ class Equation1: SKScene {
             MCQ.isHidden = true
         }
         currentNumberIndex = 0
-        showNumbers() // Restart the number showing process // not working
+        showNumbers()
     }
-    
-    
-    func showNextButton() {
-        nextButton.isHidden = false
-        nextButtonLabel.isHidden = false
-    }
-    
-    
-   
-    
+
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let touchLocation = touch.location(in: self)
             let node = self.atPoint(touchLocation)
-            
+
             if node == nextButton {
                 goToEScreen()
             }
-            
-            
+
             for (_, cottonCandy) in cottonCandies.enumerated() {
                 if cottonCandy.contains(touchLocation) {
-                   
-                    stopHandPress()
+                    stopAndDisappear(for: hand)
+                    hand2?.isHidden = false
+                    startOscillatingAnimation(for: hand2, fromLeftOffset: 100)
                     showNumbers()
+
                 }
             }
-            
+
             for (index, MCQ) in MCQs.enumerated() {
-                if MCQ.contains(touchLocation), let answerText = MCQLabels[index].text, let selectedAnswer = Int(answerText) {
-                    checkAnswer(selectedAnswer) // Check if the selected answer is correct
+                if MCQ.contains(touchLocation), let answerText = MCQLabels[index].text, let selectedAnswer = arabicToEnglishNumeral(answerText) {
+                    checkAnswer(selectedAnswer)
                 }
-            }
-            
-           
-        }
-        func goToEScreen() {
-            GameProgress.shared.saveProgress(for: 2, subLevel: 2)
-            ClownMap.Equation5 = true
-            let nextScene = SKScene(fileNamed: "ClownMap")
-            if let nextScene = nextScene {
-                nextScene.scaleMode = .aspectFill
-                let transition = SKTransition.fade(withDuration: 0.1)
-                self.view?.presentScene(nextScene, transition: transition)
             }
         }
     }
+
+    func goToEScreen() {
+        GameProgress.shared.saveProgress(for: 2, subLevel: 2)
+        let nextScene = SKScene(fileNamed: "DragAndDrop2")
+        if let nextScene = nextScene {
+            nextScene.scaleMode = .aspectFill
+            let transition = SKTransition.fade(withDuration: 0.1)
+            self.view?.presentScene(nextScene, transition: transition)
+        }
+    }
+
+    func convertToArabicNumerals(_ number: Int) -> String {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "ar")
+        return formatter.string(from: NSNumber(value: number)) ?? ""
+    }
+
+    func arabicToEnglishNumeral(_ arabicNumeral: String) -> Int? {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "ar")
+        return formatter.number(from: arabicNumeral)?.intValue
+    }
+    func startOscillatingAnimation(for node: SKNode?, fromLeftOffset offset: CGFloat, duration: TimeInterval = 3.0) {
+            guard let node = node else { return }
+            
+            // Save the original position
+            let originalPosition = node.position
+            
+            // Define actions
+            let moveLeft = SKAction.moveBy(x: -offset, y: 0, duration: duration) // Move left in 3 seconds
+            let moveRight = SKAction.move(to: originalPosition, duration: duration) // Return to original position in 3 seconds
+        let pause = SKAction.wait(forDuration: 1.0) // Pause at the original position
+        
+        let scaleDown = SKAction.scale(to: 0.8, duration: 0.6) // Scale down to 80% of the original size
+        let scaleUp = SKAction.scale(to: 1.0, duration: 0.6) // Scale back to the original size
+        let pulse = SKAction.sequence([scaleDown, scaleUp])
+                let oscillate = SKAction.sequence([pulse, moveLeft, moveRight, pause, pulse]) // Add pause to the sequence
+                let repeatOscillation = SKAction.repeatForever(oscillate)
+
+            // Run the oscillation
+            node.run(repeatOscillation)
+        }
+        
+        // Function to stop the animation and make the node disappear
+        func stopAndDisappear(for node: SKNode?) {
+            guard let node = node else { return }
+            
+            // Remove all actions
+            node.removeAllActions()
+            
+            // Fade out and remove the node
+            let fadeOut = SKAction.fadeOut(withDuration: 0.5)
+            let remove = SKAction.removeFromParent()
+            let sequence = SKAction.sequence([fadeOut, remove])
+            node.run(sequence)
+        }
 }

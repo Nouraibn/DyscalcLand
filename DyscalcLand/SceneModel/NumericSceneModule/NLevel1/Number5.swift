@@ -62,6 +62,8 @@ class Number5: SKScene {
         
         background?.zPosition = -1
         border?.zPosition = -1
+        guidingLabel?.zPosition = 1
+
         
         // Initial state: hide unnecessary elements
         popBalloon1?.isHidden = true
@@ -164,8 +166,8 @@ class Number5: SKScene {
     
     func navigateToNumber6() {
         GameProgress.shared.saveProgress(for: 1, subLevel: 5)
-        ClownMap.navigatedFromNumber5 = true
-        if let number6Scene = SKScene(fileNamed: "ClownMap") {
+       
+        if let number6Scene = SKScene(fileNamed: "Number6") {
             number6Scene.scaleMode = .aspectFill
             let transition = SKTransition.fade(withDuration: 1.0)
             self.view?.presentScene(number6Scene, transition: transition)

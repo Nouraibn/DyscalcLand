@@ -48,6 +48,8 @@ class Number2: SKScene {
         // Set zPosition for background and border
         background?.zPosition = -1
         border?.zPosition = -1
+        guidingLabel?.zPosition = 1
+
         
         // Initial state: hide popBalloon1, popBalloon2, num2Balloon, nextButton, and nextLabel
         popBalloon1.isHidden = true

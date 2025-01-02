@@ -44,6 +44,7 @@ class Number1: SKScene {
         // Ensure Background and Border are not nil and set positions
         Background?.zPosition = -2
         Border?.zPosition = -1
+        GuidingLabel?.zPosition = 1
         Click?.zPosition = 2
         
         // Set the initial state for other nodes
@@ -60,7 +61,7 @@ class Number1: SKScene {
         addPulsingAnimation(to: NextButton)
         addPulsingAnimation(to: NextLabel)
         
-        startOscillatingAnimation(for: Click, fromLeftOffset: 50, duration: 1.0)
+        startOscillatingAnimation(for: Click, fromLeftOffset: 100, duration: 1.0)
          
 
         

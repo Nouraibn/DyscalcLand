@@ -24,7 +24,7 @@ class ClownMap: SKScene {
     static var fromSub2 = false
 
     // Static property to track specific navigation states
-    static var navigatedFromNumber5 = false
+    static var navigatedFromNumber10 = false
     static var Equation5 = false
     
     override func didMove(to view: SKView) {
@@ -101,7 +101,7 @@ class ClownMap: SKScene {
             luckA?.isHidden = true
             luckS?.isHidden = true
             winS?.isHidden = true
-        } else if ClownMap.navigatedFromNumber5 {
+        } else if ClownMap.navigatedFromNumber10 {
             
             let delay1 = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
             let playSound1 = SKAction.playSoundFileNamed("AExcellentnext.mp3", waitForCompletion: false)
@@ -124,16 +124,16 @@ class ClownMap: SKScene {
             cloudLabel?.isHidden = false
             cloud?.alpha = 0.0
             cloudLabel?.alpha = 0.0
-            let delay1 = SKAction.wait(forDuration: 2.0)
+            let delay2 = SKAction.wait(forDuration: 2.0)
             let group =  SKAction.run {
                 self.cloudLabel?.run(SKAction.fadeIn(withDuration: 1.0))
                 self.cloud?.run(SKAction.fadeIn(withDuration: 1.0))}
-            let delayedAction = SKAction.sequence([delay1, group])
+            let delayedAction = SKAction.sequence([delay2, group])
             self.run(delayedAction)
             
             if ClownMap.fromSub2{
-                let delay1 = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
-                let playSound1 = SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false)
+                let delay3 = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
+                let playSound3 = SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false)
                 let clap = SKAction.playSoundFileNamed("Clapping.mp3", waitForCompletion: false)
             
                 run(SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false))

@@ -33,12 +33,14 @@ class DragAndDrop1: SKScene {
         mainText.zPosition = 10
         cartLabel.zPosition = 10
         background2.zPosition = -1
+        nextButton?.zPosition = 1
+        nextButtonLabel?.zPosition = 2
+        hand?.zPosition = 5
         
-        nextButton.isUserInteractionEnabled = true
         nextButton.alpha = 0.0
         nextButtonLabel.isHidden = true
        
-        startOscillatingAnimation(for: hand, fromLeftOffset: 150, duration: 1.0)
+        startOscillatingAnimation(for: hand, fromLeftOffset: 450, duration: 1.0)
 //        mainText.text = "Let’s Make Some Cotton Candies!"
         playSound()
         for i in 1...maxCottonCandyCount {

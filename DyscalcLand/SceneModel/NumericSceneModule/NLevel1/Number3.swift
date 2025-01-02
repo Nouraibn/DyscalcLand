@@ -52,6 +52,8 @@ class Number3: SKScene {
         
         background?.zPosition = -1
         border?.zPosition = -1
+        guidingLabel?.zPosition = 1
+
         
         // Initial state: hide unnecessary elements
         popBalloon1?.isHidden = true
