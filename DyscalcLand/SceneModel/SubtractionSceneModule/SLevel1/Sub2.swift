@@ -26,7 +26,8 @@ class Sub2: SKScene {
     var motionManager: CMMotionManager!
     var Nextlablel: SKLabelNode!
     var bowlingBall: SKSpriteNode!
-    var didDropBowlingPins : Bool = false
+    var didDropBowlingPins: Bool = false
+    
     override func didMove(to view: SKView) {
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
         
@@ -50,11 +51,13 @@ class Sub2: SKScene {
         tiketLablel2 = self.childNode(withName: "TiketLablel2") as? SKLabelNode
         tiketLablel3 = self.childNode(withName: "TiketLablel3") as? SKLabelNode
         Qustion = self.childNode(withName: "Question") as? SKLabelNode
-        Next = self.childNode(withName: "Next") as? SKSpriteNode
-        Nextlablel = self.childNode(withName: "Nextlablel") as? SKLabelNode
+        Next = self.childNode(withName: "NextButton") as? SKSpriteNode
+        Nextlablel = self.childNode(withName: "Nextlabel") as? SKLabelNode
         bowlingBall = self.childNode(withName: "bowlingBall") as? SKSpriteNode
+        
         // Initial setup
-        bourdLablel?.text = "Touch Screan"
+        bourdLablel?.text = "اضرب الكره لايقاع قطع البولنق"
+        run(SKAction.playSoundFileNamed("A Hit.mp3", waitForCompletion: false))
         bourdLablel?.isHidden = false
         
         Qustion?.isHidden = true
@@ -68,72 +71,85 @@ class Sub2: SKScene {
         tiketLablel3?.isHidden = true
         Next?.isHidden = true
         Nextlablel?.isHidden = true
+        
         motionManager = CMMotionManager()
-        
-        
         
         background?.zPosition = -2
         bourd?.zPosition = -1
         bowlingBall?.zPosition = 2
+        Nextlablel?.zPosition = 3
         addPulsingAnimation(to: bowlingBall)
-
     }
+    
     func addPulsingAnimation(to node: SKNode) {
-        let scaleUp = SKAction.scale(to: 1.2, duration: 0.6) // Scale up
-        let scaleDown = SKAction.scale(to: 1.0, duration: 0.6) // Scale
-        
-        let pulse = SKAction.sequence([scaleUp, scaleDown]) // Create a
-        
-        let repeatPulse = SKAction.repeatForever (pulse) // Repeat the pu
-        node.run(repeatPulse) // Apply the animation to the node
+        let originalScale = node.xScale // Store the original scale of the node
+        let scaleUp = SKAction.scale(to: originalScale * 1.2, duration: 0.6) // Scale up relative to the original size
+        let scaleDown = SKAction.scale(to: originalScale, duration: 0.6) // Scale back to the original size
+        let pulse = SKAction.sequence([scaleUp, scaleDown]) // Create the pulsing sequence
+        let repeatPulse = SKAction.repeatForever(pulse) // Repeat the pulsing animation forever
+        node.run(repeatPulse)
     }
-    
-    
+
     func playSound(named soundName: String) {
         let playAction = SKAction.playSoundFileNamed(soundName, waitForCompletion: false)
         self.run(playAction)
     }
     
+    func convertToArabicNumerals(_ number: Int) -> String {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "ar")
+        return formatter.string(from: NSNumber(value: number)) ?? "\(number)"
+    }
+    
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            print("Device shook!") // للتحقق من استقبال الحدث
             playSound(named: "Bdrop.wav")
             dropBowlingPins()
         }
     }
     
     func dropBowlingPins() {
-        guard !didDropBowlingPins else { return } // إذا تم إسقاط البولينج بالفعل، لا تفعل شيئًا
-        didDropBowlingPins = true // تحديث الحالة لتجنب تشغيل الصوت مرة أخرى
-
-        playSound(named: "Bdrop.wav") // تشغيل الصوت عند السقوط
+        guard !didDropBowlingPins else { return }
+        didDropBowlingPins = true
+        
+        playSound(named: "Bdrop.wav")
         
         bowling1?.isHidden = true
         Bowling1Drop?.isHidden = false
-        
         bowling2?.isHidden = true
         Bowling2Drop?.isHidden = false
         
         let delay = SKAction.wait(forDuration: 1.0)
-        let showQuestionAndTicketsAction = SKAction.run { self.showQuestionAndTickets() }
+        let showQuestionAndTicketsAction = SKAction.run {
+            self.bourdLablel?.text = "اختار الإجابة الصحيحة!"
+            let delay1 = SKAction.wait(forDuration: 1.0)
+            let playSound1 = SKAction.playSoundFileNamed("ARSelectCorrectAnswer.mp3", waitForCompletion: false)
+            let delayedAction = SKAction.sequence([delay1, playSound1])
+            self.run(delayedAction)
+            self.showQuestionAndTickets()
+        }
         self.run(SKAction.sequence([delay, showQuestionAndTicketsAction]))
     }
-
-        
+    
     func showQuestionAndTickets() {
-        bourdLablel?.text = "how many bowling pin standing "
+        Qustion?.isHidden = false
+        Qustion?.text = "٧ - ٢ = ؟"
+        
         tiket1?.isHidden = false
         tiket2?.isHidden = false
         tiket3?.isHidden = false
-        tiketLablel1?.isHidden = false
-        tiketLablel2?.isHidden = false
-        tiketLablel3?.isHidden = false
-        Qustion?.isHidden = false
-        Qustion.text = "7 - 2 = ?"
         
-        tiketLablel1?.text = "5" // الإجابة الصحيحة
-        tiketLablel2?.text = "6"
-        tiketLablel3?.text = "7"
+        tiketLablel1?.isHidden = false
+        tiketLablel1?.text = convertToArabicNumerals(5)
+        tiketLablel1?.zPosition = 3
+        
+        tiketLablel2?.isHidden = false
+        tiketLablel2?.text = convertToArabicNumerals(6)
+        tiketLablel2?.zPosition = 3
+        
+        tiketLablel3?.isHidden = false
+        tiketLablel3?.text = convertToArabicNumerals(7)
+        tiketLablel3?.zPosition = 3
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -141,43 +157,37 @@ class Sub2: SKScene {
         let location = touch.location(in: self)
         
         if bowlingBall.contains(location) {
-              playSound(named: "Button.mp3") // تشغيل الصوت أثناء الضغط
-          }
+            playSound(named: "Button.mp3")
+        }
         if touch.tapCount == 2 {
-           
-
-            if bowlingBall.contains(location) { // استبدل "bowlingBall" بالاسم الفعلي للعنصر
-                dropBowlingPins()// إسقاط الكرات عند الضغط مرتين
+            if bowlingBall.contains(location) {
+                dropBowlingPins()
                 bowlingBall?.isHidden = true
                 return
             }
-
         }
-
+        
         if tiket1?.contains(location) == true {
-            playSound(named: "correctAnswer.wav") // صوت الإجابة الصحيحة
+            playSound(named: "correctAnswer.wav")
+            run(SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false))
+            bourdLablel?.text = "احسنت!"
             Next?.isHidden = false
-            Nextlablel?.text = "اتمام"
+            Nextlablel?.text = "إتمام"
             Nextlablel?.zPosition = 10
             Nextlablel?.isHidden = false
             addPulsingAnimation(to: Next)
-        } else if tiket2?.contains(location) == true || tiket3?.contains(location) == true  {
-            playSound(named: "wrongAnswer.wav") // صوت الإجابة الخاطئة
+        } else if tiket2?.contains(location) == true || tiket3?.contains(location) == true {
+            playSound(named: "wrongAnswer.wav")
+            bourdLablel?.text = "حاول مره اخرى!"
+            run(SKAction.playSoundFileNamed("ARTryagain.mp3", waitForCompletion: false))
         }
-        if Next?.contains(location) == true{
+        
+        if Next?.contains(location) == true {
             navigate()
-            
         }
-        
-        //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //        print("Screen tapped!") // للتحقق من استقبال اللمس
-        //        playSound(named: "Bdrop 1.wav")
-        //        dropBowlingPins()
-        //    }
-        
     }
+    
     func navigate() {
-       
         ClownMap.fromSub2 = true
         if let number6Scene = SKScene(fileNamed: "ClownMap") {
             number6Scene.scaleMode = .aspectFill

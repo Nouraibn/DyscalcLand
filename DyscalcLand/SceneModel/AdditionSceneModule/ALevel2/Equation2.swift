@@ -216,7 +216,10 @@ class Equation2: SKScene {
 
     func goToEScreen() {
         GameProgress.shared.saveProgress(for: 3, subLevel: 1)
-        let nextScene = SKScene(fileNamed: "DragAndDrop3")
+        
+        ClownMap.Equation5 = true  // Set the flag to true
+
+        let nextScene = SKScene(fileNamed: "ClownMap")
         if let nextScene = nextScene {
             nextScene.scaleMode = .aspectFill
             let transition = SKTransition.fade(withDuration: 0.1)

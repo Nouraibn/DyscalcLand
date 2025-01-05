@@ -46,6 +46,7 @@ class Number1: SKScene {
         Border?.zPosition = -1
         GuidingLabel?.zPosition = 1
         Click?.zPosition = 2
+        GuidingLabel?.zPosition = 3
         
         // Set the initial state for other nodes
         EndLabel?.isHidden = true

@@ -119,6 +119,7 @@ class DragAndDrop2: SKScene {
                     
                     if cottonCandyCount == maxCottonCandyCount {
                         mainText.text = NSLocalizedString("Well Done!", comment: "bravo text")
+                        run(SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false))
 
                         
                         

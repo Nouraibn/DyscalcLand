@@ -132,11 +132,12 @@ class ClownMap: SKScene {
             self.run(delayedAction)
             
             if ClownMap.fromSub2{
-                let delay3 = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
+                let delay3 = SKAction.wait(forDuration: 5.0) // Wait for 3 seconds
                 let playSound3 = SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false)
                 let clap = SKAction.playSoundFileNamed("Clapping.mp3", waitForCompletion: false)
+                let delayedAction = SKAction.sequence([delay3, playSound3,clap])
+                self.run(delayedAction)
             
-                run(SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false))
                 winN?.isHidden = false
                 openN?.isHidden = true
                 openA?.isHidden = true

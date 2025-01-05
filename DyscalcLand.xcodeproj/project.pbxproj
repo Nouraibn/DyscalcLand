@@ -22,6 +22,9 @@
 		2C794B9B2D2055FE006AA61A /* Sub2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B9A2D2055FE006AA61A /* Sub2.swift */; };
 		2C794B9D2D205627006AA61A /* Sub3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B9C2D205627006AA61A /* Sub3.swift */; };
 		2C794B9F2D20563C006AA61A /* Sub4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B9E2D20563C006AA61A /* Sub4.swift */; };
+		2C7AE5EF2D26ABCE0077E753 /* ACountb.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C7AE5EE2D26ABCE0077E753 /* ACountb.mp3 */; };
+		2C7AE5F12D26B2E70077E753 /* A Hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C7AE5F02D26B2E70077E753 /* A Hit.mp3 */; };
+		2C7AE5F32D26B3C40077E753 /* Clapping.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C7AE5F22D26B3C40077E753 /* Clapping.mp3 */; };
 		2C89BA1C2D19B062004CFBB2 /* guess.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C89BA1B2D19B062004CFBB2 /* guess.wav */; };
 		2C9A0E432D2665BE0026E5B7 /* A8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C9A0E422D2665BE0026E5B7 /* A8.mp3 */; };
 		2C9A0E452D2665D20026E5B7 /* A9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C9A0E442D2665D20026E5B7 /* A9.mp3 */; };
@@ -134,6 +137,9 @@
 		2C794B9A2D2055FE006AA61A /* Sub2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub2.swift; sourceTree = "<group>"; };
 		2C794B9C2D205627006AA61A /* Sub3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub3.swift; sourceTree = "<group>"; };
 		2C794B9E2D20563C006AA61A /* Sub4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub4.swift; sourceTree = "<group>"; };
+		2C7AE5EE2D26ABCE0077E753 /* ACountb.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ACountb.mp3; sourceTree = "<group>"; };
+		2C7AE5F02D26B2E70077E753 /* A Hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "A Hit.mp3"; sourceTree = "<group>"; };
+		2C7AE5F22D26B3C40077E753 /* Clapping.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Clapping.mp3; sourceTree = "<group>"; };
 		2C89BA172D19A861004CFBB2 /* Clown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Clown.wav; path = /Downloads/Clown.wav; sourceTree = "<absolute>"; };
 		2C89BA1B2D19B062004CFBB2 /* guess.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = guess.wav; sourceTree = "<group>"; };
 		2C9A0E422D2665BE0026E5B7 /* A8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = A8.mp3; sourceTree = "<group>"; };
@@ -250,9 +256,12 @@
 				FCFC9E0C2D1AF1260097CA2A /* A pop.mp3 */,
 				2CC5308E2D2579780051DBD0 /* Ayes3.mp3 */,
 				2CC530772D23E5250051DBD0 /* Button.mp3 */,
+				2C7AE5EE2D26ABCE0077E753 /* ACountb.mp3 */,
 				2CC5308C2D25788E0051DBD0 /* Ayes2.mp3 */,
 				2CC530942D25805F0051DBD0 /* ApopBalloon.mp3 */,
+				2C7AE5F02D26B2E70077E753 /* A Hit.mp3 */,
 				2C89BA1B2D19B062004CFBB2 /* guess.wav */,
+				2C7AE5F22D26B3C40077E753 /* Clapping.mp3 */,
 				2CC530902D257C1F0051DBD0 /* Ayes4.mp3 */,
 				FCFC9E102D1AFB090097CA2A /* A1.mp3 */,
 				2CC5308A2D254FA00051DBD0 /* Ayes1.mp3 */,
@@ -720,6 +729,7 @@
 				2CF5E2752D0F10E7004632FF /* Equation4.sks in Resources */,
 				2A6748892D22694A0021C45C /* Sub1.sks in Resources */,
 				2CC530992D25817B0051DBD0 /* Aclown.mp3 in Resources */,
+				2C7AE5EF2D26ABCE0077E753 /* ACountb.mp3 in Resources */,
 				2CF5E2CB2D144167004632FF /* DragAndDrop3.sks in Resources */,
 				2CF5E2FC2D144708004632FF /* Number8.sks in Resources */,
 				2CC530952D25805F0051DBD0 /* ApopBalloon.mp3 in Resources */,
@@ -736,6 +746,7 @@
 				FCFC9E112D1AFB090097CA2A /* A1.mp3 in Resources */,
 				2C9A0E452D2665D20026E5B7 /* A9.mp3 in Resources */,
 				2CF5E2F62D1446EA004632FF /* Number5.sks in Resources */,
+				2C7AE5F12D26B2E70077E753 /* A Hit.mp3 in Resources */,
 				FC3C77C32D23F33E00ECBE05 /* ENExellent.wav in Resources */,
 				FC3C77C72D23F37200ECBE05 /* ARExellent.mp3 in Resources */,
 				2C9A0E532D2681DE0026E5B7 /* ARSelectCorrectAnswer.mp3 in Resources */,
@@ -745,6 +756,7 @@
 				2C9A0E432D2665BE0026E5B7 /* A8.mp3 in Resources */,
 				2CF5E2CF2D14417B004632FF /* DragAndDrop5.sks in Resources */,
 				FCFC9E192D1AFB400097CA2A /* A5.mp3 in Resources */,
+				2C7AE5F32D26B3C40077E753 /* Clapping.mp3 in Resources */,
 				FCFC9F0E2D1EBAC50097CA2A /* ENmakeCotton.wav in Resources */,
 				2CF5E27E2D0F10E7004632FF /* Base in Resources */,
 				2CF5E2FE2D144710004632FF /* Number9.sks in Resources */,
