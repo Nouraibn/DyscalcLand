@@ -1,5 +1,6 @@
 import SpriteKit
 import SwiftData
+import UIKit
 
 class Number1: SKScene {
     
@@ -13,7 +14,7 @@ class Number1: SKScene {
     var Num1Balloon: SKSpriteNode!
     var PopBalloon: SKSpriteNode!
     var EqualLabel: SKSpriteNode!
-    var GuidingLabel: SKSpriteNode!
+    var GuidingLabel: SKLabelNode!
     var NextButton: SKSpriteNode! // New node for navigation button
     var NextLabel: SKLabelNode! // New node for navigation label
     var Click: SKSpriteNode!
@@ -34,12 +35,63 @@ class Number1: SKScene {
         NumBalloon = self.childNode(withName: "Num1Balloon") as? SKSpriteNode
         PopBalloon = self.childNode(withName: "PopBalloon") as? SKSpriteNode
         EqualLabel = self.childNode(withName: "Equal") as? SKSpriteNode
-        GuidingLabel = self.childNode(withName: "GuidingLabel") as? SKSpriteNode
+        GuidingLabel = self.childNode(withName: "GuidingLabel") as? SKLabelNode
         NextButton = self.childNode(withName: "NextButton") as? SKSpriteNode
         Click = self.childNode(withName: "Click") as? SKSpriteNode// Load the new button node
         NextLabel = self.childNode(withName: "NextLabel") as? SKLabelNode // Load the new label node
         
         EndLabel = self.childNode(withName: "EndLabel") as? SKLabelNode
+        
+        for family in UIFont.familyNames {
+            print("Font family: \(family)")
+            for fontName in UIFont.fontNames(forFamilyName: family) {
+                print(" - Font name: \(fontName)")
+            }
+        }
+
+        if let guidingLabel = GuidingLabel {
+            guidingLabel.fontName = "ComicSansMS-Bold"
+            guidingLabel.text = "Pop the balloons and \n guess the number!"
+            guidingLabel.fontSize = 28
+            
+            // Enable line breaks by setting the max width for the label
+            guidingLabel.horizontalAlignmentMode = .center
+            guidingLabel.verticalAlignmentMode = .center
+
+            // Set the maximum width for the label (ensures line breaks occur)
+            guidingLabel.preferredMaxLayoutWidth = 500 // Adjust based on your scene's layout
+
+            // Set the number of lines to 0 for multiline support
+            guidingLabel.numberOfLines = 0
+        }
+
+           if let nextLabel = NextLabel {
+               nextLabel.fontName = "ComicSansMS-Bold"
+               nextLabel.text = "Next"
+               nextLabel.fontSize = 30
+           }
+           
+        if let endLabel = EndLabel {
+            let fullText = "Yes, it's number One"
+            
+            // Create an attributed string
+            let attributedString = NSMutableAttributedString(string: fullText)
+            
+            // Apply regular font to the entire string
+            attributedString.addAttribute(.font, value: UIFont(name: "ComicSansMS", size: 32)!, range: NSRange(location: 0, length: fullText.count))
+            
+            // Define the range for the bold part (word "One")
+            let boldRange = (fullText as NSString).range(of: "One")
+            
+            // Apply the bold font to "One" (keep the font size the same for both parts)
+            attributedString.addAttribute(.font, value: UIFont(name: "ComicSansMS-Bold", size: 34)!, range: boldRange)
+            
+            // Set the attributed string to the label
+            endLabel.attributedText = attributedString
+        }
+
+
+
         
         // Ensure Background and Border are not nil and set positions
         Background?.zPosition = -2
@@ -50,9 +102,9 @@ class Number1: SKScene {
         
         // Set the initial state for other nodes
         EndLabel?.isHidden = true
-        NumBalloon?.isHidden = true
-        PopBalloon?.isHidden = true
         Num1Balloon?.isHidden = true
+        PopBalloon?.isHidden = true
+        NumBalloon?.isHidden = true
         Balloon?.isHidden = false
         EqualLabel?.isHidden = false
         GuidingLabel?.isHidden = false
@@ -67,7 +119,7 @@ class Number1: SKScene {
 
         
         print("Scene initialized successfully.")
-        run(SKAction.playSoundFileNamed("A pop.mp3", waitForCompletion: false))
+        run(SKAction.playSoundFileNamed("guess.wav", waitForCompletion: false))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -139,14 +191,14 @@ class Number1: SKScene {
     
         
         let Sound1 = SKAction.playSoundFileNamed("PopBalloon.wav", waitForCompletion: false)
-        let Sound2 = SKAction.playSoundFileNamed("A1.mp3", waitForCompletion: false)
+        let Sound2 = SKAction.playSoundFileNamed("E1.mp4", waitForCompletion: false)
         let delay = SKAction.wait(forDuration: 2.0)
         let revealAction = SKAction.run { [weak self] in
-               self?.Num1Balloon?.isHidden = false
+               self?.NumBalloon?.isHidden = false
                self?.EndLabel?.isHidden = false
            }
         let Sound3 = SKAction.playSoundFileNamed("NumAppear.wav", waitForCompletion: false)
-        let Sound4 = SKAction.playSoundFileNamed("Ayes1.mp3", waitForCompletion: false)
+        let Sound4 = SKAction.playSoundFileNamed("yes1.wav", waitForCompletion: false)
         let PlaySound = SKAction.sequence([Sound1, Sound2,delay,revealAction,Sound3, Sound4,])
         self.run(PlaySound)
 

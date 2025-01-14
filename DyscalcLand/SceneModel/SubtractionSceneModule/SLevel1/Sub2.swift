@@ -52,12 +52,35 @@ class Sub2: SKScene {
         tiketLablel3 = self.childNode(withName: "TiketLablel3") as? SKLabelNode
         Qustion = self.childNode(withName: "Question") as? SKLabelNode
         Next = self.childNode(withName: "NextButton") as? SKSpriteNode
-        Nextlablel = self.childNode(withName: "Nextlabel") as? SKLabelNode
+        Nextlablel = self.childNode(withName: "NextLabel") as? SKLabelNode
         bowlingBall = self.childNode(withName: "bowlingBall") as? SKSpriteNode
         
+        if let guidingLabel = bourdLablel {
+            guidingLabel.fontName = "ComicSansMS-Bold"
+            guidingLabel.text = "Hit the pins with balling ball!"
+            guidingLabel.fontSize = 28
+            
+            // Enable line breaks by setting the max width for the label
+            guidingLabel.horizontalAlignmentMode = .center
+            guidingLabel.verticalAlignmentMode = .center
+
+            // Set the maximum width for the label (ensures line breaks occur)
+            guidingLabel.preferredMaxLayoutWidth = 500 // Adjust based on your scene's layout
+
+            // Set the number of lines to 0 for multiline support
+            guidingLabel.numberOfLines = 0
+        }
+
+           if let nextLabel =  Nextlablel {
+               nextLabel.fontName = "ComicSansMS-Bold"
+               nextLabel.text = "Done"
+               nextLabel.fontSize = 30
+           }
+           
+        
         // Initial setup
-        bourdLablel?.text = "اضرب الكره لايقاع قطع البولنق"
-        run(SKAction.playSoundFileNamed("A Hit.mp3", waitForCompletion: false))
+       
+        run(SKAction.playSoundFileNamed("Hit.mp4", waitForCompletion: false))
         bourdLablel?.isHidden = false
         
         Qustion?.isHidden = true
@@ -78,6 +101,7 @@ class Sub2: SKScene {
         bourd?.zPosition = -1
         bowlingBall?.zPosition = 2
         Nextlablel?.zPosition = 3
+        Nextlablel?.zPosition = 2
         addPulsingAnimation(to: bowlingBall)
     }
     
@@ -121,9 +145,9 @@ class Sub2: SKScene {
         
         let delay = SKAction.wait(forDuration: 1.0)
         let showQuestionAndTicketsAction = SKAction.run {
-            self.bourdLablel?.text = "اختار الإجابة الصحيحة!"
+            self.bourdLablel.text = "Select the correct answer!"
             let delay1 = SKAction.wait(forDuration: 1.0)
-            let playSound1 = SKAction.playSoundFileNamed("ARSelectCorrectAnswer.mp3", waitForCompletion: false)
+            let playSound1 = SKAction.playSoundFileNamed("Select.wav", waitForCompletion: false)
             let delayedAction = SKAction.sequence([delay1, playSound1])
             self.run(delayedAction)
             self.showQuestionAndTickets()
@@ -133,22 +157,23 @@ class Sub2: SKScene {
     
     func showQuestionAndTickets() {
         Qustion?.isHidden = false
-        Qustion?.text = "٧ - ٢ = ؟"
+        Qustion?.text = "7 - 2 = ?"
         
         tiket1?.isHidden = false
         tiket2?.isHidden = false
         tiket3?.isHidden = false
         
         tiketLablel1?.isHidden = false
-        tiketLablel1?.text = convertToArabicNumerals(5)
+        tiketLablel1?.text = "5"
         tiketLablel1?.zPosition = 3
         
+
         tiketLablel2?.isHidden = false
-        tiketLablel2?.text = convertToArabicNumerals(6)
+        tiketLablel2?.text = "6"
         tiketLablel2?.zPosition = 3
         
         tiketLablel3?.isHidden = false
-        tiketLablel3?.text = convertToArabicNumerals(7)
+        tiketLablel3?.text = "7"
         tiketLablel3?.zPosition = 3
     }
     
@@ -169,17 +194,16 @@ class Sub2: SKScene {
         
         if tiket1?.contains(location) == true {
             playSound(named: "correctAnswer.wav")
-            run(SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false))
-            bourdLablel?.text = "احسنت!"
+            run(SKAction.playSoundFileNamed("ENExellent.wav", waitForCompletion: false))
+            bourdLablel?.text = "Exellent!"
             Next?.isHidden = false
-            Nextlablel?.text = "إتمام"
             Nextlablel?.zPosition = 10
             Nextlablel?.isHidden = false
             addPulsingAnimation(to: Next)
         } else if tiket2?.contains(location) == true || tiket3?.contains(location) == true {
             playSound(named: "wrongAnswer.wav")
-            bourdLablel?.text = "حاول مره اخرى!"
-            run(SKAction.playSoundFileNamed("ARTryagain.mp3", waitForCompletion: false))
+            bourdLablel?.text = "Try again!"
+            run(SKAction.playSoundFileNamed("ENTryagain.wav", waitForCompletion: false))
         }
         
         if Next?.contains(location) == true {

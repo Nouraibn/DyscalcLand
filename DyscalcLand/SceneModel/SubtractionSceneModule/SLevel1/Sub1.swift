@@ -38,6 +38,31 @@ class Sub1: SKScene {
         NextButton = self.childNode(withName: "NextButton") as? SKSpriteNode
         NextLablel = self.childNode(withName: "NextLabel") as? SKLabelNode
         hand = self.childNode(withName: "hand") as? SKSpriteNode
+        
+        if let guidingLabel = bourdLablel {
+            guidingLabel.fontName = "ComicSansMS-Bold"
+            guidingLabel.text = "Lets count the number of \n       bowling pins!"
+            guidingLabel.fontSize = 28
+            
+            // Enable line breaks by setting the max width for the label
+            guidingLabel.horizontalAlignmentMode = .center
+            guidingLabel.verticalAlignmentMode = .center
+
+            // Set the maximum width for the label (ensures line breaks occur)
+            guidingLabel.preferredMaxLayoutWidth = 500 // Adjust based on your scene's layout
+
+            // Set the number of lines to 0 for multiline support
+            guidingLabel.numberOfLines = 0
+        }
+
+           if let nextLabel = NextLablel {
+               nextLabel.fontName = "ComicSansMS-Bold"
+               nextLabel.text = "Next"
+               nextLabel.fontSize = 30
+           }
+           
+       
+
 
         // Prepare bowling nodes and labels
         for i in 1...7 {
@@ -53,7 +78,7 @@ class Sub1: SKScene {
         }
 
         // Initial setup
-        bourdLablel?.text = "هيا لنحسب عدد قطع البولنق!"
+       
         bourdLablel?.zPosition = 4
         NextButton?.zPosition = 4
         NextLablel?.zPosition = 5
@@ -67,7 +92,7 @@ class Sub1: SKScene {
         NextButton?.isHidden = true
         NextLablel?.isHidden = true
 
-        playSound(named: "ACountb.mp3")
+        playSound(named: "Countb.mp4")
     }
 
     func playSound(named soundName: String) {
@@ -87,18 +112,19 @@ class Sub1: SKScene {
 
         if labelNode.isHidden {
             counter += 1
-            labelNode.text = convertToArabicNumerals(counter)
+            labelNode.text = "\(counter)"
+            //labelNode.text = convertToArabicNumerals(counter)
             labelNode.isHidden = false
 
             // Play sound for the current counter
-            let soundFileName = "A\(counter).mp3"
+            let soundFileName = "E\(counter).mp4"
             playSound(named: soundFileName)
 
             if counter == bowlingArray.count {
                 allBowlingPressed = true
-                bourdLablel?.text = "اختر الإجابة الصحيحة!"
+                bourdLablel?.text = "Select the correct answer"
                 let delay1 = SKAction.wait(forDuration: 1.0)
-                let playSound1 = SKAction.playSoundFileNamed("ARSelectCorrectAnswer.mp3", waitForCompletion: false)
+                let playSound1 = SKAction.playSoundFileNamed("Select.wav", waitForCompletion: false)
                 let delayedAction = SKAction.sequence([delay1, playSound1])
                 self.run(delayedAction)
                 showTickets()
@@ -112,30 +138,30 @@ class Sub1: SKScene {
         tiket3?.isHidden = false
 
         tiketLablel1?.isHidden = false
-        tiketLablel1?.text = convertToArabicNumerals(5)
+        tiketLablel1?.text = "5"
         tiketLablel1?.zPosition = 3
 
         tiketLablel2?.isHidden = false
-        tiketLablel2?.text = convertToArabicNumerals(6)
+        tiketLablel2?.text = "6"
         tiketLablel2?.zPosition = 3
 
         tiketLablel3?.isHidden = false
-        tiketLablel3?.text = convertToArabicNumerals(7)
+        tiketLablel3?.text = "7"
         tiketLablel3?.zPosition = 3
     }
 
     func checkAnswer(selectedAnswer: Int) {
         if selectedAnswer == 7 {
-            bourdLablel?.text = "أحسنت!"
+            bourdLablel?.text = "Exellent!"
             playSound(named: "correctAnswer.wav")
             NextButton?.isHidden = false
             NextLablel?.isHidden = false
             addPulsingAnimation(to: NextButton)
-            run(SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false))
+            run(SKAction.playSoundFileNamed("ENExellent.wav", waitForCompletion: false))
         } else {
-            bourdLablel?.text = "حاول مرة أخرى!"
+            bourdLablel?.text = "Try again!"
             playSound(named: "wrongAnswer.wav")
-            run(SKAction.playSoundFileNamed("ARTryagain.mp3", waitForCompletion: false))
+            run(SKAction.playSoundFileNamed("ENTryagain.wav", waitForCompletion: false))
 
         }
     }

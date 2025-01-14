@@ -45,6 +45,21 @@ class ClownMap: SKScene {
         openS = self.childNode(withName: "OpenS") as? SKSpriteNode
         winS = self.childNode(withName: "WinS") as? SKSpriteNode
 
+        if let cloudLabel = cloudLabel {
+            cloudLabel.fontName = "ComicSansMS-Bold"
+            cloudLabel.text = "Lets start playing \n    with Clown"
+            cloudLabel.fontSize = 24
+            
+            // Enable line breaks by setting the max width for the label
+            cloudLabel.horizontalAlignmentMode = .center
+            cloudLabel.verticalAlignmentMode = .center
+
+            // Set the maximum width for the label (ensures line breaks occur)
+            cloudLabel.preferredMaxLayoutWidth = 300 // Adjust based on your scene's layout
+
+            // Set the number of lines to 0 for multiline support
+            cloudLabel.numberOfLines = 0
+        }
         // Set initial zPositions
         background2?.zPosition = -1
         clown?.zPosition = 1
@@ -89,8 +104,9 @@ class ClownMap: SKScene {
         if ClownMap.Equation5 {
             
             let delay2 = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
-            let playSound2 = SKAction.playSoundFileNamed("AExcellentnext.mp3", waitForCompletion: false)
-            let delayedSound2 = SKAction.sequence([delay2, playSound2])
+            let playSound2 = SKAction.playSoundFileNamed("Excellentnext.wav", waitForCompletion: false)
+            let clap1 = SKAction.playSoundFileNamed("Clapping.mp3", waitForCompletion: false)
+            let delayedSound2 = SKAction.sequence([delay2,clap1, playSound2])
             self.run(delayedSound2)
             
             winN?.isHidden = false
@@ -101,10 +117,11 @@ class ClownMap: SKScene {
             luckA?.isHidden = true
             luckS?.isHidden = true
             winS?.isHidden = true
+            ClownMap.Equation5 = false
         } else if ClownMap.navigatedFromNumber10 {
             
             let delay1 = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
-            let playSound1 = SKAction.playSoundFileNamed("AExcellentnext.mp3", waitForCompletion: false)
+            let playSound1 = SKAction.playSoundFileNamed("Excellentnext.wav", waitForCompletion: false)
             let clap = SKAction.playSoundFileNamed("Clapping.mp3", waitForCompletion: false)
             let delayedSound1 = SKAction.sequence([delay1,clap,playSound1])
             self.run(delayedSound1)
@@ -116,6 +133,26 @@ class ClownMap: SKScene {
             winA?.isHidden = true
             winS?.isHidden = true
             openS?.isHidden = true
+            ClownMap.navigatedFromNumber10 = false
+        }
+        if ClownMap.fromSub2{
+            let delay3 = SKAction.wait(forDuration: 5.0) // Wait for 3 seconds
+            let playSound3 = SKAction.playSoundFileNamed("ENExellent.wav", waitForCompletion: false)
+            let clap = SKAction.playSoundFileNamed("Clapping.mp3", waitForCompletion: false)
+            let delayedAction = SKAction.sequence([delay3, playSound3,clap])
+            self.run(delayedAction)
+        
+            winN?.isHidden = false
+            openN?.isHidden = true
+            openA?.isHidden = true
+            luckA?.isHidden = true
+            winA?.isHidden = false
+            winS?.isHidden = false
+            openS?.isHidden = true
+            luckA?.isHidden = true
+            luckS?.isHidden = true
+            ClownMap.fromSub2 = false
+            
         }
         
         if ClownMap.isFirstTime{
@@ -131,31 +168,8 @@ class ClownMap: SKScene {
             let delayedAction = SKAction.sequence([delay2, group])
             self.run(delayedAction)
             
-            if ClownMap.fromSub2{
-                let delay3 = SKAction.wait(forDuration: 5.0) // Wait for 3 seconds
-                let playSound3 = SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false)
-                let clap = SKAction.playSoundFileNamed("Clapping.mp3", waitForCompletion: false)
-                let delayedAction = SKAction.sequence([delay3, playSound3,clap])
-                self.run(delayedAction)
-            
-                winN?.isHidden = false
-                openN?.isHidden = true
-                openA?.isHidden = true
-                luckA?.isHidden = true
-                winA?.isHidden = false
-                winS?.isHidden = false
-                openS?.isHidden = true
-                luckA?.isHidden = true
-                luckS?.isHidden = true
-                
-                
-                
-            }
-
-            
-            
             let delay = SKAction.wait(forDuration: 2.0) // Wait for 3 seconds
-            let playSound = SKAction.playSoundFileNamed("Aclown.mp3", waitForCompletion: false)
+            let playSound = SKAction.playSoundFileNamed("Clown.wav", waitForCompletion: false)
             let delayedSound = SKAction.sequence([delay, playSound])
 
             self.run(delayedSound)

@@ -45,22 +45,52 @@ class Equation1: SKScene {
         hand2 = childNode(withName: "Hand2") as? SKSpriteNode
         background2 = self.childNode(withName: "background2") as? SKSpriteNode
         cartLabel = childNode(withName: "CartLabel") as? SKLabelNode
+        
+        if let guidingLabel = mainText {
+            guidingLabel.fontName = "ComicSansMS-Bold"
+            guidingLabel.text = "Let’s count how many cotton \n      candies there are!"
+            guidingLabel.fontSize = 27
+            
+            // Enable line breaks by setting the max width for the label
+            guidingLabel.horizontalAlignmentMode = .center
+            guidingLabel.verticalAlignmentMode = .center
+
+            // Set the maximum width for the label (ensures line breaks occur)
+            guidingLabel.preferredMaxLayoutWidth = 500 // Adjust based on your scene's layout
+
+            // Set the number of lines to 0 for multiline support
+            guidingLabel.numberOfLines = 0
+        }
+
+           if let nextLabel = nextButtonLabel {
+               nextLabel.fontName = "ComicSansMS-Bold"
+               nextLabel.text = "Next"
+               nextLabel.fontSize = 30
+           }
+           
+        if let cart = cartLabel {
+            cart.fontName = "ComicSansMS-Bold"
+            cart.text = "Cutton Candy"
+        }
 
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0)
 
-        let sound = SKAction.playSoundFileNamed("ARCountCotton.mp3", waitForCompletion: false)
+        let sound = SKAction.playSoundFileNamed("ENcountCotton.wav", waitForCompletion: false)
         self.run(sound)
 
         for i in 1..<3 {
             if let cottonCandy = self.childNode(withName: "PinkCottonCandy\(i)") as? SKSpriteNode {
                 cottonCandies.append(cottonCandy)
-                cottonCandy.zPosition = 1
-            }
+                cottonCandy.zPosition = -1
+               
+        }
+
             if let numLabel = self.childNode(withName: "Num\(i)") as? SKLabelNode {
                 numberCottonCandy.append(numLabel)
                 numLabel.isHidden = true
                 numLabel.zPosition = 2
-                numLabel.text = convertToArabicNumerals(i)
+                numLabel.text = "\(i)"
+           // numLabel.text = convertToArabicNumerals(i)
             }
         }
 
@@ -86,7 +116,7 @@ class Equation1: SKScene {
 
         hand2?.isHidden = true
         cottonCandyCart?.zPosition = 0
-        background2?.zPosition = -1
+        background2?.zPosition = -2
         mainEquation?.zPosition = 4
         mainText?.zPosition = 4
         border?.zPosition = 3
@@ -98,10 +128,7 @@ class Equation1: SKScene {
         nextButton?.isHidden = true
         nextButtonLabel?.isHidden = true
         
-        cartLabel?.text = "غزل البنات"
-
-        mainText.text = "هيا لنعد غزل البنات!"
-        
+      
         startOscillatingAnimation(for: hand, fromLeftOffset: 100)
         
         
@@ -110,9 +137,9 @@ class Equation1: SKScene {
         
     }
 
-    func setEquation(mainLevel: Int, subLevel: Int) {
-        if let equation1 = equationManager.getEquation(for: mainLevel, subLevel: subLevel) {
-            mainEquation?.text = String(equation1.equation.map { char in
+   /* func setEquation(mainLevel: Int, subLevel: Int) {
+        if let equation1 = equationManager.getEquation(for: mainLevel, subLevel: subLevel)
+        {mainEquation?.text = String(equation1.equation.map { char in
                 if let digit = char.wholeNumberValue {
                     return Character(UnicodeScalar(0x0660 + digit)!)
                 } else {
@@ -124,7 +151,16 @@ class Equation1: SKScene {
         } else {
             mainEquation.text = "خطأ"
         }
+    }*/
+    func setEquation(mainLevel: Int, subLevel: Int) {
+        if let equation1 = equationManager.getEquation(for: mainLevel, subLevel: subLevel) {
+            mainEquation?.text = String(equation1.equation) // No digit conversion here
+            correctAnswer = equation1.answer
+        } else {
+            mainEquation?.text = "خطأ"
+        }
     }
+
 
     func handPress(cottonCandy: SKSpriteNode) {
         isPressing = true
@@ -141,17 +177,17 @@ class Equation1: SKScene {
             numText.isHidden = false
             currentCottonCandyCount += 1
 
-            let soundFileName = "A\(currentCottonCandyCount).mp3"
+            let soundFileName = "E\(currentCottonCandyCount).mp4"
             let soundAction = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: false)
             self.run(soundAction)
 
             if currentCottonCandyCount == cottonCandies.count {
                 stopAndDisappear(for: hand2)
                 showMCQs(correctAnswer: currentCottonCandyCount)
-                mainText.text = "اختار الاجابه الصحيحه"
+                mainText.text = "Select the correct answer"
                 let delay1 = SKAction.wait(forDuration: 1.0) // Wait for 3 seconds
                 let playSound1 =
-SKAction.playSoundFileNamed("ARSelectCorrectAnswer.mp3", waitForCompletion: false)
+SKAction.playSoundFileNamed("Select.wav", waitForCompletion: false)
                 let delayedAction = SKAction.sequence([delay1, playSound1])
                 self.run(delayedAction)
             }
@@ -162,16 +198,17 @@ SKAction.playSoundFileNamed("ARSelectCorrectAnswer.mp3", waitForCompletion: fals
         answers = [correctAnswer, correctAnswer + 1, correctAnswer - 1].shuffled()
         for (index, MCQ) in MCQs.enumerated() {
             MCQ.isHidden = false
-            MCQLabels[index].text = convertToArabicNumerals(answers[index])
+            MCQLabels[index].text = "\(answers[index])"
+           // MCQLabels[index].text = convertToArabicNumerals(answers[index])
             MCQLabels[index].isHidden = false
         }
     }
 
     func checkAnswer(_ selectedAnswer: Int) {
         if selectedAnswer == correctAnswer {
-            mainText.text = "احسنت!"
-            mainEquation.text = "\(mainEquation.text ?? "")\(convertToArabicNumerals(correctAnswer))!"
-            run(SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false))
+            mainText.text = "Exellent!"
+            mainEquation.text = "\(mainEquation.text ?? "")\(correctAnswer)!"
+            run(SKAction.playSoundFileNamed("ENExellent.wav", waitForCompletion: false))
             run(SKAction.playSoundFileNamed("correctAnswer.wav", waitForCompletion: false))
 
             let waitAction = SKAction.wait(forDuration: 3.0) // Wait for 3 seconds
@@ -181,9 +218,9 @@ SKAction.playSoundFileNamed("ARSelectCorrectAnswer.mp3", waitForCompletion: fals
             let sequence = SKAction.sequence([waitAction, showButtonAction])
             self.run(sequence)
         } else {
-            mainText.text = "حاول مره اخرى!"
+            mainText.text = "Try again!"
             run(SKAction.playSoundFileNamed("wrongAnswer.wav", waitForCompletion: false))
-            run(SKAction.playSoundFileNamed("ARTryagain.mp3", waitForCompletion: false))
+            run(SKAction.playSoundFileNamed("ENTryagain.wav", waitForCompletion: false))
         }
     }
 

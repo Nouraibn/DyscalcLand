@@ -3,7 +3,8 @@ import SpriteKit
 class DragAndDrop2: SKScene {
     
     var yellowCottonCandies: [SKSpriteNode] = []
-    var pinkCottonCandies: [SKSpriteNode] = []
+    var pinkCottonCandy: SKSpriteNode!
+    var pinkCottonCandy2: SKSpriteNode!
     var cottonCandyCart: SKSpriteNode!
     var background2: SKSpriteNode!
     var mainText: SKLabelNode!
@@ -21,25 +22,55 @@ class DragAndDrop2: SKScene {
     override func didMove(to view: SKView) {
         background2 = childNode(withName: "Background2") as? SKSpriteNode
         cottonCandyCart = childNode(withName: "CottonCandyCart") as? SKSpriteNode
+        pinkCottonCandy = childNode(withName: "PinkCottonCandy1") as? SKSpriteNode
+        pinkCottonCandy2 = childNode(withName: "PinkCottonCandy2") as? SKSpriteNode
         mainText = childNode(withName: "MainText") as? SKLabelNode
         cartLabel = childNode(withName: "CartLabel") as? SKLabelNode
         
         nextButton = childNode(withName: "NextButton") as? SKSpriteNode
         nextButtonLabel = childNode(withName: "NextLabel") as? SKLabelNode
-//        nextButtonLabel.text = "Next"
-        mainText.text = NSLocalizedString("Let’s Make Some Cotton Candies!", comment: "AddDraqAndDrop")
+        //        nextButtonLabel.text = "Next"
+        if let guidingLabel = mainText {
+            guidingLabel.fontName = "ComicSansMS-Bold"
+            guidingLabel.text = "Lets make some Cutton \n        Candys!"
+            guidingLabel.fontSize = 28
+            
+            // Enable line breaks by setting the max width for the label
+            guidingLabel.horizontalAlignmentMode = .center
+            guidingLabel.verticalAlignmentMode = .center
+            
+            // Set the maximum width for the label (ensures line breaks occur)
+            guidingLabel.preferredMaxLayoutWidth = 500 // Adjust based on your scene's layout
+            
+            // Set the number of lines to 0 for multiline support
+            guidingLabel.numberOfLines = 0
+        }
         
-        cartLabel.text = NSLocalizedString("Cotton Candy", comment: "cart label")
+        if let nextLabel = nextButtonLabel {
+            nextLabel.fontName = "ComicSansMS-Bold"
+            nextLabel.text = "Next"
+            nextLabel.fontSize = 30
+        }
+        
+        if let cart = cartLabel {
+            cart.fontName = "ComicSansMS-Bold"
+            cart.text = "Cutton Candy"
+        }
         
         mainText.zPosition = 10
         cartLabel.zPosition = 10
         background2.zPosition = -1
+        nextButtonLabel.zPosition = 2
         
         
-        nextButton.alpha = 0.0
+        nextButton.isHidden = true
         nextButtonLabel.isHidden = true
-       
-//        mainText.text = "Let’s Make Some Cotton Candies!"
+        
+      
+        pinkCottonCandy.isHidden = true
+        pinkCottonCandy2.isHidden = true
+        
+        //        mainText.text = "Let’s Make Some Cotton Candies!"
         playSound()
         for i in 1...maxCottonCandyCount {
             if let yellowCottonCandy = childNode(withName: "YellowCottonCandy\(i)") as? SKSpriteNode {
@@ -47,28 +78,29 @@ class DragAndDrop2: SKScene {
             }
         }
         
-       
-        for i in 1..<2 {
+        
+      /*  for i in 1..<2 {
             if let pinkCottonCandy = childNode(withName: "PinkCottonCandy\(i)") as? SKSpriteNode {
                 pinkCottonCandies.append(pinkCottonCandy)
+                pinkCottonCandy.isHidden = true
+
             }
         }
-        
+        */
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0)
         
         
-      
+        
     }
     func playSound(){
-        let currentLanguage = Locale.preferredLanguages.first ?? "en" // if the language is not there default to english
-        var soundFileName = "ENmakeCotton.wav" //default sound (english)
-    
-        if currentLanguage.prefix(2) == "ar" {// take the first letter
-            soundFileName = "AMakeCotton.mp3"
-        } else {
-            soundFileName = "ENmakeCotton.wav"
-        }
+        //  let currentLanguage = Locale.preferredLanguages.first ?? "en" // if the language is not there default to english
+        let soundFileName = "ENmakeCotton.wav" //default sound (english)
         
+        //  if currentLanguage.prefix(2) == "ar" {// take the first letter
+        //    soundFileName = "AMakeCotton.mp3"
+        // } else {
+        // soundFileName = "ENmakeCotton.wav"
+   // }
         
         let sound = SKAction.playSoundFileNamed(soundFileName, waitForCompletion: false)
         self.run(sound)
@@ -113,13 +145,17 @@ class DragAndDrop2: SKScene {
                     yellowCottonCandy.zPosition = 1
                     
                     yellowCottonCandy.texture = SKTexture(imageNamed: "PinkCottonCandy") // Change the yellow candy to pink cotton candy
-
+                    yellowCottonCandy.isHidden = true
+                    pinkCottonCandy.isHidden = false
+                    run(SKAction.playSoundFileNamed("NumAppear.wav", waitForCompletion: false))
                     
                     cottonCandyCount += 1
                     
                     if cottonCandyCount == maxCottonCandyCount {
-                        mainText.text = NSLocalizedString("Well Done!", comment: "bravo text")
-                        run(SKAction.playSoundFileNamed("ARExellent.mp3", waitForCompletion: false))
+                        pinkCottonCandy2.isHidden = false
+                        mainText.text = "Well Done!"
+                        run(SKAction.playSoundFileNamed("ENExellent.wav", waitForCompletion: false))
+                        run(SKAction.playSoundFileNamed("NumAppear.wav", waitForCompletion: false))
 
                         
                         
@@ -141,7 +177,7 @@ class DragAndDrop2: SKScene {
         }
     }
     func showNextButton() {
-        nextButton.alpha = 1.0 //make it show
+        nextButton.isHidden = false
         nextButtonLabel.isHidden = false
     }
     

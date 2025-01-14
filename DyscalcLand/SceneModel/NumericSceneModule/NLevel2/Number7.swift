@@ -39,7 +39,7 @@ class Number7: SKScene {
     
     // Track the order of taps
     var tapIndex = 0
-    let soundSequence = ["A1.mp3", "A2.mp3", "A3.mp3", "A4.mp3", "A5.mp3", "A6.mp3", "A7.mp3"]
+    let soundSequence = ["E1.mp4", "E2.mp4", "E3.mp4", "E4.mp4", "E5.mp4", "E6.mp4", "E7.mp4"]
     
     override func didMove(to view: SKView) {
         // Set the background color programmatically
@@ -69,6 +69,47 @@ class Number7: SKScene {
         nextLabel = self.childNode(withName: "NextLabel") as? SKLabelNode
         NumBalloon = self.childNode(withName: "Num7Balloon") as? SKSpriteNode
         EndLabel = self.childNode(withName: "EndLabel") as? SKLabelNode
+        
+        if let guidingLabel = guidingLabel {
+            guidingLabel.fontName = "ComicSansMS-Bold"
+            guidingLabel.text = "Pop the balloons and \n guess the number!"
+            guidingLabel.fontSize = 28
+            
+            // Enable line breaks by setting the max width for the label
+            guidingLabel.horizontalAlignmentMode = .center
+            guidingLabel.verticalAlignmentMode = .center
+
+            // Set the maximum width for the label (ensures line breaks occur)
+            guidingLabel.preferredMaxLayoutWidth = 500 // Adjust based on your scene's layout
+
+            // Set the number of lines to 0 for multiline support
+            guidingLabel.numberOfLines = 0
+        }
+
+           if let nextLabel = nextLabel {
+               nextLabel.fontName = "ComicSansMS-Bold"
+               nextLabel.text = "Next"
+               nextLabel.fontSize = 30
+           }
+           
+        if let endLabel = EndLabel {
+            let fullText = "Yes, it's number Seven"
+            
+            // Create an attributed string
+            let attributedString = NSMutableAttributedString(string: fullText)
+            
+            // Apply regular font to the entire string
+            attributedString.addAttribute(.font, value: UIFont(name: "ComicSansMS", size: 32)!, range: NSRange(location: 0, length: fullText.count))
+            
+            // Define the range for the bold part (word "One")
+            let boldRange = (fullText as NSString).range(of: "Seven")
+            
+            // Apply the bold font to "One" (keep the font size the same for both parts)
+            attributedString.addAttribute(.font, value: UIFont(name: "ComicSansMS-Bold", size: 34)!, range: boldRange)
+            
+            // Set the attributed string to the label
+            endLabel.attributedText = attributedString
+        }
         
         background?.zPosition = -1
         border?.zPosition = -1
@@ -167,11 +208,11 @@ class Number7: SKScene {
         if isBalloon1Popped && isBalloon2Popped && isBalloon3Popped && isBalloon4Popped && isBalloon5Popped && isBalloon6Popped && isBalloon7Popped {
             let delay = SKAction.wait(forDuration: 2.0)
             let revealAction = SKAction.run { [weak self] in
-                self?.num7Balloon?.isHidden = false
+                self?.NumBalloon?.isHidden = false
                 self?.EndLabel?.isHidden = false
             }
             let Sound3 = SKAction.playSoundFileNamed("NumAppear.wav", waitForCompletion: false)
-            let Sound4 = SKAction.playSoundFileNamed("Ayes7.mp3", waitForCompletion: false)
+            let Sound4 = SKAction.playSoundFileNamed("yes7.wav", waitForCompletion: false)
             let PlaySound = SKAction.sequence([delay, revealAction, Sound3, Sound4])
             self.run(PlaySound)
             
