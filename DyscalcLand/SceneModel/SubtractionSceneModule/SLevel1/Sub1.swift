@@ -152,7 +152,7 @@ class Sub1: SKScene {
 
     func checkAnswer(selectedAnswer: Int) {
         if selectedAnswer == 7 {
-            bourdLablel?.text = "Exellent!"
+            bourdLablel?.text = "Excellent!"
             playSound(named: "correctAnswer.wav")
             NextButton?.isHidden = false
             NextLablel?.isHidden = false

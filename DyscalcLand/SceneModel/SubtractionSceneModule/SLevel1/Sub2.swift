@@ -197,7 +197,7 @@ class Sub2: SKScene {
         if tiket1?.contains(location) == true {
             playSound(named: "correctAnswer.wav")
             run(SKAction.playSoundFileNamed("ENExellent.wav", waitForCompletion: false))
-            bourdLablel?.text = "Exellent!"
+            bourdLablel?.text = "Excellent!"
             Next?.isHidden = false
             Nextlablel?.zPosition = 10
             Nextlablel?.isHidden = false
