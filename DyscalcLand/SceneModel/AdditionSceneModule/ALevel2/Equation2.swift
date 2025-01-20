@@ -63,7 +63,7 @@ class Equation2: SKScene {
            
         if let cart = cartLabel {
             cart.fontName = "ComicSansMS-Bold"
-            cart.text = "Cutton Candy"
+            cart.text = "Cotton Candy"
         }
 
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0)
@@ -188,7 +188,7 @@ class Equation2: SKScene {
 
     func checkAnswer(_ selectedAnswer: Int) {
         if selectedAnswer == correctAnswer {
-            mainText.text = "Exellent!"
+            mainText.text = "Excellent!"
             mainEquation.text = "\(mainEquation.text ?? "")\(correctAnswer)!"
             run(SKAction.playSoundFileNamed("ENExellent.wav", waitForCompletion: false))
             run(SKAction.playSoundFileNamed("correctAnswer.wav", waitForCompletion: false))

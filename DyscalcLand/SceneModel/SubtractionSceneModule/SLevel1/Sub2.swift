@@ -102,6 +102,7 @@ class Sub2: SKScene {
         bowlingBall?.zPosition = 2
         Nextlablel?.zPosition = 3
         Nextlablel?.zPosition = 2
+        bourdLablel?.zPosition = 4
         addPulsingAnimation(to: bowlingBall)
     }
     
@@ -142,6 +143,7 @@ class Sub2: SKScene {
         Bowling1Drop?.isHidden = false
         bowling2?.isHidden = true
         Bowling2Drop?.isHidden = false
+        bourdLablel?.alpha = 1.0
         
         let delay = SKAction.wait(forDuration: 1.0)
         let showQuestionAndTicketsAction = SKAction.run {

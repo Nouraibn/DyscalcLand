@@ -51,7 +51,7 @@ class DragAndDrop1: SKScene {
            
         if let cart = cartLabel {
             cart.fontName = "ComicSansMS-Bold"
-            cart.text = "Cutton Candy"
+            cart.text = "Cotton Candy"
         }
 
         
