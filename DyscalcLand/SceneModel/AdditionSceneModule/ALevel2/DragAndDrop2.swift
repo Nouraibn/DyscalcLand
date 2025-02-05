@@ -1,6 +1,6 @@
 import SpriteKit
 
-class DragAndDrop2: SKScene {
+class DragAndDrop2: BaseScene {
     
     var yellowCottonCandies: [SKSpriteNode] = []
     var pinkCottonCandy: SKSpriteNode!

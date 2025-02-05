@@ -1,7 +1,7 @@
 import SpriteKit
 import SwiftData
 
-class Number4: SKScene {
+class Number4: BaseScene {
     
     // Nodes from the .sks file
     var background: SKSpriteNode!

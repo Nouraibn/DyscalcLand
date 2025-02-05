@@ -1,7 +1,7 @@
 import SpriteKit
 import CoreMotion
 
-class Sub2: SKScene {
+class Sub2: BaseScene {
     
     var background: SKSpriteNode!
     var bourd: SKSpriteNode!
@@ -160,6 +160,7 @@ class Sub2: SKScene {
     func showQuestionAndTickets() {
         Qustion?.isHidden = false
         Qustion?.text = "7 - 2 = ?"
+        Qustion.fontName = "ComicSansMS-Bold"
         
         tiket1?.isHidden = false
         tiket2?.isHidden = false
@@ -167,15 +168,18 @@ class Sub2: SKScene {
         
         tiketLablel1?.isHidden = false
         tiketLablel1?.text = "5"
+        tiketLablel1.fontName = "ComicSansMS-Bold"
         tiketLablel1?.zPosition = 3
         
 
         tiketLablel2?.isHidden = false
         tiketLablel2?.text = "6"
+        tiketLablel2.fontName = "ComicSansMS-Bold"
         tiketLablel2?.zPosition = 3
         
         tiketLablel3?.isHidden = false
         tiketLablel3?.text = "7"
+        tiketLablel3.fontName = "ComicSansMS-Bold"
         tiketLablel3?.zPosition = 3
     }
     

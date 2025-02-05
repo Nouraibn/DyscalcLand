@@ -1,6 +1,6 @@
 import SpriteKit
 
-class Equation2: SKScene {
+class Equation2: BaseScene {
 
     var cottonCandies: [SKSpriteNode] = []
     var numberCottonCandy: [SKLabelNode] = []

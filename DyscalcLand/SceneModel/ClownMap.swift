@@ -1,7 +1,7 @@
 import SpriteKit
 import SwiftData
 
-class ClownMap: SKScene {
+class ClownMap: BaseScene {
     
     var parentController: GameViewController?
     

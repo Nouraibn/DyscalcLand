@@ -2,7 +2,7 @@ import SpriteKit
 import SwiftData
 import UIKit
 
-class Number1: SKScene {
+class Number1: BaseScene {
     
   
 

@@ -2,7 +2,7 @@ import SpriteKit
 import GameplayKit
 import SwiftData
 
-class WelcomeScreen: SKScene {
+class WelcomeScreen: BaseScene {
     
     var parentController: GameViewController?
     // Nodes (References to nodes from the .sks file)

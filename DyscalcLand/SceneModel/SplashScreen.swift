@@ -1,6 +1,6 @@
 import SpriteKit
 
-class SplashScreen: SKScene {
+class SplashScreen: BaseScene {
     
     var logo: SKSpriteNode!
     

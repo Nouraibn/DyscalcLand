@@ -1,6 +1,6 @@
 import SpriteKit
 
-class Sub1: SKScene {
+class Sub1: BaseScene {
     
     var background: SKSpriteNode!
     var bourd: SKSpriteNode!
@@ -139,14 +139,17 @@ class Sub1: SKScene {
 
         tiketLablel1?.isHidden = false
         tiketLablel1?.text = "5"
+        tiketLablel1.fontName = "ComicSansMS-Bold"
         tiketLablel1?.zPosition = 3
 
         tiketLablel2?.isHidden = false
         tiketLablel2?.text = "6"
+        tiketLablel2.fontName = "ComicSansMS-Bold"
         tiketLablel2?.zPosition = 3
 
         tiketLablel3?.isHidden = false
         tiketLablel3?.text = "7"
+        tiketLablel3.fontName = "ComicSansMS-Bold"
         tiketLablel3?.zPosition = 3
     }
 

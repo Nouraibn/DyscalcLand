@@ -76,6 +76,7 @@
 		2CC530932D257D990051DBD0 /* Ayes5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2CC530922D257D990051DBD0 /* Ayes5.mp3 */; };
 		2CC530952D25805F0051DBD0 /* ApopBalloon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2CC530942D25805F0051DBD0 /* ApopBalloon.mp3 */; };
 		2CC530992D25817B0051DBD0 /* Aclown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2CC530982D25817B0051DBD0 /* Aclown.mp3 */; };
+		2CD094AC2D523C7B008D54C4 /* BaseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD094AB2D523C7B008D54C4 /* BaseScene.swift */; };
 		2CF5E2732D0F10E7004632FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E2722D0F10E7004632FF /* AppDelegate.swift */; };
 		2CF5E2752D0F10E7004632FF /* Equation4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5E2742D0F10E7004632FF /* Equation4.sks */; };
 		2CF5E2772D0F10E7004632FF /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5E2762D0F10E7004632FF /* Actions.sks */; };
@@ -217,6 +218,7 @@
 		2CC530922D257D990051DBD0 /* Ayes5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Ayes5.mp3; sourceTree = "<group>"; };
 		2CC530942D25805F0051DBD0 /* ApopBalloon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ApopBalloon.mp3; sourceTree = "<group>"; };
 		2CC530982D25817B0051DBD0 /* Aclown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Aclown.mp3; sourceTree = "<group>"; };
+		2CD094AB2D523C7B008D54C4 /* BaseScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseScene.swift; sourceTree = "<group>"; };
 		2CF5E26F2D0F10E7004632FF /* DyscalcLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DyscalcLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CF5E2722D0F10E7004632FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CF5E2742D0F10E7004632FF /* Equation4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Equation4.sks; sourceTree = "<group>"; };
@@ -627,6 +629,7 @@
 				2C7AE6112D353A5A0077E753 /* Info.plist */,
 				2CF5E2722D0F10E7004632FF /* AppDelegate.swift */,
 				2CF5E27A2D0F10E7004632FF /* GameViewController.swift */,
+				2CD094AB2D523C7B008D54C4 /* BaseScene.swift */,
 				2CF5E2B72D1437A5004632FF /* Scene */,
 				2CF5E2B82D1437BF004632FF /* SceneModel */,
 				2CF5E2B92D143B48004632FF /* Model */,
@@ -920,6 +923,7 @@
 				2A6748A92D22D39D0021C45C /* Sub7.swift in Sources */,
 				2CF5E2D32D1441BB004632FF /* Equation2.swift in Sources */,
 				2CF5E30C2D144751004632FF /* Number6.swift in Sources */,
+				2CD094AC2D523C7B008D54C4 /* BaseScene.swift in Sources */,
 				2CF5E2E02D14449D004632FF /* DragAndDrop1.swift in Sources */,
 				2CF5E3062D14473D004632FF /* Number3.swift in Sources */,
 				2CF5E3162D16FF5D004632FF /* Model.swift in Sources */,
@@ -1101,6 +1105,7 @@
 				DEVELOPMENT_TEAM = 98X6PVF3R7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DyscalcLand/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1111,7 +1116,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = w.DyscalcLand;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1134,6 +1139,7 @@
 				DEVELOPMENT_TEAM = 98X6PVF3R7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DyscalcLand/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1144,7 +1150,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = w.DyscalcLand;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

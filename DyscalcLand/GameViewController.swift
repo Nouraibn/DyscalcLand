@@ -11,31 +11,8 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         setupDataContainer()
-        
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'WelcomeScreen.sks'
-            if let scene = SKScene(fileNamed: "SplashScreen") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
-                // Pass reference to this controller for scene management
-                if let welcomeScene = scene as? WelcomeScreen {
-                    welcomeScene.parentController = self
-                    
-            
-                }
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
-            
-            view.ignoresSiblingOrder = true
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
-        }
+        setupScene()
     }
-    
    
     private func setupDataContainer() {
         do {
@@ -44,15 +21,35 @@ class GameViewController: UIViewController {
             fatalError("Failed to create ModelContainer: \(error)")
         }
     }
-    
 
+    private func setupScene() {
+        if let view = self.view as? SKView {
+            // تحميل المشهد الافتراضي "SplashScreen"
+            if let scene = SKScene(fileNamed: "SplashScreen") as? BaseScene {
+                scene.adjustSceneSize(for: view) // ضبط الحجم والتكبير تلقائيًا
+                
+                view.presentScene(scene)
+            }
+            
+            view.ignoresSiblingOrder = true
+            view.showsFPS = true
+            view.showsNodeCount = true
+        }
+    }
+
+    // تحديث حجم المشهد عند تدوير الجهاز
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { _ in
+            if let skView = self.view as? SKView, let scene = skView.scene as? BaseScene {
+                scene.adjustSceneSize(for: skView) // ضبط الحجم عند تغيير الاتجاه
+            }
+        }, completion: nil)
+    }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
+        return .all // دعم جميع الاتجاهات
     }
 
     override var prefersStatusBarHidden: Bool {
