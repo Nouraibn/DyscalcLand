@@ -15,8 +15,8 @@ class WelcomeScreen: BaseScene {
         
         // Set the background color programmatically
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
-       
-
+        
+        
         // Retrieve nodes from the .sks file by their names
         background = self.childNode(withName: "Background") as? SKSpriteNode
         welcomeBoard = self.childNode(withName: "WelcomeBoard") as? SKSpriteNode
@@ -36,7 +36,7 @@ class WelcomeScreen: BaseScene {
         let repeatPulse = SKAction.repeatForever(pulse) // Repeat the pulsing forever
         node.run(repeatPulse) // Apply the animation to the node
     }
-
+    
     
     // Handle touch events to navigate when the Start Button is pressed
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -53,11 +53,12 @@ class WelcomeScreen: BaseScene {
     }
     
     // Function to navigate to the next scene
-    func goToNextScene() {
-        let nextScene = SKScene(fileNamed: "ClownMap") as? ClownMap
-
-        nextScene?.scaleMode = .aspectFill
-        let transition = SKTransition.fade(withDuration: 1.0) // Fade transition
-        self.view?.presentScene(nextScene!, transition: transition)
-    }
-}
+    private func goToNextScene() {
+        if let nextScene = ClownMap(fileNamed: "ClownMap") {
+            nextScene.scaleMode = .aspectFill // ضبط مقياس العرض للمشهد الجديد
+            nextScene.adjustSceneSize(for: self.view!) // ضبط المشهد الجديد تلقائيًا بناءً على الاتجاه
+            
+            
+            self.view?.presentScene(nextScene)
+        }
+    }}

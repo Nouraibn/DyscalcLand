@@ -5,35 +5,38 @@ class SplashScreen: BaseScene {
     var logo: SKSpriteNode!
     
     override func didMove(to view: SKView) {
-        // Set the background color programmatically
+        // ضبط لون الخلفية برمجيًا
         self.backgroundColor = SKColor(red: 1.0, green: 0.984, blue: 0.941, alpha: 1.0) // Hex: #FFFBF0
         
-        // Load fixed nodes from the scene
+        // تحميل العناصر الثابتة من المشهد
         logo = self.childNode(withName: "Logo") as? SKSpriteNode
-        
         
         logo?.alpha = 0.0
         
-        // Add an animation or delay
+        // تشغيل أنيميشن شعار البداية
         runSplashScreen()
     }
     
     private func runSplashScreen() {
-        // Fade in the logo
+        // تشغيل تأثير الظهور والاختفاء التدريجي
         logo.run(SKAction.sequence([
-            SKAction.fadeIn(withDuration: 1.0), // Fade in over 1 second
-            SKAction.wait(forDuration: 1.5),   // Wait for 1.5 seconds
-            SKAction.fadeOut(withDuration: 1.0) // Fade out over 1 second
+            SKAction.fadeIn(withDuration: 1.0), // الظهور خلال 1 ثانية
+            SKAction.wait(forDuration: 1.5),   // انتظار 1.5 ثانية
+            SKAction.fadeOut(withDuration: 1.0) // الاختفاء خلال 1 ثانية
         ])) { [weak self] in
             self?.navigateToWelcomeScreen()
         }
     }
     
     private func navigateToWelcomeScreen() {
-        // Create an instance of the WelcomeScreen scene
+        // إنشاء مشهد `WelcomeScreen` مع ضبط الحجم تلقائيًا
         if let welcomeScreen = WelcomeScreen(fileNamed: "WelcomeScreen") {
-            let transition = SKTransition.fade(withDuration: 1.0) // Smooth fade transition
             welcomeScreen.scaleMode = .aspectFill
+            welcomeScreen.adjustSceneSize(for: self.view!) // ضبط المشهد تلقائيًا بناءً على الاتجاه
+            
+            // إنشاء تأثير انتقال جديد باستخدام دوران + تلاشي
+            let transition = SKTransition.crossFade(withDuration: 1.2)
+            
             self.view?.presentScene(welcomeScreen, transition: transition)
         }
     }

@@ -1,33 +1,32 @@
 import UIKit
-import SpriteKit
-import GameplayKit
 import SwiftData
+import SpriteKit
 
 class GameViewController: UIViewController {
-    
     private var dataContainer: ModelContainer!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupDataContainer()
-        setupScene()
+        setupScene(sceneName: "SplashScreen")
+       
     }
    
     private func setupDataContainer() {
         do {
-            dataContainer = try ModelContainer(for: MainLevel.self)
+        dataContainer = try ModelContainer(for: MainLevel.self)
         } catch {
             fatalError("Failed to create ModelContainer: \(error)")
         }
     }
 
-    private func setupScene() {
+    
+
+    func setupScene(sceneName: String) {
         if let view = self.view as? SKView {
-            // تحميل المشهد الافتراضي "SplashScreen"
-            if let scene = SKScene(fileNamed: "SplashScreen") as? BaseScene {
-                scene.adjustSceneSize(for: view) // ضبط الحجم والتكبير تلقائيًا
-                
+            if let scene = SKScene(fileNamed: sceneName) as? BaseScene {
+                scene.adjustSceneSize(for: view) // إعادة ضبط المشهد كل مرة يتم تحميله
                 view.presentScene(scene)
             }
             
@@ -37,15 +36,8 @@ class GameViewController: UIViewController {
         }
     }
 
-    // تحديث حجم المشهد عند تدوير الجهاز
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-
-        coordinator.animate(alongsideTransition: { _ in
-            if let skView = self.view as? SKView, let scene = skView.scene as? BaseScene {
-                scene.adjustSceneSize(for: skView) // ضبط الحجم عند تغيير الاتجاه
-            }
-        }, completion: nil)
+    override var shouldAutorotate: Bool {
+        return true // السماح بالتدوير عند الحاجة
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -54,5 +46,15 @@ class GameViewController: UIViewController {
 
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { _ in
+            if let skView = self.view as? SKView, let scene = skView.scene as? BaseScene {
+                scene.adjustSceneSize(for: skView) // إعادة ضبط الحجم عند تغيير الاتجاه
+            }
+        }, completion: nil)
     }
 }

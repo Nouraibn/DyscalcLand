@@ -253,12 +253,13 @@ class ClownMap: BaseScene {
 
             if subLevel >= 1 && subLevel <= currentMainLevel.totalSubLevels {
                 let sceneName = "Number\(subLevel)"
-                if let nextScene = SKScene(fileNamed: sceneName) {
+                if let nextScene = SKScene(fileNamed: sceneName) as? BaseScene {
                     nextScene.scaleMode = .aspectFill
+                    nextScene.adjustSceneSize(for: self.view!)
                     let transition = SKTransition.fade(withDuration: 1.0)
                     self.view?.presentScene(nextScene, transition: transition)
                 } else {
-                    print("Error: Scene \(sceneName) not found!")
+                    print("Error: Scene \(sceneName) not found or not a BaseScene!")
                 }
             } else {
                 print("Error: Sub Level \(subLevel) is out of range for Main Level \(mainLevel).")
@@ -267,6 +268,7 @@ class ClownMap: BaseScene {
             print("Error: Main Level \(mainLevel) not found in progress.")
         }
     }
+
 
     func goToAddition() {
         let gameProgress = GameProgress.shared
@@ -291,12 +293,13 @@ class ClownMap: BaseScene {
 
             if subLevel >= 1 && subLevel <= currentMainLevel.totalSubLevels {
                 let sceneName = subLevelNames[subLevel - 1]
-                if let nextScene = SKScene(fileNamed: sceneName) {
+                if let nextScene = SKScene(fileNamed: sceneName) as? BaseScene {
                     nextScene.scaleMode = .aspectFill
-                    let transition = SKTransition.fade(withDuration: 0.1)
+                    nextScene.adjustSceneSize(for: self.view!)
+                    let transition = SKTransition.fade(withDuration: 1.0)
                     self.view?.presentScene(nextScene, transition: transition)
                 } else {
-                    print("Error: Scene \(sceneName) not found!")
+                    print("Error: Scene \(sceneName) not found or not a BaseScene!")
                 }
             } else {
                 print("Error: Sub Level \(subLevel) is out of range for Main Level \(mainLevel).")
@@ -323,12 +326,13 @@ class ClownMap: BaseScene {
 
             if subLevel >= 1 && subLevel <= currentMainLevel.totalSubLevels {
                 let sceneName = "Sub\(subLevel)"
-                if let nextScene = SKScene(fileNamed: sceneName) {
+                if let nextScene = SKScene(fileNamed: sceneName) as? BaseScene {
                     nextScene.scaleMode = .aspectFill
-                    let transition = SKTransition.fade(withDuration: 0.1)
+                    nextScene.adjustSceneSize(for: self.view!)
+                    let transition = SKTransition.fade(withDuration: 1.0)
                     self.view?.presentScene(nextScene, transition: transition)
                 } else {
-                    print("Error: Scene \(sceneName) not found!")
+                    print("Error: Scene \(sceneName) not found or not a BaseScene!")
                 }
             } else {
                 print("Error: Sub Level \(subLevel) is out of range for Main Level \(mainLevel).")

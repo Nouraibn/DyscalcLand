@@ -219,10 +219,10 @@ class Sub2: BaseScene {
     
     func navigate() {
         ClownMap.fromSub2 = true
-        if let number6Scene = SKScene(fileNamed: "ClownMap") {
-            number6Scene.scaleMode = .aspectFill
+        if let number2Scene = SKScene(fileNamed: "ClownMap") as? BaseScene{
+            number2Scene.scaleMode = .aspectFill
+            number2Scene.adjustSceneSize(for: self.view!)
             let transition = SKTransition.fade(withDuration: 1.0)
-            self.view?.presentScene(number6Scene, transition: transition)
-        }
+            self.view?.presentScene(number2Scene, transition: transition)}
     }
 }

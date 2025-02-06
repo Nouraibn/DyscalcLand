@@ -181,10 +181,10 @@ class Number2: BaseScene {
         GameProgress.shared.saveProgress(for: 1, subLevel: 2)
         
         // Navigate to the Number3 scene
-        if let number3Scene = SKScene(fileNamed: "Number3") {
-            number3Scene.scaleMode = .aspectFill
+        if let number2Scene = SKScene(fileNamed: "Number3") as? BaseScene{
+            number2Scene.scaleMode = .aspectFill
+            number2Scene.adjustSceneSize(for: self.view!)
             let transition = SKTransition.fade(withDuration: 1.0)
-            self.view?.presentScene(number3Scene, transition: transition)
-        }
+            self.view?.presentScene(number2Scene, transition: transition)}
     }
 }

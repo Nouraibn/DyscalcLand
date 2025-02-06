@@ -207,11 +207,13 @@ class Number5: BaseScene {
     
     func navigateToNumber6() {
         GameProgress.shared.saveProgress(for: 1, subLevel: 5)
-       
-        if let number6Scene = SKScene(fileNamed: "Number6") {
-            number6Scene.scaleMode = .aspectFill
+
+        if let number2Scene = SKScene(fileNamed: "Numberr6") as? BaseScene{
+            number2Scene.scaleMode = .aspectFill
+            number2Scene.adjustSceneSize(for: self.view!)
             let transition = SKTransition.fade(withDuration: 1.0)
-            self.view?.presentScene(number6Scene, transition: transition)
-        }
+            self.view?.presentScene(number2Scene, transition: transition)}
     }
-}
+    }
+
+

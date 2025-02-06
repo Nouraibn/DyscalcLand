@@ -254,12 +254,11 @@ class Equation2: BaseScene {
         
         ClownMap.Equation5 = true  // Set the flag to true
 
-        let nextScene = SKScene(fileNamed: "ClownMap")
-        if let nextScene = nextScene {
-            nextScene.scaleMode = .aspectFill
-            let transition = SKTransition.fade(withDuration: 0.1)
-            self.view?.presentScene(nextScene, transition: transition)
-        }
+        if let number2Scene = SKScene(fileNamed: "ClownMap") as? BaseScene{
+            number2Scene.scaleMode = .aspectFill
+            number2Scene.adjustSceneSize(for: self.view!)
+            let transition = SKTransition.fade(withDuration: 1.0)
+            self.view?.presentScene(number2Scene, transition: transition)}
     }
 
     func convertToArabicNumerals(_ number: Int) -> String {

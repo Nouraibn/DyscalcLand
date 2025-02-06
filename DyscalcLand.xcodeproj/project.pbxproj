@@ -18,6 +18,8 @@
 		2A6748AF2D231DB10021C45C /* wrongAnswer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2A6748AE2D231DB10021C45C /* wrongAnswer.wav */; };
 		2A6748B12D231DE70021C45C /* correctAnswer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2A6748B02D231DE70021C45C /* correctAnswer.wav */; };
 		2A6748B92D23D9210021C45C /* Bdrop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2A6748B82D23D9210021C45C /* Bdrop.wav */; };
+		2C77726A2D549DC000380908 /* Numberr6.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2C7772692D549DC000380908 /* Numberr6.sks */; };
+		2C77726C2D549E2A00380908 /* Numberr6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C77726B2D549E2A00380908 /* Numberr6.swift */; };
 		2C794B992D2055DB006AA61A /* Sub1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B982D2055DB006AA61A /* Sub1.swift */; };
 		2C794B9B2D2055FE006AA61A /* Sub2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B9A2D2055FE006AA61A /* Sub2.swift */; };
 		2C794B9D2D205627006AA61A /* Sub3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C794B9C2D205627006AA61A /* Sub3.swift */; };
@@ -112,7 +114,6 @@
 		2CF5E2F22D1446D3004632FF /* Number3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5E2F12D1446D3004632FF /* Number3.sks */; };
 		2CF5E2F42D1446E0004632FF /* Number4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5E2F32D1446E0004632FF /* Number4.sks */; };
 		2CF5E2F62D1446EA004632FF /* Number5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5E2F52D1446EA004632FF /* Number5.sks */; };
-		2CF5E2F82D1446F6004632FF /* Number6.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5E2F72D1446F6004632FF /* Number6.sks */; };
 		2CF5E2FA2D1446FF004632FF /* Number7.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5E2F92D1446FF004632FF /* Number7.sks */; };
 		2CF5E2FC2D144708004632FF /* Number8.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5E2FB2D144708004632FF /* Number8.sks */; };
 		2CF5E2FE2D144710004632FF /* Number9.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2CF5E2FD2D144710004632FF /* Number9.sks */; };
@@ -122,7 +123,6 @@
 		2CF5E3062D14473D004632FF /* Number3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E3052D14473D004632FF /* Number3.swift */; };
 		2CF5E3082D144744004632FF /* Number4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E3072D144744004632FF /* Number4.swift */; };
 		2CF5E30A2D14474A004632FF /* Number5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E3092D14474A004632FF /* Number5.swift */; };
-		2CF5E30C2D144751004632FF /* Number6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E30B2D144751004632FF /* Number6.swift */; };
 		2CF5E30E2D144758004632FF /* Number7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E30D2D144758004632FF /* Number7.swift */; };
 		2CF5E3102D144760004632FF /* Number8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E30F2D144760004632FF /* Number8.swift */; };
 		2CF5E3122D14476A004632FF /* Number9.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF5E3112D14476A004632FF /* Number9.swift */; };
@@ -158,6 +158,8 @@
 		2A6748AE2D231DB10021C45C /* wrongAnswer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wrongAnswer.wav; sourceTree = "<group>"; };
 		2A6748B02D231DE70021C45C /* correctAnswer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = correctAnswer.wav; sourceTree = "<group>"; };
 		2A6748B82D23D9210021C45C /* Bdrop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Bdrop.wav; sourceTree = "<group>"; };
+		2C7772692D549DC000380908 /* Numberr6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Numberr6.sks; sourceTree = "<group>"; };
+		2C77726B2D549E2A00380908 /* Numberr6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numberr6.swift; sourceTree = "<group>"; };
 		2C794B982D2055DB006AA61A /* Sub1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub1.swift; sourceTree = "<group>"; };
 		2C794B9A2D2055FE006AA61A /* Sub2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub2.swift; sourceTree = "<group>"; };
 		2C794B9C2D205627006AA61A /* Sub3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub3.swift; sourceTree = "<group>"; };
@@ -255,7 +257,6 @@
 		2CF5E2F12D1446D3004632FF /* Number3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Number3.sks; sourceTree = "<group>"; };
 		2CF5E2F32D1446E0004632FF /* Number4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Number4.sks; sourceTree = "<group>"; };
 		2CF5E2F52D1446EA004632FF /* Number5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Number5.sks; sourceTree = "<group>"; };
-		2CF5E2F72D1446F6004632FF /* Number6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Number6.sks; sourceTree = "<group>"; };
 		2CF5E2F92D1446FF004632FF /* Number7.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Number7.sks; sourceTree = "<group>"; };
 		2CF5E2FB2D144708004632FF /* Number8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Number8.sks; sourceTree = "<group>"; };
 		2CF5E2FD2D144710004632FF /* Number9.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Number9.sks; sourceTree = "<group>"; };
@@ -265,7 +266,6 @@
 		2CF5E3052D14473D004632FF /* Number3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number3.swift; sourceTree = "<group>"; };
 		2CF5E3072D144744004632FF /* Number4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number4.swift; sourceTree = "<group>"; };
 		2CF5E3092D14474A004632FF /* Number5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number5.swift; sourceTree = "<group>"; };
-		2CF5E30B2D144751004632FF /* Number6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number6.swift; sourceTree = "<group>"; };
 		2CF5E30D2D144758004632FF /* Number7.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number7.swift; sourceTree = "<group>"; };
 		2CF5E30F2D144760004632FF /* Number8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number8.swift; sourceTree = "<group>"; };
 		2CF5E3112D14476A004632FF /* Number9.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number9.swift; sourceTree = "<group>"; };
@@ -436,7 +436,7 @@
 		2C89BA432D1AD8C6004CFBB2 /* NLevel2 */ = {
 			isa = PBXGroup;
 			children = (
-				2CF5E2F72D1446F6004632FF /* Number6.sks */,
+				2C7772692D549DC000380908 /* Numberr6.sks */,
 				2CF5E2F92D1446FF004632FF /* Number7.sks */,
 				2CF5E2FB2D144708004632FF /* Number8.sks */,
 				2CF5E2FD2D144710004632FF /* Number9.sks */,
@@ -505,7 +505,7 @@
 		2C89BA4A2D1AD9BD004CFBB2 /* NLevel2 */ = {
 			isa = PBXGroup;
 			children = (
-				2CF5E30B2D144751004632FF /* Number6.swift */,
+				2C77726B2D549E2A00380908 /* Numberr6.swift */,
 				2CF5E30D2D144758004632FF /* Number7.swift */,
 				2CF5E30F2D144760004632FF /* Number8.swift */,
 				2CF5E3112D14476A004632FF /* Number9.swift */,
@@ -863,7 +863,6 @@
 				FCFC9E1B2D1AFB4B0097CA2A /* A6.mp3 in Resources */,
 				2CF5E2F02D1446C4004632FF /* Number2.sks in Resources */,
 				FCFC9EFC2D1EA5450097CA2A /* ARCountCotton.mp3 in Resources */,
-				2CF5E2F82D1446F6004632FF /* Number6.sks in Resources */,
 				2C7AE61A2D36341B0077E753 /* Hit.mp4 in Resources */,
 				2CF5E3002D14471C004632FF /* Number10.sks in Resources */,
 				2CF5E2D92D1441F6004632FF /* Equation3.sks in Resources */,
@@ -895,6 +894,7 @@
 				2CC5306D2D22DC720051DBD0 /* AExcellentnext.mp3 in Resources */,
 				2CC5307F2D240EA20051DBD0 /* NumAppear.wav in Resources */,
 				2CC530812D240EB90051DBD0 /* PopBalloon.wav in Resources */,
+				2C77726A2D549DC000380908 /* Numberr6.sks in Resources */,
 				2CF5E2BB2D143E69004632FF /* WelcomeScreen.sks in Resources */,
 				FC3C77C52D23F35F00ECBE05 /* ARTryagain.mp3 in Resources */,
 				2C9A0E4D2D2666130026E5B7 /* Ayes8.mp3 in Resources */,
@@ -922,7 +922,6 @@
 				2CF5E2C12D143F39004632FF /* ClownMap.swift in Sources */,
 				2A6748A92D22D39D0021C45C /* Sub7.swift in Sources */,
 				2CF5E2D32D1441BB004632FF /* Equation2.swift in Sources */,
-				2CF5E30C2D144751004632FF /* Number6.swift in Sources */,
 				2CD094AC2D523C7B008D54C4 /* BaseScene.swift in Sources */,
 				2CF5E2E02D14449D004632FF /* DragAndDrop1.swift in Sources */,
 				2CF5E3062D14473D004632FF /* Number3.swift in Sources */,
@@ -936,6 +935,7 @@
 				2CF5E2EA2D1444D4004632FF /* Equation3.swift in Sources */,
 				2C794B992D2055DB006AA61A /* Sub1.swift in Sources */,
 				2A6748A72D22D3900021C45C /* Sub6.swift in Sources */,
+				2C77726C2D549E2A00380908 /* Numberr6.swift in Sources */,
 				2CF5E30E2D144758004632FF /* Number7.swift in Sources */,
 				2A6748AB2D22D3AA0021C45C /* Sub8.swift in Sources */,
 				2CF5E2E82D1444C2004632FF /* DragAndDrop5.swift in Sources */,

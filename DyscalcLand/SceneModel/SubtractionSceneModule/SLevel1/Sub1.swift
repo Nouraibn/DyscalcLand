@@ -203,10 +203,10 @@ class Sub1: BaseScene {
     }
 
     func navigate() {
-        if let nextScene = SKScene(fileNamed: "Sub2") {
-            nextScene.scaleMode = .aspectFill
+        if let number2Scene = SKScene(fileNamed: "Sub2") as? BaseScene{
+            number2Scene.scaleMode = .aspectFill
+            number2Scene.adjustSceneSize(for: self.view!)
             let transition = SKTransition.fade(withDuration: 1.0)
-            self.view?.presentScene(nextScene, transition: transition)
-        }
+            self.view?.presentScene(number2Scene, transition: transition)}
     }
 }

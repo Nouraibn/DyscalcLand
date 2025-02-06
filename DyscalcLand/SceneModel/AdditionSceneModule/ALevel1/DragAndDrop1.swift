@@ -217,12 +217,12 @@ class DragAndDrop1: BaseScene {
         
         GameProgress.shared.saveProgress(for: 2, subLevel: 1)
         
-        let nextScene = SKScene(fileNamed: "Equation1")
-        if let nextScene = nextScene {
-            nextScene.scaleMode = .aspectFill
-            let transition = SKTransition.fade(withDuration: 0.1)
-            self.view?.presentScene(nextScene, transition: transition)
-        }
+        if let number2Scene = SKScene(fileNamed: "Equation1") as? BaseScene{
+            number2Scene.scaleMode = .aspectFill
+            number2Scene.adjustSceneSize(for: self.view!)
+            let transition = SKTransition.fade(withDuration: 1.0)
+            self.view?.presentScene(number2Scene, transition: transition)}
+    }
     }
     
-}
+

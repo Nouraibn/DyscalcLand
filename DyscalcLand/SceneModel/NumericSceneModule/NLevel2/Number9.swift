@@ -1,6 +1,6 @@
 import SpriteKit
 
-class Number9: SKScene {
+class Number9: BaseScene {
     
     // Nodes from the .sks file
     var background: SKSpriteNode!
@@ -247,10 +247,10 @@ class Number9: SKScene {
     func navigateToNumber10() {
         GameProgress.shared.saveProgress(for: 1, subLevel: 9)
 
-        if let number10Scene = SKScene(fileNamed: "Number10") {
-            number10Scene.scaleMode = .aspectFill
+        if let number2Scene = SKScene(fileNamed: "Number10") as? BaseScene{
+            number2Scene.scaleMode = .aspectFill
+            number2Scene.adjustSceneSize(for: self.view!)
             let transition = SKTransition.fade(withDuration: 1.0)
-            self.view?.presentScene(number10Scene, transition: transition)
-        }
+            self.view?.presentScene(number2Scene, transition: transition)}
     }
 }

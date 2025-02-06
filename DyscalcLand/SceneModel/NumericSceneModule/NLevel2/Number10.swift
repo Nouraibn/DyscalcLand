@@ -1,6 +1,6 @@
 import SpriteKit
 
-class Number10: SKScene {
+class Number10: BaseScene {
     
     // Nodes from the .sks file
     var background: SKSpriteNode!
@@ -254,10 +254,10 @@ class Number10: SKScene {
         GameProgress.shared.saveProgress(for: 1, subLevel: 10)
         
         ClownMap.navigatedFromNumber10 = true
-        if let clownMapScene = SKScene(fileNamed: "ClownMap") {
-            clownMapScene.scaleMode = .aspectFill
-            let transition = SKTransition.fade(withDuration: 1.0)
-            self.view?.presentScene(clownMapScene, transition: transition)
-        }
+            if let number2Scene = SKScene(fileNamed: "ClownMap") as? BaseScene{
+                number2Scene.scaleMode = .aspectFill
+                number2Scene.adjustSceneSize(for: self.view!)
+                let transition = SKTransition.fade(withDuration: 1.0)
+                self.view?.presentScene(number2Scene, transition: transition)}
     }
 }
