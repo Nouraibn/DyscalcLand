@@ -1,4 +1,4 @@
-# DysCalcLand
+# DysCalcLand 🎡
 
 DysCalcLand is an interactive educational game that helps children with dyscalculia learn math in a fun, theme park-inspired environment. Built with **SpriteKit** and enhanced by interactive sound, it transforms math challenges into engaging adventures for kids aged 6–12.
 
