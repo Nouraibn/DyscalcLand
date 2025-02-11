@@ -13,11 +13,13 @@ DysCalcLand is an interactive educational game that helps children with dyscalcu
 
 ## Screenshots
 
-![5](https://github.com/user-attachments/assets/0ce59a25-9049-4b5d-a4b4-5e1af5fc9db8)
+![1](https://github.com/user-attachments/assets/7e0ee727-1621-47ea-b90b-61466a09c315)
+
 
 ![3](https://github.com/user-attachments/assets/36daeec5-45eb-4494-be76-f106a52955fd)
 
-![3](https://github.com/user-attachments/assets/66c2c72b-e078-4bd3-9500-f2da4381815a)
+![2](https://github.com/user-attachments/assets/d6aee95b-cb80-4b05-a1f3-59c6c06ba4b7)
+
 
 ![5](https://github.com/user-attachments/assets/5e953b4b-6e6e-4db8-847e-87731f88d29e)
 
@@ -27,15 +29,6 @@ DysCalcLand is an interactive educational game that helps children with dyscalcu
 
    ```bash
    git clone https://github.com/Nouraibn/DysCalcLand.git
-
-## Open the Project:
-Open `DysCalcLand.xcodeproj` in Xcode.
-
-## Build and Run:
-Build the project and run it on your iOS device or simulator.
-
-## License
-This project is licensed under the MIT License.
 
 ## Contact 📬
 For any inquiries, please contact [Noura Alnassar](mailto:Noura_alnassar@hotmail.com).
