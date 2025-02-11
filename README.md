@@ -13,9 +13,12 @@ DysCalcLand is an interactive educational game that helps children with dyscalcu
 
 ## Screenshots
 
-![1](https://github.com/user-![2](https://github.com/user-attachments/assets/d8a41b5b-b49b-4363-bc49-b9481ecb257b)
-attachments/assets/38700121-4b67-4bdc-8b4e-a0d1f9c1063b)
+![5](https://github.com/user-attachments/assets/0ce59a25-9049-4b5d-a4b4-5e1af5fc9db8)
+
+![3](https://github.com/user-attachments/assets/36daeec5-45eb-4494-be76-f106a52955fd)
+
 ![3](https://github.com/user-attachments/assets/66c2c72b-e078-4bd3-9500-f2da4381815a)
+
 ![5](https://github.com/user-attachments/assets/5e953b4b-6e6e-4db8-847e-87731f88d29e)
 
 ## Installation
@@ -23,7 +26,7 @@ attachments/assets/38700121-4b67-4bdc-8b4e-a0d1f9c1063b)
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/DysCalcLand.git
+   git clone https://github.com/Nouraibn/DysCalcLand.git
 
 ## Open the Project:
 Open `DysCalcLand.xcodeproj` in Xcode.
